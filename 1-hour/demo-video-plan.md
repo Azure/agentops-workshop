@@ -15,9 +15,7 @@ The video should show a production-readiness flow, not a tool installation walkt
 
 ## Source of truth
 
-Use:
-
-`C:\Users\paulolacerda\workspace\agentops\docs\tutorial-end-to-end.md`
+Use the private AgentOps end-to-end tutorial notes summarized in `..\references\source-materials.md`.
 
 ## Demo storyline
 

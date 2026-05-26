@@ -69,9 +69,9 @@ Primary sources:
 
 External source references:
 
-- GenAIOps Training deck shortcut: `C:\Users\paulolacerda\workspace\agentops-landing\references\GenAIOps Training.pptx.url`
-- AgentOps end-to-end tutorial: `C:\Users\paulolacerda\workspace\agentops\docs\tutorial-end-to-end.md`
-- Prior planning folder: `C:\Users\paulolacerda\workspace\agentops-landing\workshops`
+- Private GenAIOps Training deck notes summarized in `references\source-materials.md`.
+- Private AgentOps end-to-end tutorial notes summarized in `references\source-materials.md`.
+- Prior planning content consolidated into the 1-hour and 8-hour track pages.
 
 ## Content conventions
 

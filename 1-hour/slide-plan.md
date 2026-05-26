@@ -272,7 +272,7 @@ Demo story:
 
 **Visual idea:** Horizontal storyboard with seven numbered frames and a play button.
 
-**Source mapping:** `C:\Users\paulolacerda\workspace\agentops\docs\tutorial-end-to-end.md`.
+**Source mapping:** Private AgentOps end-to-end tutorial notes summarized in `..\references\source-materials.md`.
 
 **Subtle component note:** AgentOps Toolkit can be used in the recording for CLI, Doctor, and Cockpit because those components make the AgentOps practices concrete.
 
