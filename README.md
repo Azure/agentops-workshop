@@ -21,7 +21,7 @@ The workshop is organized around the AgentOps operating model: **Evaluate, Gate,
 | `1-hour\` | Short session planning materials. |
 | `8-hour\` | Full-day workshop planning and lab placeholders. |
 | `assets\` | Future images, slide exports, videos, and sample data. |
-| `references\source-materials.md` | Source links and reference mapping. |
+| `references\` | Sanitized context pack, source synthesis, decisions, and working backlog. |
 
 ## Main storyline
 

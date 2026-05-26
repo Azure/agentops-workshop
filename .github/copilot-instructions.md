@@ -62,6 +62,10 @@ Use English for all repository files, plans, website pages, speaker notes, lab p
 Primary sources:
 
 - `references\source-materials.md`
+- `references\context-brief.md`
+- `references\agentops-operating-model.md`
+- `references\content-decisions.md`
+- `references\workshop-backlog.md`
 - `1-hour\slide-plan.md`
 - `1-hour\agenda.md`
 - `1-hour\demo-video-plan.md`
@@ -108,3 +112,9 @@ Avoid these phrasings:
 - Static assets: `assets\`
 - Source notes: `references\`
 - Keep pages compatible with the `just-the-docs` Jekyll theme.
+
+## Privacy and source handling
+
+- Do not add personal names, private SharePoint URLs, local user paths, tenant identifiers, or raw customer data to public pages.
+- Summarize private materials into sanitized reference notes instead of linking to the private source directly.
+- If a source is private, describe it generically, for example: "private training deck notes" or "private end-to-end tutorial notes."
