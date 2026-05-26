@@ -2,16 +2,13 @@
 title: Source Materials
 layout: default
 nav_order: 5
-has_children: true
 ---
 
 # Source Materials
 
 ## Primary reference deck
 
-`C:\Users\paulolacerda\workspace\agentops-landing\references\GenAIOps Training.pptx.url`
-
-This is the main conceptual source. Treat it as a training deck that needs to be compressed for a 1-hour AgentOps session.
+Private GenAIOps Training deck notes were used as the main conceptual source. Treat the source as a training deck that needs to be compressed for a 1-hour AgentOps session.
 
 Important content to preserve:
 
@@ -29,9 +26,7 @@ Important content to preserve:
 
 ## Demo reference
 
-`C:\Users\paulolacerda\workspace\agentops\docs\tutorial-end-to-end.md`
-
-Use this as the source of truth for the demo video. It covers:
+Private AgentOps end-to-end tutorial notes should be used as the source of truth for the demo video. The tutorial covers:
 
 - Foundry control plane
 - Travel Agent target
@@ -52,10 +47,6 @@ Earlier planning content was consolidated into:
 - `1-hour\slide-plan.md`
 - `1-hour\demo-video-plan.md`
 - `1-hour\observability-plan.md`
-
-Original source location:
-
-`C:\Users\paulolacerda\workspace\agentops-landing\workshops`
 
 ## Website reference
 

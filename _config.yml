@@ -11,12 +11,6 @@ plugins:
 search_enabled: true
 heading_anchors: true
 
-aux_links:
-  "View on GitHub":
-    - "https://github.com/Azure/agentops-workshop"
-
-footer_content: "AgentOps Workshop planning site."
-
 callouts:
   planning:
     title: Planning note
