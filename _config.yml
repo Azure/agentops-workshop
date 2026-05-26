@@ -1,0 +1,29 @@
+title: AgentOps Workshop
+description: Production readiness for AI agents with evaluation, gates, observability, and governance.
+baseurl: "/agentops-workshop"
+url: ""
+
+theme: just-the-docs
+
+plugins:
+  - jekyll-seo-tag
+
+search_enabled: true
+heading_anchors: true
+
+aux_links:
+  "View on GitHub":
+    - "https://github.com/Azure/agentops-workshop"
+
+footer_content: "AgentOps Workshop planning site."
+
+callouts:
+  planning:
+    title: Planning note
+    color: yellow
+  important:
+    title: Important
+    color: red
+  outcome:
+    title: Outcome
+    color: green
