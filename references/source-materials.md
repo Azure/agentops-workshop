@@ -2,6 +2,7 @@
 title: Source Materials
 layout: default
 nav_order: 5
+has_children: true
 ---
 
 # Source Materials
@@ -73,3 +74,12 @@ Observability is a first-class AgentOps topic. When adapting source content, pre
 - Cost and latency
 - Alerting and incident response
 - Production trace promotion into future evaluation sets
+
+## Reference pages
+
+Use these companion pages to continue work without needing private chat history:
+
+- [Context Brief](context-brief.md)
+- [AgentOps Operating Model](agentops-operating-model.md)
+- [Content Decisions](content-decisions.md)
+- [Workshop Backlog](workshop-backlog.md)
