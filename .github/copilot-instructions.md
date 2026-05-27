@@ -4,8 +4,8 @@
 
 This repository is a GitHub Pages content workspace for the **AgentOps Workshop**, with two delivery tracks:
 
-- **1-hour**: short session plan, slide plan, run of show, and demo video plan.
-- **8-hour**: full-day workshop plan with multiple labs. Lab content is intentionally planning-only for now.
+- **short**: short session plan, slide plan, run of show, and demo video plan.
+- **long**: full-day workshop plan with multiple labs. Lab content is intentionally planning-only for now.
 
 Treat this as a workshop and documentation repository, not as an application codebase. Do not add application scaffolding, sample implementations, SDK code, or lab solution code unless explicitly requested.
 
@@ -16,8 +16,8 @@ The repo is split into **workshop content** (what an attendee or instructor cons
 Workshop content (consumer-facing, published to GitHub Pages):
 
 - `index.md`, `README.md`, `_config.yml`, Gemfile (site root)
-- `1-hour\` - the 1-hour session deliverables: `agenda.md`, `slides.md`, `slides.pptx`, `agentops-1hour-video.mp4`, `speaker-script.md`, `run-of-show.md`, `images\`
-- `8-hour\` - the full-day workshop planning skeleton
+- `short\` - the short (~1-hour) session deliverables: `agenda.md`, `slides.md`, `slides.pptx`, `agentops-short-video.mp4`, `speaker-script.md`, `run-of-show.md`, `images\`
+- `long\` - the long (~8-hour) full-day workshop planning skeleton
 - `instructor\delivery-guide.md` - cross-track instructor notes
 - `assets\` - shared images, slides, video, data
 
@@ -25,7 +25,7 @@ Preparation materials (excluded from the published site via `_config.yml`):
 
 - `prep\references\` - sanitized context pack, content decisions, operating model notes, source materials, working backlog
 - `prep\tools\` - Python scripts that generate diagrams, render slides, synthesize speech, and assemble the narrated video
-- `prep\1-hour\` - planning docs (`slide-plan.md`, `observability-plan.md`, `demo-video-plan.md`), original single-voice script backup, and intermediate audio/video artefacts (gitignored)
+- `prep\short\` - planning docs (`slide-plan.md`, `observability-plan.md`, `demo-video-plan.md`), original single-voice script backup, and intermediate audio/video artefacts (gitignored)
 
 When new authoring artefacts are created (notes, planning docs, build scripts, intermediates), place them under `prep\`. Only files an attendee or instructor would consume belong at the root.
 
@@ -41,7 +41,7 @@ Working agreement with the upstream program:
 
 - `agentops-workshop` (this repo) is the authoring workspace. Planning artifacts, references, run-of-show, observability plan, demo video plan, and per-track materials are produced here.
 - Final presentation deliverables (Marp `slides.md` and exported `.pptx`) authored here must be mirrored into the upstream `presentations/04-agentops/` folder.
-- When proposing structural changes to the deck, cross-check the upstream `presentations/04-agentops/slides.md` so the 1-hour and 8-hour materials stay consistent with the program's section taxonomy: **AgentOps Foundations, Agent Development Lifecycle, Evaluation, CI/CD for Agentic AI, Observability, Day-2 Operations**.
+- When proposing structural changes to the deck, cross-check the upstream `presentations/04-agentops/slides.md` so the short and long materials stay consistent with the program's section taxonomy: **AgentOps Foundations, Agent Development Lifecycle, Evaluation, CI/CD for Agentic AI, Observability, Day-2 Operations**.
 - Do not link to the upstream private repo from public site pages. Reference it only inside repository instructions, internal notes, and `prep\references\` materials.
 
 ## Core positioning
@@ -101,40 +101,40 @@ Primary sources:
 - `prep\references\agentops-operating-model.md`
 - `prep\references\content-decisions.md`
 - `prep\references\workshop-backlog.md`
-- `prep\1-hour\slide-plan.md`
-- `1-hour\agenda.md`
-- `prep\1-hour\demo-video-plan.md`
-- `8-hour\lab-roadmap.md`
+- `prep\short\slide-plan.md`
+- `short\agenda.md`
+- `prep\short\demo-video-plan.md`
+- `long\lab-roadmap.md`
 
 External source references:
 
 - Private GenAIOps Training deck notes summarized in `prep\references\source-materials.md`.
 - Private AgentOps end-to-end tutorial notes summarized in `prep\references\source-materials.md`.
 - Upstream AgentOps deck in the parent program: `presentations\04-agentops\slides.md` in the `private-program-owner\prod-readiness-workshop` repository. Use it as the structural reference for section taxonomy, Marp format, and slide ordering.
-- Prior planning content consolidated into the 1-hour and 8-hour track pages.
+- Prior planning content consolidated into the short and long track pages.
 
 ## Content conventions
 
 - Keep markdown files directly useful for building the deck later.
 - For slide outlines, include: purpose, on-slide content, speaker cue, visual idea, and source mapping.
-- Keep the 1-hour deck concise, but reserve explicit time for observability.
+- Keep the short deck concise, but reserve explicit time for observability.
 - Move deep technical detail to appendix ideas rather than the main flow.
 - Prefer concise bullets over long paragraphs.
 - Use ASCII punctuation in markdown.
-- For the 8-hour track, create plans and placeholders only until the user asks for lab implementation.
+- For the long track, create plans and placeholders only until the user asks for lab implementation.
 - GitHub Pages uses Jekyll with Just the Docs. Use front matter consistently.
 
 ## Presentation deliverables
 
-Every deliverable session (currently the 1-hour track, later the 8-hour track) must be produced as **two paired artifacts**:
+Every deliverable session (currently the short track, later the long track) must be produced as **two paired artifacts**:
 
 1. A **Marp Markdown** source file (`slides.md`) - the structural source of truth for the deck.
 2. A **PowerPoint** file (`slides.pptx` or `AgentOps.pptx`) - the delivered artifact, generated from the Markdown using the upstream `marp_to_pptx.py` converter and the program's branded template.
 
 ### File locations
 
-- 1-hour track: `1-hour\slides.md`, `1-hour\slides.pptx`, `1-hour\images\`
-- 8-hour track (when authored): `8-hour\slides.md`, `8-hour\slides.pptx`, `8-hour\images\`
+- Short track: `short\slides.md`, `short\slides.pptx`, `short\images\`
+- Long track (when authored): `long\slides.md`, `long\slides.pptx`, `long\images\`
 - Upstream mirror path: `presentations\04-agentops\slides.md` and `presentations\04-agentops\AgentOps.pptx`
 
 ### Marp Markdown format
@@ -163,7 +163,7 @@ Within a deck, organize content under the six AgentOps sections defined by the p
 5. Observability
 6. Day-2 Operations
 
-For the 1-hour deck, the operating loop **Evaluate, Gate, Observe, Diagnose, Ship, Improve** remains the storyline. Map condensed content to the six sections above so it stays consistent with the upstream program structure.
+For the short deck, the operating loop **Evaluate, Gate, Observe, Diagnose, Ship, Improve** remains the storyline. Map condensed content to the six sections above so it stays consistent with the upstream program structure.
 
 ### Upstream mirroring rules
 
@@ -189,9 +189,9 @@ Avoid these phrasings:
 ## GitHub Pages conventions
 
 - Site home: `index.md`
-- Short track: `1-hour\`
-- Full workshop track: `8-hour\`
-- Lab planning pages: `8-hour\labs\`
+- Short track: `short\`
+- Long track: `long\`
+- Lab planning pages: `long\labs\`
 - Static assets: `assets\`
 - Authoring materials and source notes: `prep\` (excluded from the published site via `_config.yml`)
 - Keep pages compatible with the `just-the-docs` Jekyll theme.

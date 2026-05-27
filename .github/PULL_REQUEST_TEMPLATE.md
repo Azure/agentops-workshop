@@ -6,8 +6,8 @@
 
 ## Track affected
 
-- [ ] 1-hour session
-- [ ] 8-hour workshop
+- [ ] Short workshop
+- [ ] Long workshop
 - [ ] GitHub Pages site structure
 - [ ] References or instructor materials
 
