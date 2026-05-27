@@ -24,7 +24,7 @@ A ~1 hour customer-facing AgentOps session. Everything below is ready to deliver
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
   </span>
 </a>
-<a class="download-card" href="https://github.com/Azure/agentops-workshop/releases/download/v0.1.0-short/agentops-short-video.mp4">
+<a class="download-card" href="https://github.com/Azure/agentops-workshop/releases/download/v0.1.0/agentops-short-video.mp4">
   <span class="download-card__icon" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z" fill="currentColor" stroke="none"/></svg>
   </span>
@@ -49,6 +49,8 @@ A ~1 hour customer-facing AgentOps session. Everything below is ready to deliver
   </span>
 </a>
 </div>
+
+<p class="downloads-note" markdown="0">Repository access required: this repository is private, so the download links resolve only for signed-in members of the <strong>Azure</strong> GitHub organization.</p>
 
 ## Session promise
 

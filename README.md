@@ -53,15 +53,16 @@ python prep\tools\build_video.py          # ffmpeg assembly -> short\agentops-sh
 
 ### Publishing the video
 
-The final MP4 is over GitHub's 100 MB per-file limit, so it ships through GitHub Releases. After regenerating:
+The final MP4 is over GitHub's 100 MB per-file limit, so it ships through GitHub Releases. Each release of the kit uses a simple semver tag (`v0.1.0`, `v0.1.1`, `v0.2.0`, ...) with no track-specific suffix; the same release attaches every binary artefact that exceeds the in-repo limit. After regenerating:
 
 ```powershell
-gh release create v0.1.0-short short\agentops-short-video.mp4 `
-    --title "Short workshop kit (v0.1.0)" `
-    --notes "Initial instructor kit for the short AgentOps workshop."
+$tag = "v0.1.0"
+gh release create $tag short\agentops-short-video.mp4 `
+    --title $tag `
+    --notes "AgentOps workshop kit."
 ```
 
-The download link on the Pages site is pinned to that release tag, so a new video requires a new tag and a Pages link update (or you can move to `releases/latest/download/` if you prefer auto-refresh).
+If a release with that tag already exists, bump the patch version (`v0.1.1`) and update the asset URLs in `index.md` and `short/index.md`. The Pages download buttons are pinned to a specific tag (not `releases/latest/download/`) so older links keep working when a new release lands.
 
 ## Local preview of the Pages site
 
