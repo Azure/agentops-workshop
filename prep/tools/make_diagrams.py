@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the code-based diagrams for the 1-hour AgentOps deck.
+"""Render the code-based diagrams for the short AgentOps deck.
 
 Output style matches the upstream presentations/04-agentops/images/ aesthetic:
     - white background
@@ -47,7 +47,7 @@ HEADING_FONT = "Segoe UI Semibold" if "Segoe UI Semibold" in _FONTS else (
 BODY_FONT = "Segoe UI" if "Segoe UI" in _FONTS else "DejaVu Sans"
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
-OUT_DIR = REPO_ROOT / "1-hour" / "images"
+OUT_DIR = REPO_ROOT / "short" / "images"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 DPI = 200

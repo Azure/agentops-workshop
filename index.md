@@ -4,32 +4,51 @@ layout: home
 nav_order: 1
 ---
 
-# AgentOps Workshop
+# AgentOps Workshop — Instructor Kit
 
-Welcome to the AgentOps Workshop site.
+This site is for **instructors** preparing to deliver the AgentOps workshop. It packages the slides, the narrated walkthrough, the speaker script, and the run-of-show in one place.
 
-This workshop helps teams move AI agents from prototype to production using a repeatable operating model for evaluation, release gates, observability, diagnostics, safety, governance, and continuous improvement.
+Two tracks are available:
 
-## Tracks
+- **Short workshop** (~1 hour) — ready to deliver.
+- **Long workshop** (~8 hours) — under construction.
 
-| Track | Duration | Audience | Outcome |
-|---|---:|---|---|
-| [1-hour session](1-hour/) | 1 hour | Customer-facing technical and platform stakeholders | Understand the AgentOps operating model and see a release-readiness demo plan. |
-| [8-hour workshop](8-hour/) | 8 hours | Architects, engineers, DevOps, platform, and AI governance teams | Plan a full-day hands-on workshop with multiple labs and a strong observability module. |
+---
 
-## Core operating loop
+## Short workshop — ready to deliver
 
-AgentOps applies production engineering discipline to agentic AI:
+[Download PowerPoint deck (slides.pptx)]({{ '/short/slides.pptx' | relative_url }}){: .btn .btn-primary .fs-5 }
+[Download narrated video (101 MB, 46 min)](https://github.com/Azure/agentops-workshop/releases/download/v0.1.0-short/agentops-short-video.mp4){: .btn .btn-primary .fs-5 }
+[Open speaker script]({{ '/short/speaker-script' | relative_url }}){: .btn .fs-5 }
 
-1. **Evaluate** agent quality, safety, grounding, latency, cost, and behavior.
-2. **Gate** releases with CI/CD checks and baseline comparison.
-3. **Observe** runtime behavior through traces, telemetry, dashboards, alerts, and feedback.
-4. **Diagnose** regressions, incidents, tool failures, safety findings, and drift.
-5. **Ship** with readiness evidence and clear ownership.
-6. **Improve** by promoting production learnings into future evaluation sets.
+| Resource | What it is |
+|---|---|
+| [Agenda]({{ '/short/agenda' | relative_url }}) | Customer-facing abstract and timeboxed agenda. |
+| [Run of show]({{ '/short/run-of-show' | relative_url }}) | Presenter timing, transitions, and delivery cues. |
+| [Speaker script]({{ '/short/speaker-script' | relative_url }}) | Verbatim word-for-word narration (~50 min). |
+| [Instructor delivery guide]({{ '/instructor/delivery-guide' | relative_url }}) | Cross-track notes on what to emphasize. |
 
-## Why observability matters
+---
 
-Observability is a first-class AgentOps practice. Agents are non-deterministic, tool-using systems, so teams need more than infrastructure metrics. They need correlated traces across prompts, model calls, retrieval, tools, safety events, releases, user feedback, latency, and cost.
+## Long workshop — under construction
 
-The 1-hour session introduces this operating model. The 8-hour workshop reserves a dedicated lab for observability and uses telemetry as a thread across the other labs.
+The full-day (~8 hours) workshop is being designed. The planning pages are visible so you can see where it is heading, but the labs are placeholders.
+
+[See the long workshop plan]({{ '/long/' | relative_url }}){: .btn }
+
+---
+
+## What the workshop is about
+
+AgentOps applies production engineering discipline to AI agents. The workshop walks instructors through an operating loop used to take one agent from prototype to production:
+
+**Evaluate → Gate → Observe → Diagnose → Ship → Improve**
+
+The short workshop introduces the loop with a demo storyline: an existing Foundry agent is evaluated, a regression is blocked before release, the issue is fixed, readiness evidence is reviewed, and telemetry links the release decision back to runtime behavior.
+
+---
+
+## Authoring this workshop
+
+If you are not delivering the workshop but contributing to it, start with the [repository README on GitHub](https://github.com/Azure/agentops-workshop#readme). The README and the `prep/` folder hold the authoring tools, references, and intermediate artefacts used to build everything published here.
+

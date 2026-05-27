@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Render dual-voice TTS audio per slide from speaker-script.md.
 
-Parses 1-hour/speaker-script.md, finds each `## Slide N - title` heading,
+Parses short/speaker-script.md, finds each `## Slide N - title` heading,
 collects the `**M:**` and `**F:**` turns under it, builds SSML alternating
 between two Azure Neural voices, and synthesizes one WAV per slide.
 
@@ -38,8 +38,8 @@ VOICE_M = "en-US-AndrewMultilingualNeural"
 VOICE_F = "en-US-AvaMultilingualNeural"
 
 REPO = Path(__file__).resolve().parent.parent.parent
-SCRIPT_PATH = REPO / "1-hour" / "speaker-script.md"
-AUDIO_DIR = REPO / "prep" / "1-hour" / "audio"
+SCRIPT_PATH = REPO / "short" / "speaker-script.md"
+AUDIO_DIR = REPO / "prep" / "short" / "audio"
 
 # Inter-turn pause and inter-paragraph natural rhythm
 INTER_TURN_BREAK_MS = 350

@@ -15,8 +15,8 @@ This repository is a GitHub Pages workshop site for teaching AgentOps as the ope
 
 It has two tracks:
 
-- **1-hour session:** concise customer-facing session plan with deck outline, run of show, observability plan, and demo video plan.
-- **8-hour workshop:** full-day workshop planning structure with multiple future labs. The labs are intentionally placeholders until the lab implementation plan is approved.
+- **Short workshop:** concise customer-facing session plan with deck outline, run of show, observability plan, and demo video plan.
+- **Long workshop:** full-day workshop planning structure with multiple future labs. The labs are intentionally placeholders until the lab implementation plan is approved.
 
 ## Core story
 
@@ -31,8 +31,8 @@ AgentOps is the operating model that connects those practices into a repeatable 
 The repository currently includes:
 
 - GitHub Pages site structure with Jekyll and Just the Docs.
-- A 1-hour session plan.
-- An 8-hour workshop planning skeleton.
+- A short workshop session plan.
+- A long workshop planning skeleton.
 - A dedicated observability plan for the short session.
 - A dedicated observability lab plan for the full-day workshop.
 - Sanitized reference notes instead of raw private source links.
@@ -41,9 +41,9 @@ The repository currently includes:
 
 The next useful work is:
 
-1. Turn the 1-hour slide plan into a polished deck.
-2. Expand the 1-hour demo video plan into a recording script and shot list.
-3. Define the scenario for the 8-hour workshop.
+1. Turn the short workshop slide plan into a polished deck.
+2. Expand the short workshop demo video plan into a recording script and shot list.
+3. Define the scenario for the long workshop.
 4. Implement Lab 1 and Lab 2 first, then use those to anchor the rest of the labs.
 5. Build the observability lab with traces, telemetry correlation, dashboards, alerts, and trace-to-evaluation feedback.
 6. Add an FAQ page based on reviewer and attendee questions.

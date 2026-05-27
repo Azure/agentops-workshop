@@ -7,8 +7,8 @@ Two phases:
   Phase B: chain all 23 segments with ffmpeg `xfade` (video) and
            `acrossfade` (audio) for smooth transitions; output a single MP4.
 
-Per-slide segments are cached under 1-hour/video/segments/.
-The final file is written to 1-hour/agentops-1hour-video.mp4.
+Per-slide segments are cached under prep/short/video/segments/.
+The final file is written to short/agentops-short-video.mp4.
 
 Usage:
     python build_video.py                       # build everything that's missing
@@ -28,10 +28,10 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent.parent
-AUDIO_DIR = REPO / "prep" / "1-hour" / "audio"
-SLIDE_DIR = REPO / "prep" / "1-hour" / "video"
+AUDIO_DIR = REPO / "prep" / "short" / "audio"
+SLIDE_DIR = REPO / "prep" / "short" / "video"
 SEG_DIR = SLIDE_DIR / "segments"
-OUT_PATH = REPO / "1-hour" / "agentops-1hour-video.mp4"
+OUT_PATH = REPO / "short" / "agentops-short-video.mp4"
 
 FPS = 30
 WIDTH = 1920

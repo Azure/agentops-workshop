@@ -30,8 +30,8 @@ from pptx.util import Emu, Inches, Pt
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 DEFAULT_TEMPLATE = os.path.join(SCRIPT_DIR, "template.pptx")
-DEFAULT_INPUT = os.path.join(REPO_ROOT, "1-hour", "slides.md")
-DEFAULT_OUTPUT = os.path.join(REPO_ROOT, "1-hour", "slides.pptx")
+DEFAULT_INPUT = os.path.join(REPO_ROOT, "short", "slides.md")
+DEFAULT_OUTPUT = os.path.join(REPO_ROOT, "short", "slides.pptx")
 
 # ---------------------------------------------------------------------------
 # Style constants
@@ -191,7 +191,7 @@ DIAGRAM_IMAGES = {
     # Topic 6
     "caching-strategy-three-levels.png", "cost-modeling-formula-breakdown.png",
     "multi-region-architecture-diagram.png", "model-upgrade-phased-rollout.png",
-    # 1-hour deck custom visuals (code-rendered + AI)
+    # short deck custom visuals (code-rendered + AI)
     "complexity-ladder.png", "operating-loop.png", "maturity-ribbon.png",
     "foundry-control-plane.png", "telemetry-to-action.png",
     "red-teaming-taxonomy.png", "day2-quadrant.png",

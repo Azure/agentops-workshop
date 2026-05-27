@@ -4,7 +4,7 @@
 Strategy: render each PDF page at scale 4.0 (= 3840x2160 for a 16:9 deck),
 then downsample with Lanczos to 1920x1080. This keeps text sharp.
 
-The PDF is produced by LibreOffice from 1-hour/slides.pptx; if missing, this
+The PDF is produced by LibreOffice from short/slides.pptx; if missing, this
 script re-runs the conversion.
 
 Usage:
@@ -26,10 +26,10 @@ import pypdfium2 as pdfium
 from PIL import Image
 
 REPO = Path(__file__).resolve().parent.parent.parent
-PPTX = REPO / "1-hour" / "slides.pptx"
+PPTX = REPO / "short" / "slides.pptx"
 PDF_DIR = Path(os.environ.get("TEMP", "/tmp")) / "pptx-preview"
 PDF_PATH = PDF_DIR / "slides.pdf"
-OUT_DIR = REPO / "prep" / "1-hour" / "video"
+OUT_DIR = REPO / "prep" / "short" / "video"
 
 TARGET_W = 1920
 TARGET_H = 1080

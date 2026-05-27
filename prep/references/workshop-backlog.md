@@ -13,14 +13,14 @@ This backlog is a practical starting point for the next editing sessions.
 
 | Priority | Work item | Output |
 |---:|---|---|
-| 1 | Convert the 1-hour slide plan into a real deck. | Slide deck plus speaker notes. |
+| 1 | Convert the short workshop slide plan into a real deck. | Slide deck plus speaker notes. |
 | 2 | Expand the demo video plan. | Recording script, shot list, and edit checklist. |
-| 3 | Define the 8-hour scenario. | Scenario page with agent, users, data, tools, and production risks. |
+| 3 | Define the long workshop scenario. | Scenario page with agent, users, data, tools, and production risks. |
 | 4 | Implement Lab 1 plan. | Step-by-step foundation lab. |
 | 5 | Implement Lab 2 plan. | Step-by-step evaluation lab. |
 | 6 | Deepen observability lab. | Trace schema, dashboard plan, alert plan, and trace-review worksheet. |
 
-## 1-hour session backlog
+## Short workshop backlog
 
 - Tighten the narrative arc to fit exactly 60 minutes.
 - Create final slide titles and speaker notes.
@@ -29,7 +29,7 @@ This backlog is a practical starting point for the next editing sessions.
 - Add a short closing checklist: one agent, one eval set, one gate, one observability view.
 - Add backup appendix ideas for Q&A.
 
-## 8-hour workshop backlog
+## Long workshop backlog
 
 - Define prerequisites.
 - Decide whether labs are no-code, low-code, or full-code.
@@ -51,7 +51,7 @@ This backlog is a practical starting point for the next editing sessions.
 
 - Add FAQ.
 - Add prerequisites.
-- Add presenter guide for the 1-hour session.
+- Add presenter guide for the short workshop.
 - Add lab authoring guide.
 - Add a release checklist for publishing updates.
 - Replace placeholder code of conduct and license materials with approved organization files before public release.

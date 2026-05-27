@@ -9,7 +9,7 @@ has_children: true
 
 ## Primary reference deck
 
-Private GenAIOps Training deck notes were used as the main conceptual source. Treat the source as a training deck that needs to be compressed for a 1-hour AgentOps session.
+Private GenAIOps Training deck notes were used as the main conceptual source. Treat the source as a training deck that needs to be compressed for the short AgentOps workshop.
 
 Important content to preserve:
 
@@ -44,10 +44,10 @@ Private AgentOps end-to-end tutorial notes should be used as the source of truth
 
 Earlier planning content was consolidated into:
 
-- `..\..\1-hour\agenda.md`
-- `..\1-hour\slide-plan.md`
-- `..\1-hour\demo-video-plan.md`
-- `..\1-hour\observability-plan.md`
+- `..\..\short\agenda.md`
+- `..\short\slide-plan.md`
+- `..\short\demo-video-plan.md`
+- `..\short\observability-plan.md`
 
 ## Website reference
 

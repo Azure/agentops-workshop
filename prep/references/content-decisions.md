@@ -17,8 +17,8 @@ This page records editorial and structural decisions already made for the worksh
 | AgentOps Toolkit is an optional accelerator. | It can make evals, readiness evidence, Doctor, and local command center flows tangible, but it should not dominate the narrative. |
 | Foundry remains the control plane. | AgentOps practices should connect Foundry signals to release decisions and operations, not replace Foundry. |
 | Observability gets explicit depth. | Agents require trace-level understanding, telemetry correlation, and trace-to-eval feedback loops. |
-| The short track is called "1-hour session." | This avoids confusion with the 8-hour workshop while keeping the short delivery option clear. |
-| The 8-hour track is planning-only for now. | Lab content should be implemented after scenario and prerequisites are approved. |
+| The short track is called "short workshop." | This avoids confusion with the long workshop while keeping the short delivery option clear. |
+| The long track is planning-only for now. | Lab content should be implemented after scenario and prerequisites are approved. |
 
 ## Content hierarchy
 
@@ -38,7 +38,7 @@ Use this priority order when editing:
 - Prefer practical, customer-facing language.
 - Avoid generic "AI transformation" language.
 - Avoid installation-first content.
-- Avoid long tool walkthroughs in the 1-hour session.
+- Avoid long tool walkthroughs in the short workshop.
 - Use markdown that can become deck content later.
 
 ## Privacy decisions

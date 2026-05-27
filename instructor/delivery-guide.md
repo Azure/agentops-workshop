@@ -20,9 +20,9 @@ The workshop should feel like a production-readiness engagement, not a product t
 - Use failures intentionally. A failed eval or gate is the clearest way to show value.
 - Keep AgentOps Toolkit references subtle and practical.
 
-## For the 1-hour session
+## For the short workshop
 
-The 1-hour session should prioritize:
+The short workshop should prioritize:
 
 1. Production gap and AgentOps operating model
 2. Evaluation and release gates
@@ -32,9 +32,9 @@ The 1-hour session should prioritize:
 
 The observability section should explain trace correlation and the trace-to-evaluation feedback loop.
 
-## For the 8-hour workshop
+## For the long workshop
 
-The 8-hour workshop should prioritize:
+The long workshop should prioritize:
 
 1. One consistent scenario
 2. One readiness artifact per lab
@@ -48,7 +48,7 @@ The dedicated observability lab should be treated as a major part of the day, no
 Before delivery:
 
 - Confirm the target audience and expected technical depth.
-- Confirm whether the session is 1-hour or 8-hour.
+- Confirm whether the session is the short or long workshop.
 - Confirm whether live demos, recorded demos, or screenshots will be used.
 - Confirm the Foundry project and agent scenario.
 - Confirm that no sensitive telemetry or tenant data appears in screenshots.
