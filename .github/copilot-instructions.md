@@ -9,6 +9,41 @@ This repository is a GitHub Pages content workspace for the **AgentOps Workshop*
 
 Treat this as a workshop and documentation repository, not as an application codebase. Do not add application scaffolding, sample implementations, SDK code, or lab solution code unless explicitly requested.
 
+## Repository layout
+
+The repo is split into **workshop content** (what an attendee or instructor consumes) and **preparation materials** (authoring notes, build tools, and intermediate artefacts that the consumer does not need to see).
+
+Workshop content (consumer-facing, published to GitHub Pages):
+
+- `index.md`, `README.md`, `_config.yml`, Gemfile (site root)
+- `1-hour\` - the 1-hour session deliverables: `agenda.md`, `slides.md`, `slides.pptx`, `agentops-1hour-video.mp4`, `speaker-script.md`, `run-of-show.md`, `images\`
+- `8-hour\` - the full-day workshop planning skeleton
+- `instructor\delivery-guide.md` - cross-track instructor notes
+- `assets\` - shared images, slides, video, data
+
+Preparation materials (excluded from the published site via `_config.yml`):
+
+- `prep\references\` - sanitized context pack, content decisions, operating model notes, source materials, working backlog
+- `prep\tools\` - Python scripts that generate diagrams, render slides, synthesize speech, and assemble the narrated video
+- `prep\1-hour\` - planning docs (`slide-plan.md`, `observability-plan.md`, `demo-video-plan.md`), original single-voice script backup, and intermediate audio/video artefacts (gitignored)
+
+When new authoring artefacts are created (notes, planning docs, build scripts, intermediates), place them under `prep\`. Only files an attendee or instructor would consume belong at the root.
+
+## Parent program
+
+This workshop is one component of a broader engagement program called the **AI Path to Production - Delivery Accelerator**.
+
+- Upstream program repository (private): https://github.com/private-program-owner/prod-readiness-workshop
+- The program has six webinar topics. AgentOps is **Topic 4**.
+- Upstream location for the AgentOps presentation assets: https://github.com/private-program-owner/prod-readiness-workshop/tree/master/presentations/04-agentops
+
+Working agreement with the upstream program:
+
+- `agentops-workshop` (this repo) is the authoring workspace. Planning artifacts, references, run-of-show, observability plan, demo video plan, and per-track materials are produced here.
+- Final presentation deliverables (Marp `slides.md` and exported `.pptx`) authored here must be mirrored into the upstream `presentations/04-agentops/` folder.
+- When proposing structural changes to the deck, cross-check the upstream `presentations/04-agentops/slides.md` so the 1-hour and 8-hour materials stay consistent with the program's section taxonomy: **AgentOps Foundations, Agent Development Lifecycle, Evaluation, CI/CD for Agentic AI, Observability, Day-2 Operations**.
+- Do not link to the upstream private repo from public site pages. Reference it only inside repository instructions, internal notes, and `prep\references\` materials.
+
 ## Core positioning
 
 The theme is **AgentOps**, not AgentOps Toolkit.
@@ -61,20 +96,21 @@ Use English for all repository files, plans, website pages, speaker notes, lab p
 
 Primary sources:
 
-- `references\source-materials.md`
-- `references\context-brief.md`
-- `references\agentops-operating-model.md`
-- `references\content-decisions.md`
-- `references\workshop-backlog.md`
-- `1-hour\slide-plan.md`
+- `prep\references\source-materials.md`
+- `prep\references\context-brief.md`
+- `prep\references\agentops-operating-model.md`
+- `prep\references\content-decisions.md`
+- `prep\references\workshop-backlog.md`
+- `prep\1-hour\slide-plan.md`
 - `1-hour\agenda.md`
-- `1-hour\demo-video-plan.md`
+- `prep\1-hour\demo-video-plan.md`
 - `8-hour\lab-roadmap.md`
 
 External source references:
 
-- Private GenAIOps Training deck notes summarized in `references\source-materials.md`.
-- Private AgentOps end-to-end tutorial notes summarized in `references\source-materials.md`.
+- Private GenAIOps Training deck notes summarized in `prep\references\source-materials.md`.
+- Private AgentOps end-to-end tutorial notes summarized in `prep\references\source-materials.md`.
+- Upstream AgentOps deck in the parent program: `presentations\04-agentops\slides.md` in the `private-program-owner\prod-readiness-workshop` repository. Use it as the structural reference for section taxonomy, Marp format, and slide ordering.
 - Prior planning content consolidated into the 1-hour and 8-hour track pages.
 
 ## Content conventions
@@ -87,6 +123,53 @@ External source references:
 - Use ASCII punctuation in markdown.
 - For the 8-hour track, create plans and placeholders only until the user asks for lab implementation.
 - GitHub Pages uses Jekyll with Just the Docs. Use front matter consistently.
+
+## Presentation deliverables
+
+Every deliverable session (currently the 1-hour track, later the 8-hour track) must be produced as **two paired artifacts**:
+
+1. A **Marp Markdown** source file (`slides.md`) - the structural source of truth for the deck.
+2. A **PowerPoint** file (`slides.pptx` or `AgentOps.pptx`) - the delivered artifact, generated from the Markdown using the upstream `marp_to_pptx.py` converter and the program's branded template.
+
+### File locations
+
+- 1-hour track: `1-hour\slides.md`, `1-hour\slides.pptx`, `1-hour\images\`
+- 8-hour track (when authored): `8-hour\slides.md`, `8-hour\slides.pptx`, `8-hour\images\`
+- Upstream mirror path: `presentations\04-agentops\slides.md` and `presentations\04-agentops\AgentOps.pptx`
+
+### Marp Markdown format
+
+The `slides.md` must follow the upstream program's Marp conventions so it converts cleanly with `marp_to_pptx.py`:
+
+- YAML front matter declares `marp: true`, theme, pagination, header, and footer. Use the program header `"Production Readiness Workshop"` and a topic-specific footer such as `"Topic 4 - AgentOps"`.
+- Slides are separated by `---` on its own line.
+- Title and section-divider slides use the `<!-- _class: lead -->` directive immediately before the heading.
+- The first slide carries the workshop title and subtitle.
+- The second slide is the agenda, listing the six AgentOps sections.
+- Each subsequent section opens with a lead-class divider slide for: **AgentOps Foundations**, **Agent Development Lifecycle**, **Evaluation**, **CI/CD for Agentic AI**, **Observability**, **Day-2 Operations**.
+- Body slides use a single `#` heading, then bullets, tables, or images.
+- Every content slide ends with a `<!-- Speaker notes: ... -->` HTML comment containing the speaker narrative and, where relevant, a source link to Microsoft Learn or another authoritative reference.
+- Images live in `images\` next to `slides.md` and are referenced with relative paths.
+- Use ASCII punctuation and avoid smart quotes.
+
+### Section taxonomy
+
+Within a deck, organize content under the six AgentOps sections defined by the parent program:
+
+1. AgentOps Foundations
+2. Agent Development Lifecycle
+3. Evaluation
+4. CI/CD for Agentic AI
+5. Observability
+6. Day-2 Operations
+
+For the 1-hour deck, the operating loop **Evaluate, Gate, Observe, Diagnose, Ship, Improve** remains the storyline. Map condensed content to the six sections above so it stays consistent with the upstream program structure.
+
+### Upstream mirroring rules
+
+- Treat the `slides.md` produced here as the source. Copy it (and the matching `pptx` and `images\`) into `presentations\04-agentops\` in the upstream repo when a milestone is ready.
+- Keep section names and slide ordering aligned with the upstream deck unless a divergence is explicitly recorded in `prep\references\content-decisions.md`.
+- Do not move private or sanitized references from `prep\references\` into the slides themselves; the deck must stand on its own without linking to private materials.
 
 ## AgentOps Toolkit treatment
 
@@ -110,7 +193,7 @@ Avoid these phrasings:
 - Full workshop track: `8-hour\`
 - Lab planning pages: `8-hour\labs\`
 - Static assets: `assets\`
-- Source notes: `references\`
+- Authoring materials and source notes: `prep\` (excluded from the published site via `_config.yml`)
 - Keep pages compatible with the `just-the-docs` Jekyll theme.
 
 ## Privacy and source handling

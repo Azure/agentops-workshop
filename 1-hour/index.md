@@ -21,9 +21,16 @@ In one hour, attendees should understand how AgentOps helps teams answer one pro
 |---|---|
 | [Agenda](agenda.md) | Customer-facing abstract and timeboxed agenda. |
 | [Run of show](run-of-show.md) | Presenter timing, transitions, and delivery cues. |
-| [Slide plan](slide-plan.md) | Proposed deck content and speaker guidance. |
-| [Observability plan](observability-plan.md) | Dedicated plan for observability messaging and demo tie-ins. |
-| [Demo video plan](demo-video-plan.md) | Demo video storyboard based on the end-to-end AgentOps tutorial. |
+| [Speaker script](speaker-script.md) | Verbatim word-for-word narration for the recorded video (~50 min). |
+
+## Deliverables
+
+- `slides.md` - Marp source of the 23-slide deck.
+- `slides.pptx` - Exported PowerPoint deck.
+- `agentops-1hour-video.mp4` - 46-minute narrated walkthrough recorded from the deck.
+- `images\` - Diagrams referenced from the slides.
+
+Internal authoring notes (slide plan, observability plan, demo video plan, build tools, intermediate artefacts) live under `prep\1-hour\` and `prep\tools\` and are excluded from the published site.
 
 ## Required emphasis
 
