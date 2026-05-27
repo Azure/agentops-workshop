@@ -42,7 +42,7 @@ Notes:
 
 - The Speech resource has `disableLocalAuth=true`, so only Microsoft Entra ID auth works. Scripts use `AzureCliCredential` pinned to the tenant above.
 - Speech token is exchanged at `https://aif-agentops-experimentation.cognitiveservices.azure.com/sts/v1.0/issuetoken`.
-- Voices: `en-US-AndrewMultilingualNeural` (M) and `en-US-AvaMultilingualNeural` (F). Speaker turns are marked `**M:**` and `**F:**` in `short\speaker-script.md`.
+- Voices: `en-US-AvaMultilingualNeural` (SP1) and `en-US-AndrewMultilingualNeural` (SP2). Speaker turns are marked `**SP1:**` and `**SP2:**` in `short\speaker-script.md`.
 - `ffmpeg` must be on PATH for `build_video.py`.
 
 ## Other tools

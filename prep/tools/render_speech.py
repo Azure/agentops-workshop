@@ -2,7 +2,7 @@
 """Render dual-voice TTS audio per slide from speaker-script.md.
 
 Parses short/speaker-script.md, finds each `## Slide N - title` heading,
-collects the `**M:**` and `**F:**` turns under it, builds SSML alternating
+collects the `**SP1:**` and `**SP2:**` turns under it, builds SSML alternating
 between two Azure Neural voices, and synthesizes one WAV per slide.
 
 Auth: DefaultAzureCredential (same identity as `az login`).
@@ -34,8 +34,8 @@ TTS_ENDPOINT = f"https://{REGION}.tts.speech.microsoft.com/cognitiveservices/v1"
 ISSUE_TOKEN_URL = f"https://{ACCOUNT_HOST}/sts/v1.0/issuetoken"
 SCOPE = "https://cognitiveservices.azure.com/.default"
 
-VOICE_M = "en-US-AndrewMultilingualNeural"
-VOICE_F = "en-US-AvaMultilingualNeural"
+VOICE_SP1 = "en-US-AvaMultilingualNeural"
+VOICE_SP2 = "en-US-AndrewMultilingualNeural"
 
 REPO = Path(__file__).resolve().parent.parent.parent
 SCRIPT_PATH = REPO / "short" / "speaker-script.md"
@@ -49,14 +49,14 @@ PARAGRAPH_BREAK_MS = 150
 def parse_script(script_text: str) -> dict[int, list[tuple[str, str]]]:
     """Return {slide_number: [(speaker, text), ...]} in document order.
 
-    Speaker is 'M' or 'F'. Text is the raw paragraph content (markdown
+    Speaker is 'SP1' or 'SP2'. Text is the raw paragraph content (markdown
     emphasis still present; stripped later before SSML build).
     """
     slides: dict[int, list[tuple[str, str]]] = {}
     current: int | None = None
 
     slide_re = re.compile(r"^##\s+Slide\s+(\d+)\s*[-–—]")
-    turn_re = re.compile(r"^\*\*(M|F):\*\*\s*(.+)$", re.DOTALL)
+    turn_re = re.compile(r"^\*\*(SP1|SP2):\*\*\s*(.+)$", re.DOTALL)
 
     # Walk paragraph-by-paragraph (paragraphs are separated by blank lines)
     paragraphs = re.split(r"\n\s*\n", script_text)
@@ -111,7 +111,7 @@ def build_ssml(turns: list[tuple[str, str]]) -> str:
         "xml:lang='en-US'>"
     ]
     for i, (speaker, raw) in enumerate(turns):
-        voice = VOICE_M if speaker == "M" else VOICE_F
+        voice = VOICE_SP1 if speaker == "SP1" else VOICE_SP2
         text = clean_text_for_tts(raw)
         safe = xml_utils.escape(text)
         parts.append(f"<voice name='{voice}'>")
@@ -198,7 +198,7 @@ def main():
         nums = [n for n in nums if n in args.slides]
 
     print(f"Parsed {len(slides)} slides; rendering {len(nums)}.")
-    print(f"Voices: M={VOICE_M}  F={VOICE_F}")
+    print(f"Voices: SP1={VOICE_SP1}  SP2={VOICE_SP2}")
 
     token = None
     if not args.dry_run:
