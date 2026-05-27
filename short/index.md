@@ -11,9 +11,44 @@ A ~1 hour customer-facing AgentOps session. Everything below is ready to deliver
 
 ## Download
 
-[PowerPoint deck (slides.pptx)]({{ '/short/slides.pptx' | relative_url }}){: .btn .btn-primary .fs-5 }
-[Narrated video (101 MB, 46 min)](https://github.com/Azure/agentops-workshop/releases/download/v0.1.0-short/agentops-short-video.mp4){: .btn .btn-primary .fs-5 }
-[Speaker script]({{ '/short/speaker-script' | relative_url }}){: .btn .fs-5 }
+<div class="download-cards" markdown="0">
+<a class="download-card" href="{{ '/short/slides.pptx' | relative_url }}">
+  <span class="download-card__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12a2.25 2.25 0 002.25-2.25V3"/><path d="M3 3h18M8 21l4-4 4 4"/><path d="M7.5 12l2.5-3 2 2 3.5-4.5"/></svg>
+  </span>
+  <span class="download-card__text">
+    <span class="download-card__title">PowerPoint deck</span>
+    <span class="download-card__meta">slides.pptx · 30 MB</span>
+  </span>
+  <span class="download-card__chevron" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
+  </span>
+</a>
+<a class="download-card" href="https://github.com/Azure/agentops-workshop/releases/download/v0.1.0-short/agentops-short-video.mp4">
+  <span class="download-card__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z" fill="currentColor" stroke="none"/></svg>
+  </span>
+  <span class="download-card__text">
+    <span class="download-card__title">Narrated video</span>
+    <span class="download-card__meta">MP4 · 101 MB · 46 min</span>
+  </span>
+  <span class="download-card__chevron" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
+  </span>
+</a>
+<a class="download-card download-card--secondary" href="{{ '/short/speaker-script' | relative_url }}">
+  <span class="download-card__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/><path d="M8 13h8M8 17h6"/></svg>
+  </span>
+  <span class="download-card__text">
+    <span class="download-card__title">Speaker script</span>
+    <span class="download-card__meta">Verbatim narration</span>
+  </span>
+  <span class="download-card__chevron" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+  </span>
+</a>
+</div>
 
 ## Session promise
 
