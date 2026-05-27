@@ -201,3 +201,24 @@ Avoid these phrasings:
 - Do not add personal names, private SharePoint URLs, local user paths, tenant identifiers, or raw customer data to public pages.
 - Summarize private materials into sanitized reference notes instead of linking to the private source directly.
 - If a source is private, describe it generically, for example: "private training deck notes" or "private end-to-end tutorial notes."
+
+## Release management
+
+Binary artefacts that exceed GitHub's 100 MB per-file limit (currently the narrated video for the short workshop; later, the long workshop video) are distributed through **GitHub Releases**, not through git.
+
+Tag and release naming convention:
+
+- Use plain semver tags: `v0.1.0`, `v0.1.1`, `v0.2.0`, `v1.0.0`, etc.
+- Do **not** add track-specific suffixes such as `-short` or `-long`. One release covers the whole kit at a point in time. Bump the version when any large artefact is regenerated, regardless of which track produced it.
+- The release title is the tag itself (for example `v0.1.0`), without an extra label.
+- Each release attaches every large artefact for the current kit (today: `agentops-short-video.mp4`). When the long workshop ships its own video, add it as an additional asset on the same release rather than creating a parallel `-long` release.
+
+Publishing flow when a new artefact is regenerated:
+
+1. Pick the next version: `$tag = "v0.1.1"` (patch bump for an artefact refresh; minor bump if the deck content changes meaningfully).
+2. Create the release: `gh release create $tag short\agentops-short-video.mp4 --title $tag --notes "..."`.
+3. Update the asset URLs in `index.md` and `short\index.md` to point to the new tag (the buttons are pinned to a specific tag, not `releases/latest/download/`, so older links remain stable).
+4. Update `CHANGELOG.md`.
+5. Commit and push.
+
+Do not delete an older release once a newer one exists; instructors may have copied a pinned link.

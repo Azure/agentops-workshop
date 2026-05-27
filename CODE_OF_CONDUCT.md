@@ -1,5 +1,9 @@
-# Code of Conduct
+# Microsoft Open Source Code of Conduct
 
-This workshop repository should follow the code of conduct required by the publishing organization before public release.
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 
-Before publishing under a public organization, replace this placeholder with the approved organization code of conduct.
+Resources:
+
+- [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/)
+- [Microsoft Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/)
+- Contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with questions or concerns
