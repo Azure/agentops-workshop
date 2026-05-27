@@ -67,17 +67,17 @@ Use two observability slides:
 2. **From telemetry to action**
    - Show the closed loop from production trace to diagnosis, new eval row, release gate, and improved production behavior.
 
-## Demo tie-in
+## Observability narrative in the deck
 
-The demo should include an observability checkpoint after the regression and fix:
+Without an embedded demo block, the slides themselves carry the observability story. The narrative flow:
 
-1. Show the failed behavior or failed eval.
-2. Show trace or telemetry context that explains what happened.
-3. Show readiness evidence that links the failure to the release candidate.
-4. Fix the issue.
-5. Re-run the gate.
-6. Show that the evidence now supports promotion.
-7. Close by explaining how a production trace can be promoted into the next evaluation set.
+1. After the CI/CD gate slide (slide 14), transition into observability as the post-release operating layer.
+2. On slide 16, show a trace waterfall conceptually: a single user interaction decomposing into prompt, model call, retrieval, tool call, response, and safety event.
+3. Connect the trace to release context: agent version, deployment, eval run, owner.
+4. On slide 17, show the closed loop: traces become diagnoses, diagnoses become eval rows, eval rows become future gates.
+5. Transition into Day-2 by showing how the incident runbook (slide 20) consumes traces as the primary triage signal.
+
+An optional backup video (see `demo-video-plan.md`) may visualize this flow with real screenshots and traces, but the slides do not depend on it.
 
 ## Avoid
 

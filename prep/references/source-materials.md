@@ -44,10 +44,10 @@ Private AgentOps end-to-end tutorial notes should be used as the source of truth
 
 Earlier planning content was consolidated into:
 
-- `1-hour\agenda.md`
-- `1-hour\slide-plan.md`
-- `1-hour\demo-video-plan.md`
-- `1-hour\observability-plan.md`
+- `..\..\1-hour\agenda.md`
+- `..\1-hour\slide-plan.md`
+- `..\1-hour\demo-video-plan.md`
+- `..\1-hour\observability-plan.md`
 
 ## Website reference
 

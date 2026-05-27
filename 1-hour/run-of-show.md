@@ -15,17 +15,22 @@ Deliver a crisp AgentOps story that feels practical and production-oriented, wit
 
 | Time | Presenter action | Transition line |
 |---:|---|---|
-| 0:00-0:03 | Set the promise and audience expectation. | "The question today is not can we build an agent. It is can we safely operate and release one." |
-| 0:03-0:08 | Explain the production gap. | "Once the agent becomes part of a workflow, confidence needs evidence." |
-| 0:08-0:13 | Show why agents increase complexity. | "More autonomy means more places where behavior can drift." |
-| 0:13-0:18 | Introduce the AgentOps loop. | "This loop gives teams a practical way to manage that drift." |
-| 0:18-0:24 | Cover lifecycle and maturity. | "Most teams do not need a giant program first. They need one production-candidate agent with release criteria." |
-| 0:24-0:30 | Show Foundry, Azure Monitor, repo, and CI/CD roles. | "Foundry is the control plane. AgentOps connects those signals to release decisions." |
-| 0:30-0:36 | Explain evaluation and gates. | "The most important demo moment is the gate failing before users see the regression." |
-| 0:36-0:44 | Deepen observability. | "Now we need to operate after release, and for agents that means traces, not just CPU charts." |
-| 0:44-0:53 | Play or narrate the demo video. | "Watch for the evidence chain: target, eval, gate, trace, readiness report." |
-| 0:53-0:57 | Summarize proof points. | "The demo is not about commands. It is about the operating model." |
-| 0:57-1:00 | Close with next steps. | "Start with one agent, one eval set, one release gate, and one observability view." |
+| 0:00-0:02 | Set the promise and audience expectation. | "The question today is not can we build an agent. It is can we safely operate and release one." |
+| 0:02-0:06 | Explain the production gap. | "Once the agent becomes part of a workflow, confidence needs evidence." |
+| 0:06-0:10 | Show why agents increase complexity. | "More autonomy means more places where behavior can drift." |
+| 0:10-0:15 | Introduce the AgentOps loop. | "This loop gives teams a practical way to manage that drift." |
+| 0:15-0:19 | Show the maturity model. | "Most teams sit between Initial and Defined. Start by moving one agent up." |
+| 0:19-0:24 | Position Foundry as control plane. | "Foundry is the control plane. AgentOps connects those signals to release decisions." |
+| 0:24-0:28 | Walk through the readiness checklist. | "These items turn 'I think it works' into 'we have evidence for this release.'" |
+| 0:28-0:33 | Explain evaluation strategy. | "Evaluation is the release signal that grows as production teaches you new failure modes." |
+| 0:33-0:37 | Cover red teaming and AI safety. | "Quality says 'is the answer good?' Red teaming says 'can someone make this agent misbehave?'" |
+| 0:37-0:42 | Show CI/CD gates. | "The strongest moment is a failed gate before users see the regression." |
+| 0:42-0:46 | Deepen observability. | "For agents, the unit of understanding is the trace, not the endpoint." |
+| 0:46-0:50 | Connect telemetry to action. | "The end state is action: fix the issue, update the eval set, prevent the same failure from reaching production." |
+| 0:50-0:52 | Open Day-2 operations. | "AgentOps is not done at release. Production keeps teaching us." |
+| 0:52-0:56 | Walk through the incident runbook. | "Containment first, evidence-backed fix second." |
+| 0:56-0:58 | Show model lifecycle and canary. | "Treat every model change as a release candidate, not a config flip." |
+| 0:58-1:00 | Close with the 30-day start. | "Start with one agent, one eval set, one release gate, and one observability view." |
 
 ## Observability delivery notes
 
@@ -41,12 +46,10 @@ Do not compress observability into "monitoring." Use the word **observability** 
 - Whether latency, cost, quality, or safety changed after release.
 - Which traces should become future eval rows.
 
-## Demo handoff
+## Optional demo recording
 
-Before the video:
+The embedded demo block was removed during the 2026-05-26 rebalancing. The deck stands on its own conceptually.
 
-> "The video uses tooling only to make the operating model visible. The important part is the evidence path: evaluate, gate, observe, diagnose, ship, improve."
+A backup video may still be recorded as an optional supplementary artifact. If the video is played in a specific delivery, insert it between the observability block (0:46-0:50) and the Day-2 opener (0:50-0:52). If the video is shown, plan to drop or compress the maturity slide (0:15-0:19) and the four-quadrant Day-2 opener (0:50-0:52) to stay within the hour.
 
-After the video:
-
-> "If a customer remembers one thing, it should be this: observability is how production behavior becomes the next evaluation set."
+If a customer remembers one thing, it should be this: observability is how production behavior becomes the next evaluation set.

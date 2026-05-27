@@ -18,10 +18,10 @@ The workshop is organized around the AgentOps operating model: **Evaluate, Gate,
 | `.github\copilot-instructions.md` | Repository-specific guidance for GitHub Copilot and content generation. |
 | `_config.yml` | Jekyll and Just the Docs configuration for GitHub Pages. |
 | `index.md` | GitHub Pages home page. |
-| `1-hour\` | Short session planning materials. |
+| `1-hour\` | Short session deliverables: agenda, slides, narrated video, speaker script, run of show. |
 | `8-hour\` | Full-day workshop planning and lab placeholders. |
-| `assets\` | Future images, slide exports, videos, and sample data. |
-| `references\` | Sanitized context pack, source synthesis, decisions, and working backlog. |
+| `assets\` | Shared images, slide exports, videos, and sample data. |
+| `prep\` | Authoring and preparation material: references, build tools, planning notes, intermediate artefacts. Excluded from the published site. See [`prep\README.md`](prep/README.md). |
 
 ## Main storyline
 

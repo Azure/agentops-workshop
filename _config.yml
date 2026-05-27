@@ -11,6 +11,14 @@ plugins:
 search_enabled: true
 heading_anchors: true
 
+# Exclude preparation/authoring materials from the published site.
+# `prep/` holds references, build tools, and intermediate artefacts that
+# the workshop attendee or instructor never needs to see.
+exclude:
+  - prep/
+  - .venv/
+  - vendor/
+
 callouts:
   planning:
     title: Planning note

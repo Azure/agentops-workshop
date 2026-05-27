@@ -1,11 +1,15 @@
 ---
-title: Demo Video Plan
+title: Demo Video Plan (Optional)
 layout: default
 parent: 1-Hour Session
 nav_order: 5
 ---
 
 # Demo Video Plan
+
+> **Status: Optional backup recording.**
+>
+> The embedded demo block was removed during the 2026-05-26 rebalancing. The 1-hour deck (23 slides) now stands on its own conceptually. This plan is preserved as a guide for an optional supplementary video that can be shared as appendix material or used in specific deliveries, but it does not appear in the main session flow.
 
 ## Purpose
 
