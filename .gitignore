@@ -21,7 +21,4 @@ prep/short/video/
 prep/tools/template.pptx
 prep/tools/__pycache__/
 
-# Final narrated video (~100 MB, distributed via GitHub Release)
-short/agentops-short-video.mp4
-
 

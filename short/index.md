@@ -24,13 +24,13 @@ A ~1 hour customer-facing AgentOps session. Everything below is ready to deliver
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
   </span>
 </a>
-<a class="download-card" href="https://github.com/Azure/agentops-workshop/releases/download/v0.1.0/agentops-short-video.mp4">
+<a class="download-card" href="{{ '/short/agentops-short-video.mp4' | relative_url }}">
   <span class="download-card__icon" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z" fill="currentColor" stroke="none"/></svg>
   </span>
   <span class="download-card__text">
     <span class="download-card__title">Narrated video</span>
-    <span class="download-card__meta">MP4 · 101 MB · 46 min</span>
+    <span class="download-card__meta">MP4 · 85 MB · 46 min</span>
   </span>
   <span class="download-card__chevron" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>

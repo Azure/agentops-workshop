@@ -204,21 +204,16 @@ Avoid these phrasings:
 
 ## Release management
 
-Binary artefacts that exceed GitHub's 100 MB per-file limit (currently the narrated video for the short workshop; later, the long workshop video) are distributed through **GitHub Releases**, not through git.
+Binary artefacts (today: the narrated short-workshop video) are committed directly to the repo and served as static assets by the private GitHub Pages site. This is the *only* way a `<video>` element on the published site can actually play the file - the repo is private, so the GitHub Release asset URL (`https://github.com/.../releases/download/...`) returns 404 to any cross-origin request from `pages.github.io`, which produces an empty embedded player.
 
-Tag and release naming convention:
+Hard constraints to respect when regenerating these artefacts:
 
-- Use plain semver tags: `v0.1.0`, `v0.1.1`, `v0.2.0`, `v1.0.0`, etc.
-- Do **not** add track-specific suffixes such as `-short` or `-long`. One release covers the whole kit at a point in time. Bump the version when any large artefact is regenerated, regardless of which track produced it.
-- The release title is the tag itself (for example `v0.1.0`), without an extra label.
-- Each release attaches every large artefact for the current kit (today: `agentops-short-video.mp4`). When the long workshop ships its own video, add it as an additional asset on the same release rather than creating a parallel `-long` release.
+- Each file must stay **under GitHub's 100 MB per-file push limit**. The current narrated MP4 lands at ~85 MB by ending `build_video.py` with `ffmpeg -c:v copy -c:a aac -b:a 48k -ac 1 -movflags +faststart`. If a future artefact cannot be compressed below 100 MB without unacceptable quality loss, do not silently fall back to a GitHub Release URL in the embed - it will not play. Instead, mirror to a location reachable without auth (public Azure Blob, unlisted YouTube embed, etc.) and update the embed accordingly.
+- Embed paths must be relative URLs (`{{ '/short/agentops-short-video.mp4' | relative_url }}`) so the asset is fetched same-origin from the Pages site.
+- The Pages site is private (`x-pages-private: 1`); only signed-in Azure org members can reach it, so privacy is preserved without obscuring the URL.
 
-Publishing flow when a new artefact is regenerated:
+Versioning when artefacts change:
 
-1. Pick the next version: `$tag = "v0.1.1"` (patch bump for an artefact refresh; minor bump if the deck content changes meaningfully).
-2. Create the release: `gh release create $tag short\agentops-short-video.mp4 --title $tag --notes "..."`.
-3. Update the asset URLs in `index.md` and `short\index.md` to point to the new tag (the buttons are pinned to a specific tag, not `releases/latest/download/`, so older links remain stable).
-4. Update `CHANGELOG.md`.
-5. Commit and push.
-
-Do not delete an older release once a newer one exists; instructors may have copied a pinned link.
+- Bump the `CHANGELOG.md` entry under `## Unreleased` describing what changed.
+- Tag a semver release (`v0.1.0`, `v0.1.1`, ...) when shipping a milestone. Tags are plain semver with no track suffix; one tag covers the whole kit at a point in time.
+- GitHub Releases are optional now (the file lives in git). If you do publish a release, attach the same MP4 as an archival download for `gh release download` users and keep its tag pinned forever (do not delete older releases - instructors may have copied pinned links).

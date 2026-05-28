@@ -53,16 +53,11 @@ python prep\tools\build_video.py          # ffmpeg assembly -> short\agentops-sh
 
 ### Publishing the video
 
-The final MP4 is over GitHub's 100 MB per-file limit, so it ships through GitHub Releases. Each release of the kit uses a simple semver tag (`v0.1.0`, `v0.1.1`, `v0.2.0`, ...) with no track-specific suffix; the same release attaches every binary artefact that exceeds the in-repo limit. After regenerating:
+The narrated MP4 is committed directly to `short/agentops-short-video.mp4` and served as a static asset by GitHub Pages. The Pages site is private (only Azure org members can reach it), so embedding it same-origin is what lets the browser play it - cross-origin `<video>` requests to the private GitHub Release URL return 404 and produce an empty player.
 
-```powershell
-$tag = "v0.1.0"
-gh release create $tag short\agentops-short-video.mp4 `
-    --title $tag `
-    --notes "AgentOps workshop kit."
-```
+To keep the file under GitHub's 100 MB per-file push limit, the build pipeline finishes by re-encoding the audio (`ffmpeg -c:v copy -c:a aac -b:a 48k -ac 1 -movflags +faststart`). Today's output is ~85 MB for ~46 min at 1080p.
 
-If a release with that tag already exists, bump the patch version (`v0.1.1`) and update the asset URLs in `index.md` and `short/index.md`. The Pages download buttons are pinned to a specific tag (not `releases/latest/download/`) so older links keep working when a new release lands.
+If a future video genuinely cannot be compressed below 100 MB, switch to GitHub Releases AND mirror the asset somewhere the browser can reach without auth (e.g., a public Azure Blob with anonymous read, or an unlisted YouTube embed). The release URL by itself will not play in the embedded `<video>` while the repo is private.
 
 ## Local preview of the Pages site
 

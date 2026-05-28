@@ -14,7 +14,7 @@ Workshop deliverables live in the repo root (`short\`, `long\`, `instructor\`, `
 
 ## Regenerating the narrated video
 
-The published video lives at `short\agentops-short-video.mp4` (distributed via GitHub Release). To rebuild it from `short\speaker-script.md` and `short\slides.md`:
+The published video lives at `short\agentops-short-video.mp4` and is served as a static asset by the private GitHub Pages site. To rebuild it from `short\speaker-script.md` and `short\slides.md`:
 
 ```powershell
 # 1. Sign in to Azure with the tenant that owns the Foundry/Speech resource.
@@ -30,13 +30,16 @@ python prep\tools\render_slides_hd.py
 python prep\tools\build_video.py
 ```
 
-After rebuilding, publish the video as a GitHub Release asset so the Pages download link keeps working:
+After rebuilding, keep the file under GitHub's 100 MB per-file push limit so it can be committed directly. `build_video.py` already produces a faststart MP4; if it lands above 100 MB, shrink the audio with:
 
 ```powershell
-gh release create v0.1.1-short short\agentops-short-video.mp4 `
-    --title "Short workshop kit (v0.1.1)" `
-    --notes "Updated narrated video."
+ffmpeg -y -i short\agentops-short-video.mp4 `
+    -c:v copy -c:a aac -b:a 48k -ac 1 -movflags +faststart `
+    short\agentops-short-video.small.mp4
+Move-Item -Force short\agentops-short-video.small.mp4 short\agentops-short-video.mp4
 ```
+
+Then `git add short\agentops-short-video.mp4`, commit, and push. The video is embedded at `{{ '/short/agentops-short-video.mp4' | relative_url }}` on the home page; serving it same-origin from the private Pages site is what lets the `<video>` element actually play. A GitHub Release URL would 404 in the embed because the repo is private.
 
 Notes:
 
