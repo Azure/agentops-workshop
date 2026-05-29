@@ -43,7 +43,7 @@ Two tracks are available:
   </span>
   <span class="download-card__text">
     <span class="download-card__title">Narrated video</span>
-    <span class="download-card__meta">MP4 · 85 MB · 46 min</span>
+    <span class="download-card__meta">MP4 · 69 MB · 46 min</span>
   </span>
   <span class="download-card__chevron" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>

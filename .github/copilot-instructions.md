@@ -217,3 +217,46 @@ Versioning when artefacts change:
 - Bump the `CHANGELOG.md` entry under `## Unreleased` describing what changed.
 - Tag a semver release (`v0.1.0`, `v0.1.1`, ...) when shipping a milestone. Tags are plain semver with no track suffix; one tag covers the whole kit at a point in time.
 - GitHub Releases are optional now (the file lives in git). If you do publish a release, attach the same MP4 as an archival download for `gh release download` users and keep its tag pinned forever (do not delete older releases - instructors may have copied pinned links).
+
+## Video production conventions
+
+These conventions apply to every narrated workshop video built in this repo (currently the short-session preview at `prep\short\preview\avatar-preview.mp4` and the production short video at `short\agentops-short-video.mp4`). They are locked because we iterated on them with the user and the resulting look is approved. Do not re-litigate them when adding new slides or new tracks.
+
+Avatar staging (single active speaker with crossfaded handoffs):
+
+- The video shows **only ONE avatar at a time** -- the speaker who is currently talking. Do NOT keep both on screen as co-presenters; the previous "always-both-visible" layout was rejected because the silent listener's idle motion competed with the speaker for the viewer's attention.
+- **Lisa (SP1, en-US-AvaMultilingualNeural, character `lisa` / style `casual-sitting`)** appears in the **bottom-LEFT** corner whenever she speaks.
+- **Harry (SP2, en-US-AndrewMultilingualNeural, character `harry` / style `business`)** appears in the **bottom-RIGHT** corner whenever he speaks.
+- Their fixed left/right corners preserve a "voice = position" identity throughout the deck; do not move them or merge into a single centre slot.
+- Avatar overlays must be **flush with the screen bottom** (`y = canvas_height - overlay_height`). Do not add a bottom margin - it makes them look like they are floating. Use a horizontal margin only (~36 px from the side edge).
+- The avatar source crop must be **wide enough to contain natural arm gestures** without clipping. The known-good crop for the Azure pre-built avatars is `900x1080` taken at `x=510, y=0` from a 1920x1080 source, then scaled down to `380x456` for the overlay. Smaller crops clip Harry's hands when he opens his arms.
+- **Speaker handoffs use an alpha crossfade**, not an abrupt cut. The outgoing speaker fades OUT over ~0.4 s at the end of their last turn; the incoming speaker fades IN over ~0.4 s at the start of their first turn. Consecutive turns by the SAME speaker have no fades, so the avatar stays continuously visible across multiple turns in a row. Because the two avatars sit in opposite corners, the fade-out and fade-in never overlap on the same pixels -- you simply see Lisa dim on the left, then Harry rise on the right.
+- The idle-webm approach used in v3 (looped 20 s native-motion clip captured via SSML `<mstts:silence Leading-exact 10000ms/>Mm.<mstts:silence Tailing-exact 10000ms/>`) is preserved in `prepare_idle_clip` for potential reuse, but the v4 layout no longer overlays an idle source. The cached `idle-lisa.webm` / `idle-harry.webm` files are kept around but not consumed by the current pipeline.
+
+Slide motion:
+
+- **No Ken Burns, no zoompan, no slow pans inside a slide.** A slide just sits still while the avatars talk. The earlier zoom effect was rejected as distracting; do not reintroduce it.
+- **Slide-to-slide transitions use `xfade` (crossfade, ~0.5 s) plus `acrossfade` on audio**. No wipes, no slides, no cuts.
+
+Preview vs production staging (when to switch modes):
+
+- The **preview pipeline** (`prep\tools\build_preview.py`, output `prep\short\preview\avatar-preview.mp4`) renders **every slide in jogral mode** -- one avatar per SP1/SP2 turn with a crossfade at every speaker change. This is what the user evaluates new staging or motion ideas against; keep it pure jogral so the visuals are predictable.
+- The **production pipeline** (`prep\tools\build_production_video.py`, output `short\agentops-short-video.mp4`) uses **mixed staging** because doing pure jogral for ~45 minutes was rejected as too "tossy" / cognitively expensive:
+  - **Intro slides (1-3): jogral** -- the short title + agenda + operating-loop slides keep the tight back-and-forth dialogue between Lisa and Harry so the workshop opens with energy.
+  - **Core slides (4+): one merged avatar per slide.** All SP1/SP2 turns inside a single slide are concatenated into ONE super-turn rendered by ONE speaker via SSML with 350 ms `<break>` pauses replacing each former speaker boundary. The assigned speaker **alternates per slide** so attention still bounces between Lisa and Harry, but only at slide transitions -- never inside a slide.
+  - The core-slide speaker assignment starts with **SP2 (Harry) on slide 4** so the intro->core handoff is a same-speaker continuation (slide 3 already ends on SP2). The alternation lands the final slide on **SP1 (Lisa)**, which keeps the "Thank you for watching" line on the original scripted speaker.
+- **Cross-slide fade rule** (production): at slide boundaries the 0.5 s slide xfade dissolves the entire frame, so do NOT also alpha-fade the avatar at that boundary. Doing both produces a ghosty double-fade because the avatar's opacity is multiplied by the slide dissolve. The avatar alpha fade is reserved for WITHIN-slide speaker changes (intro-jogral) plus the very-first and very-last turns of the whole video. `compute_fades()` in `build_production_video.py` encodes this rule.
+
+Avatar rendering pipeline notes:
+
+- Output format from Azure: `videoFormat=webm`, `videoCodec=vp9`, **`backgroundColor=#00B140FF`** (chromakey green). The Azure API does **not** honour transparent backgrounds for the prebuilt avatars; requesting `#00000000` produces a video with a solid background anyway. We therefore use the well-known chromakey green and key it out in ffmpeg (`chromakey=0x00B140:0.10:0.05`).
+- One Azure job per speaking unit (per-turn in jogral mode, per-slide merged-SSML super-turn in production core mode), cached on disk by content hash so re-runs reuse the cached webm. The cache key includes the background color so changing chromakey approach automatically invalidates cached files. Plain-text and SSML inputs hash differently because the literal text changes, so the same slide can have both intro-jogral cache entries and a separate merged-SSML cache entry without collision.
+- **Merged super-turns must be SSML, not concatenated plain text.** Plain text with `\n\n` does not pace as a break; you need `<prosody rate='-2%'>...</prosody><break time='350ms'/><prosody...>...` all inside one `<voice>` inside one `<speak>`. Putting `<break>` as a direct child of `<speak>` returns HTTP 400 from Azure TTS. `build_merged_ssml()` in `build_production_video.py` follows the correct pattern -- copy it, don't reinvent.
+- When changing the layout or filter graph, bump the `SEG_VERSION` string (`v4` for the preview pipeline, `v4p` for the production pipeline) so existing per-turn composite files are not silently reused with the old layout. The two version strings must stay distinct so preview and production renders never clobber each other in the shared `prep\short\preview\segments\` directory.
+
+Reference implementations: `prep\tools\build_preview.py` (jogral throughout) and `prep\tools\build_production_video.py` (intro-jogral + core-merged). When adding a new track (e.g. the long workshop) or regenerating the production video after a script edit, mirror the same staging, motion, chromakey, and SSML-pacing settings unless this section is updated first.
+
+Compression for the published asset:
+
+- The production raw output lands well over GitHub's 100 MB per-file push limit (typically 250-400 MB at the build script's CRF 20 / 192 kbps stereo settings). Always run `prep\tools\compress_production_video.py` afterwards to ladder through quality presets until the file fits comfortably under 90 MB (preserving margin under the 100 MB limit).
+- The compress script tries 1080p CRF 28 first and only drops resolution to 720p as a last resort. If even 720p CRF 30 cannot reach the target, that is the signal to revisit the embed strategy (host externally) per the Release management section above -- do NOT silently push a >100 MB file.
