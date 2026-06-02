@@ -490,6 +490,151 @@ def day2_quadrant():
 
 
 # ---------------------------------------------------------------------------
+# Diagram: anatomy + complexity combined (progressive table)
+# ---------------------------------------------------------------------------
+def anatomy_complexity():
+    fig, ax = new_canvas()
+    add_title(ax, "Building blocks of a production agent")
+    add_subtitle(ax, "Each tier adds components and operational surface. A production agent manages all of these.")
+
+    tiers = [
+        ("Prompts",       BLUE,   "System prompt, model",
+         "Versioning, quality eval, cost"),
+        ("+ RAG",         TEAL,   "+ Knowledge sources, vector DB",
+         "Freshness, permissions, groundedness"),
+        ("+ Tools",       GREEN,  "+ Tool / MCP servers, guardrails",
+         "Auth boundaries, side effects, failure modes"),
+        ("+ Agent",       ORANGE, "+ Memory, orchestration, approval points",
+         "Multi-step traces, loop prevention, escalation"),
+        ("+ Multi-agent", PURPLE, "+ Orchestrator, sub-agents",
+         "Emergent behaviour, coordination, cost spikes"),
+    ]
+
+    # Layout constants
+    n = len(tiers)
+    table_x = 4
+    table_w = 92
+    row_h = 5.0
+    gap = 1.0
+    # Position rows so they start well below the column headers
+    top_y = 32
+    # Column widths (proportional)
+    col1_w = 16   # Tier label
+    col2_w = 36   # Components
+    col3_w = table_w - col1_w - col2_w - 4  # Operational surface
+    col1_x = table_x
+    col2_x = col1_x + col1_w + 2
+    col3_x = col2_x + col2_w + 2
+
+    # Column headers — placed above the first row with clear separation
+    header_y = top_y + row_h + 2.5
+    ax.text(col1_x + col1_w / 2, header_y, "Complexity tier",
+            ha="center", va="center", color=NAVY, fontsize=13,
+            fontfamily=HEADING_FONT, fontweight="bold")
+    ax.text(col2_x + col2_w / 2, header_y, "Components in play",
+            ha="center", va="center", color=NAVY, fontsize=13,
+            fontfamily=HEADING_FONT, fontweight="bold")
+    ax.text(col3_x + col3_w / 2, header_y, "New operational surface",
+            ha="center", va="center", color=NAVY, fontsize=13,
+            fontfamily=HEADING_FONT, fontweight="bold")
+
+    for i, (tier, color, components, surface) in enumerate(tiers):
+        y = top_y - i * (row_h + gap)
+        # Tier label (colored rounded box)
+        rounded_box(ax, col1_x, y, col1_w, row_h, color, tier,
+                    text_size=13, radius=0.8)
+        # Components (light background)
+        rounded_box(ax, col2_x, y, col2_w, row_h, LIGHT, "", radius=0.8)
+        ax.text(col2_x + col2_w / 2, y + row_h / 2, components,
+                ha="center", va="center", color=TEXT_DK,
+                fontsize=11.5, fontfamily=BODY_FONT)
+        # Operational surface (light background)
+        rounded_box(ax, col3_x, y, col3_w, row_h, LIGHT, "", radius=0.8)
+        ax.text(col3_x + col3_w / 2, y + row_h / 2, surface,
+                ha="center", va="center", color=TEXT_DK,
+                fontsize=11.5, fontfamily=BODY_FONT)
+
+    # Accumulation arrow on the left margin
+    arrow_x = 2.5
+    arrow_top = top_y + row_h / 2
+    arrow_bot = top_y - (n - 1) * (row_h + gap) + row_h / 2
+    arrow = FancyArrowPatch((arrow_x, arrow_top), (arrow_x, arrow_bot),
+                            arrowstyle="-|>", mutation_scale=16,
+                            color=GRAY, lw=2, alpha=0.5)
+    ax.add_patch(arrow)
+
+    # Bottom call-out
+    rounded_box(ax, 4, 3, 92, 4.5, NAVY,
+                "Every component is a versioned asset, an evaluation target, and an operational dependency.",
+                text_size=12, bold=False, radius=1.0)
+
+    save(fig, "anatomy-complexity.png")
+
+
+# ---------------------------------------------------------------------------
+# Diagram: production gap (two-column contrast)
+# ---------------------------------------------------------------------------
+def production_gap():
+    fig, ax = new_canvas()
+    add_title(ax, "The production gap")
+    add_subtitle(ax, "The bottleneck moved from building the first demo to proving the next version is safe to release.")
+
+    rows = [
+        ("One happy-path demo",       "Repeatable evaluation across many cases"),
+        ("Manual quality check",      "Release evidence and gates"),
+        ("Single-version snapshot",   "Versioned models, prompts, and tools"),
+        ("\"It looked good last week\"", "Trace-backed Day-2 operations"),
+    ]
+
+    # Layout
+    n = len(rows)
+    col_gap = 6
+    col_w = 40
+    row_h = 5.5
+    gap = 1.5
+    left_x = 4
+    right_x = left_x + col_w + col_gap
+    top_y = 33
+
+    # Column headers
+    header_y = top_y + row_h + 2.0
+    rounded_box(ax, left_x, header_y - 1.5, col_w, 4, GRAY,
+                "Prototype works", text_size=15, radius=1.0)
+    rounded_box(ax, right_x, header_y - 1.5, col_w, 4, GREEN,
+                "Production needs proof", text_size=15, radius=1.0)
+
+    # Arrow between columns
+    arrow_x = left_x + col_w + col_gap / 2
+    for i in range(n):
+        y = top_y - i * (row_h + gap) + row_h / 2
+        arrow = FancyArrowPatch((left_x + col_w + 0.8, y),
+                                (right_x - 0.8, y),
+                                arrowstyle="-|>", mutation_scale=14,
+                                color=GRAY, lw=1.5, alpha=0.5)
+        ax.add_patch(arrow)
+
+    for i, (proto, prod) in enumerate(rows):
+        y = top_y - i * (row_h + gap)
+        # Left column (prototype - light with gray border feel)
+        rounded_box(ax, left_x, y, col_w, row_h, LIGHT, "", radius=0.8)
+        ax.text(left_x + col_w / 2, y + row_h / 2, proto,
+                ha="center", va="center", color=TEXT_DK,
+                fontsize=12.5, fontfamily=BODY_FONT, style="italic")
+        # Right column (production - light with teal accent)
+        rounded_box(ax, right_x, y, col_w, row_h, "#E6F4F1", "", radius=0.8)
+        ax.text(right_x + col_w / 2, y + row_h / 2, prod,
+                ha="center", va="center", color=TEXT_DK,
+                fontsize=12.5, fontfamily=BODY_FONT, fontweight="bold")
+
+    # Bottom call-out
+    rounded_box(ax, 4, 3, 92, 4.5, NAVY,
+                "AgentOps bridges the gap with evaluation, gates, observability, and operational evidence.",
+                text_size=12, bold=False, radius=1.0)
+
+    save(fig, "production-gap.png")
+
+
+# ---------------------------------------------------------------------------
 # Registry
 # ---------------------------------------------------------------------------
 DIAGRAMS = {
@@ -500,6 +645,8 @@ DIAGRAMS = {
     "telemetry-to-action": telemetry_to_action,
     "red-teaming-taxonomy": red_teaming_taxonomy,
     "day2-quadrant": day2_quadrant,
+    "anatomy-complexity": anatomy_complexity,
+    "production-gap": production_gap,
 }
 
 

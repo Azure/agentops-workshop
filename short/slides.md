@@ -57,46 +57,21 @@ style: |
 
 # The production gap
 
-| Prototype works | Production needs proof |
-|---|---|
-| One happy-path demo | Repeatable evaluation across many cases |
-| Manual quality check | Release evidence and gates |
-| Single-version snapshot | Versioned models, prompts, and tools |
-| "It looked good last week" | Trace-backed Day-2 operations |
+![Two-column contrast: prototype works vs production needs proof, with arrows showing the shift from manual to evidence-based](images/production-gap.png)
 
 > The bottleneck moved from building the first demo to proving that the next version is safe to release.
 
-<!-- Speaker notes: Teams can build GenAI prototypes quickly. Production introduces new operational risk. The hard questions are no longer about building the first demo - they are about quality, safety, monitoring, cost, ownership, and release confidence. Agents add non-determinism, tool-calling risk, prompt regression, and changing user behavior. Source: GenAIOps PoC-to-production / adoption-friction material. -->
+<!-- Speaker notes: Teams can build GenAI prototypes quickly. Production introduces new operational risk. The hard questions are no longer about building the first demo - they are about quality, safety, monitoring, cost, ownership, and release confidence. Agents add non-determinism, tool-calling risk, prompt regression, and changing user behavior. So what exactly are we managing? The next slide breaks open the components that make an agent a production concern. Source: GenAIOps PoC-to-production / adoption-friction material. -->
 
 ---
 
-# Complexity from prompts to agents
+# Building blocks of a production agent
 
-![Complexity ladder from simple prompts up to multi-agent systems, showing each rung adds new operational surface](images/complexity-ladder.png)
+![Progressive table showing how components and operational surface accumulate from prompts through multi-agent systems](images/anatomy-complexity.png)
 
-> The more autonomous the system, the more we need repeatable evidence instead of manual confidence.
+> Each tier adds components and complexity. A production agent manages all of these simultaneously.
 
-<!-- Speaker notes: This is the complexity ladder. Each rung adds dimensions that must be evaluated, gated, and observed. Simple prompts are quality-vs-cost. RAG adds grounding, retrieval freshness, and permissions. Tool-using agents add planning, function calls, side effects, and auth boundaries. Single agents add memory and multi-step traces. Multi-agent systems add orchestration and emergent behaviour. Multi-step plans and tool calls multiply the failure surface, so traditional snapshot testing is not enough. Cross-reference: Topic 3 covers agent architectures and tool-calling patterns in detail. Source: GenAIOps complexity-levels content (slide 6). -->
-
----
-
-# AgentOps operating model
-
-![Six-step AgentOps loop: Evaluate, Gate, Observe, Diagnose, Ship, Improve, with Foundry as the control plane](images/operating-loop.png)
-
-> People - Process - Platform working as one operating loop. The six steps are the heart of the session.
-
-<!-- Speaker notes: AgentOps applies DevOps discipline to AI agents, where behavior is probabilistic and releases need evidence. The loop is the heart of the session - everything that follows is one of these six steps. Evaluate pre-prod on golden datasets. Gate at CI/CD with policy thresholds and human approval. Observe traces, metrics, logs, content safety in Foundry plus App Insights. Diagnose root cause via traces and evaluators on production samples. Ship via canary, with model + prompt + tool versioned together. Improve by feeding production learnings into the next evaluation set. The goal is continuous value with controlled operational risk. The output is release evidence and operational confidence. Source: GenAIOps people/process/platform; AgentOps operating model. -->
-
----
-
-# Maturity model
-
-![AgentOps maturity ribbon with four levels: Initial, Defined, Managed, Optimised](images/maturity-ribbon.png)
-
-> Most teams sit between Initial and Defined. Start by moving one production-candidate agent up one level.
-
-<!-- Speaker notes: This is a quick self-assessment. Most teams are between Initial and Defined. Initial: ad hoc demos, manual eval, no gates, scattered logs. Defined: versioned prompts and agents, pre-prod eval datasets, CI builds artefacts. Managed: quality and safety gates in CI, continuous evaluation in production, runbooks and SLOs. Optimised: drift and cost guardrails, canary plus auto-rollback, feedback flywheel. The practical move is not to boil the ocean. Pick one production-candidate agent and add release evidence. Source: GenAIOps maturity model (slides 14-15). -->
+<!-- Speaker notes: This combines the anatomy and the complexity story into one visual. At the bottom: simple prompts. You have a system prompt and a model. The operational surface is versioning, quality eval, and cost. Add RAG: now you also manage knowledge sources, freshness, permissions, groundedness. Add tools: now you have MCP servers, guardrails, auth boundaries, side effects, failure modes. Add agent-level autonomy: memory, orchestration, approval points, multi-step traces, loop prevention, escalation. Add multi-agent: orchestrator, sub-agents, emergent behaviour, coordination, cost spikes. The point is not that everyone is doing multi-agent. The point is that even a simple tool-using agent puts you at tier 3, managing all of those components simultaneously. Each one is a versioned asset, an evaluation target, and an operational dependency. So we need a platform that can manage all of this - that is Foundry. Cross-reference: Topic 3 covers agent architectures in detail. Source: GenAIOps complexity-levels content (slide 6). -->
 
 ---
 
@@ -106,7 +81,7 @@ style: |
 
 > Foundry stays the control plane. AgentOps connects Foundry signals to release decisions and Day-2 action.
 
-<!-- Speaker notes: Clarify positioning. Foundry surfaces include the portal, SDK, Azure CLI / REST, and GitHub Actions. Foundry capabilities cover agents and versions, quality + safety evaluators, agent-specific evaluators, the Red Teaming agent, OpenTelemetry tracing, and Content Safety. The runtime is Azure AI projects, model deployments, tool / MCP servers, plus App Insights and Log Analytics for runtime observability. AgentOps adds the repeatable operating loop around them - it is not a replacement for Foundry. Source: GenAIOps Azure AI Foundry and monitoring material. -->
+<!-- Speaker notes: Clarify positioning. Foundry surfaces include the portal, SDK, Azure CLI / REST, and GitHub Actions. Foundry capabilities cover agents and versions, quality + safety evaluators, agent-specific evaluators, the Red Teaming agent, OpenTelemetry tracing, and Content Safety. The runtime is Azure AI projects, model deployments, tool / MCP servers, plus App Insights and Log Analytics for runtime observability. AgentOps adds the repeatable operating loop around them - it is not a replacement for Foundry. Now that we know the components and the platform, the question becomes: what evidence do we need to prove a version is safe to ship? That is the production readiness checklist. Source: GenAIOps Azure AI Foundry and monitoring material. -->
 
 ---
 
@@ -122,7 +97,17 @@ style: |
 
 > The checklist turns "I think it works" into "we have evidence for this release."
 
-<!-- Speaker notes: This is the contract for any production-candidate agent. Every item maps to one or more later slides. Walk the audience through each item briefly so they can hold it as the mental model for the rest of the session. -->
+<!-- Speaker notes: This is the contract for any production-candidate agent. Every item maps to one or more later slides. Walk the audience through each item briefly so they can hold it as the mental model for the rest of the session. The question is: how do we produce this evidence repeatably, every release, without heroics? That is what the operating model gives us. -->
+
+---
+
+# AgentOps operating model
+
+![Six-step AgentOps loop: Evaluate, Gate, Observe, Diagnose, Ship, Improve, with Foundry as the control plane](images/operating-loop.png)
+
+> People - Process - Platform working as one operating loop. The six steps are the heart of the session.
+
+<!-- Speaker notes: AgentOps applies DevOps discipline to AI agents, where behavior is probabilistic and releases need evidence. The loop is the heart of the session - everything that follows is one of these six steps. Evaluate pre-prod on golden datasets. Gate at CI/CD with policy thresholds and human approval. Observe traces, metrics, logs, content safety in Foundry plus App Insights. Diagnose root cause via traces and evaluators on production samples. Ship via canary, with model + prompt + tool versioned together. Improve by feeding production learnings into the next evaluation set. The goal is continuous value with controlled operational risk. The output is release evidence and operational confidence. Source: GenAIOps people/process/platform; AgentOps operating model. -->
 
 ---
 
@@ -246,6 +231,16 @@ Triage flow:
 
 # Adoption
 ## Start small, build the pattern
+
+---
+
+# Maturity model
+
+![AgentOps maturity ribbon with four levels: Initial, Defined, Managed, Optimised](images/maturity-ribbon.png)
+
+> Most teams sit between Initial and Defined. Start by moving one production-candidate agent up one level.
+
+<!-- Speaker notes: Quick self-assessment. Where is your team right now? Initial: ad hoc demos, manual eval, no gates, scattered logs. Defined: versioned prompts and agents, pre-prod eval datasets, CI builds artefacts. Managed: quality and safety gates in CI, continuous evaluation in production, runbooks and SLOs. Optimised: drift and cost guardrails, canary plus auto-rollback, feedback flywheel. The practical move is not to boil the ocean. Pick one production-candidate agent and move it up one level. Source: GenAIOps maturity model (slides 14-15). -->
 
 ---
 
