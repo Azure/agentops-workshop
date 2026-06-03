@@ -9,7 +9,7 @@ nav_order: 2
 
 ## Presenter goal
 
-Deliver a crisp AgentOps story that feels practical and production-oriented, with a strong observability section and a demo that proves the operating loop.
+Deliver a crisp AgentOps story that feels practical and production-oriented, with a strong observability section and a demo that proves the operating model.
 
 ## Minute-by-minute guide
 
@@ -18,7 +18,7 @@ Deliver a crisp AgentOps story that feels practical and production-oriented, wit
 | 0:00-0:02 | Set the promise and audience expectation. | "The question today is not can we build an agent. It is can we safely operate and release one." |
 | 0:02-0:06 | Explain the production gap. | "Once the agent becomes part of a workflow, confidence needs evidence." |
 | 0:06-0:10 | Show why agents increase complexity. | "More autonomy means more places where behavior can drift." |
-| 0:10-0:15 | Introduce the AgentOps loop. | "This loop gives teams a practical way to manage that drift." |
+| 0:10-0:15 | Introduce the AgentOps four-pillar model. | "These four pillars give teams a practical way to manage that drift." |
 | 0:15-0:19 | Show the maturity model. | "Most teams sit between Initial and Defined. Start by moving one agent up." |
 | 0:19-0:24 | Position Foundry as control plane. | "Foundry is the control plane. AgentOps connects those signals to release decisions." |
 | 0:24-0:28 | Walk through the readiness checklist. | "These items turn 'I think it works' into 'we have evidence for this release.'" |
