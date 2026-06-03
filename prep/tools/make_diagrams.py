@@ -241,6 +241,77 @@ def operating_loop():
 
 
 # ---------------------------------------------------------------------------
+# Diagram: four-pillar operating model (Evaluate -> Ship -> Observe -> Own)
+# ---------------------------------------------------------------------------
+def four_pillars():
+    fig, ax = new_canvas()
+    add_title(ax, "AgentOps operating model: four pillars")
+    add_subtitle(ax, "Evaluate, ship, observe, and own production agents. Foundry stays the control plane.")
+
+    pillars = [
+        ("Evaluate", BLUE,
+         ["datasets", "rubrics", "red teaming", "thresholds"]),
+        ("Ship", TEAL,
+         ["gates", "approvals", "release evidence", "canary"]),
+        ("Observe", GREEN,
+         ["traces", "metrics", "feedback", "correlation"]),
+        ("Own", ORANGE,
+         ["diagnose", "runbooks", "improve", "model lifecycle"]),
+    ]
+
+    n = len(pillars)
+    box_w = 18
+    gap = 4
+    total = n * box_w + (n - 1) * gap
+    x0 = (100 - total) / 2
+    head_y = 35
+    head_h = 7
+    card_y = 9
+    card_h = 24
+
+    for i, (label, color, practices) in enumerate(pillars):
+        x = x0 + i * (box_w + gap)
+        cx = x + box_w / 2
+
+        # Light practice card behind the examples
+        rounded_box(ax, x, card_y, box_w, card_h, LIGHT, radius=1.2)
+        # Pillar header box
+        rounded_box(ax, x, head_y, box_w, head_h, color, label, text_size=18)
+
+        # Practice examples stacked inside the card
+        py = card_y + card_h - 4
+        for p in practices:
+            ax.text(cx, py, p, ha="center", va="center", color=TEXT_DK,
+                    fontsize=12, fontfamily=BODY_FONT)
+            py -= 5.2
+
+        # Arrow to the next pillar
+        if i < n - 1:
+            ax1 = x + box_w + 0.4
+            ax2 = x + box_w + gap - 0.4
+            arrow = FancyArrowPatch((ax1, head_y + head_h / 2),
+                                    (ax2, head_y + head_h / 2),
+                                    arrowstyle="-|>", mutation_scale=18,
+                                    color=GRAY, lw=2.0)
+            ax.add_patch(arrow)
+
+    # Feedback connector: Own loops back to Evaluate (dashed, flat, below cards)
+    lx1 = x0 + (n - 1) * (box_w + gap) + box_w / 2
+    lx2 = x0 + box_w / 2
+    feedback = FancyArrowPatch((lx1, card_y - 1), (lx2, card_y - 1),
+                               connectionstyle="arc3,rad=-0.05",
+                               arrowstyle="-|>", mutation_scale=16,
+                               color=GRAY, lw=1.4, ls="--", alpha=0.7)
+    ax.add_patch(feedback)
+    ax.text((lx1 + lx2) / 2, card_y - 5,
+            "production learnings feed the next cycle",
+            ha="center", va="top", color=GRAY, fontsize=10,
+            fontfamily=BODY_FONT, style="italic")
+
+    save(fig, "agentops-four-pillars.png")
+
+
+# ---------------------------------------------------------------------------
 # Diagram: maturity ribbon (4 levels)
 # ---------------------------------------------------------------------------
 def maturity_ribbon():
@@ -773,6 +844,7 @@ def model_lifecycle():
 DIAGRAMS = {
     "complexity-ladder": complexity_ladder,
     "operating-loop": operating_loop,
+    "agentops-four-pillars": four_pillars,
     "maturity-ribbon": maturity_ribbon,
     "foundry-control-plane": foundry_control_plane,
     "telemetry-to-action": telemetry_to_action,

@@ -196,6 +196,8 @@ DIAGRAM_IMAGES = {
     "foundry-control-plane.png", "telemetry-to-action.png",
     "red-teaming-taxonomy.png", "day2-quadrant.png",
     "production-gap.png", "start-with-one.png",
+    "anatomy-complexity.png", "agentops-architecture.png",
+    "agentops-four-pillars.png",
 }
 
 
@@ -307,6 +309,11 @@ def _extract_body_text(lines: list) -> list:
         # Skip image references - they are handled separately
         if re.match(r"^!\[", stripped):
             continue
+        # Strip markdown blockquote prefix so '>' does not render literally
+        if stripped.startswith(">"):
+            stripped = stripped.lstrip(">").strip()
+            if not stripped:
+                continue
         body.append(stripped)
     return body
 
@@ -750,6 +757,7 @@ def convert(input_md: str, output_pptx: str, template_pptx: str,
         if img_file:
             img_path = os.path.join(images_dir, img_file)
             if os.path.isfile(img_path):
+                has_body = bool(sd.get("body_text"))
                 if _is_diagram(img_file):
                     # Architecture diagram — replace code block area, centered
                     # Remove existing code block textbox if present
@@ -764,7 +772,7 @@ def convert(input_md: str, output_pptx: str, template_pptx: str,
                                     sp.getparent().remove(sp)
                                     break
                     img_left = Inches(0.5)
-                    img_top = Inches(2.0)
+                    img_top = Inches(2.3) if has_body else Inches(2.0)
                     img_width = Inches(12.0)
                     max_img_h = SLIDE_H - img_top - Emu(200000)
                     with Image.open(img_path) as im:
@@ -801,9 +809,10 @@ def convert(input_md: str, output_pptx: str, template_pptx: str,
                     inline_path = os.path.join(os.path.dirname(input_md), img_ref)
                 if os.path.isfile(inline_path):
                     basename = os.path.basename(inline_path)
+                    has_body = bool(sd.get("body_text"))
                     if _is_diagram(basename):
                         img_left = Inches(0.5)
-                        img_top = Inches(2.4)
+                        img_top = Inches(2.3) if has_body else Inches(1.7)
                         img_width = Inches(12.0)
                         max_img_h = SLIDE_H - img_top - Emu(200000)
                         with Image.open(inline_path) as im:

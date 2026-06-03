@@ -25,5 +25,6 @@ prep/tools/__pycache__/
 
 # Local scratch
 .tmp/
+.local/
 
 
