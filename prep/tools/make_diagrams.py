@@ -10,6 +10,11 @@ Output style matches the upstream presentations/04-agentops/images/ aesthetic:
 Usage:
     python make_diagrams.py [name1 name2 ...]
     python make_diagrams.py all
+    python make_diagrams.py --no-header all
+
+Flags:
+    --no-header   Omit the title and subtitle text from diagrams
+                  (useful when the slide already has its own heading).
 """
 
 from __future__ import annotations
@@ -53,25 +58,37 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 DPI = 200
 W, H = 16, 9  # inches; 16:9
 
+# Global flag: when True, add_title() and add_subtitle() become no-ops.
+SHOW_HEADER = True
+
 
 # ---------------------------------------------------------------------------
 # Shared helpers
 # ---------------------------------------------------------------------------
 def new_canvas():
-    fig, ax = plt.subplots(figsize=(W, H), dpi=DPI, facecolor=WHITE)
+    h = H if SHOW_HEADER else H * 0.82  # Shorter canvas when no title
+    ylim_top = 56.25 if SHOW_HEADER else 46
+    fig, ax = plt.subplots(figsize=(W, h), dpi=DPI, facecolor=WHITE)
     ax.set_xlim(0, 100)
-    ax.set_ylim(0, 56.25)  # 16:9 ratio
+    ax.set_ylim(0, ylim_top)
     ax.set_aspect("equal")
     ax.set_axis_off()
     return fig, ax
 
 
 def add_title(ax, text, y=51, color=NAVY, size=26):
+    if not SHOW_HEADER:
+        # Small semi-transparent reference in the bottom-right corner
+        ax.text(96, 3, text, ha="right", va="bottom", color=NAVY,
+                fontsize=8, fontfamily=BODY_FONT, alpha=0.3)
+        return
     ax.text(50, y, text, ha="center", va="center", color=color,
             fontsize=size, fontfamily=HEADING_FONT, fontweight="bold")
 
 
 def add_subtitle(ax, text, y=47, color=GRAY, size=14):
+    if not SHOW_HEADER:
+        return
     ax.text(50, y, text, ha="center", va="center", color=color,
             fontsize=size, fontfamily=BODY_FONT)
 
@@ -635,6 +652,122 @@ def production_gap():
 
 
 # ---------------------------------------------------------------------------
+# Diagram: model lifecycle upgrade process (canary flow)
+# ---------------------------------------------------------------------------
+def model_lifecycle():
+    fig, ax = new_canvas()
+    add_title(ax, "Model lifecycle and canary upgrades")
+    add_subtitle(ax, "Treat every model change as a release candidate, not a config flip.")
+
+    # Layout: horizontal flow of boxes with two parallel lanes (old model / new model)
+    # Y positions
+    lane_old_y = 36 if SHOW_HEADER else 32
+    lane_new_y = lane_old_y - 20
+    box_y = (lane_old_y + lane_new_y) / 2 - 2.5  # Centered between lanes
+    box_h = 5
+    lane_label_x = 2
+
+    # Draw lane lines
+    ax.plot([12, 96], [lane_old_y, lane_old_y], color=GRAY, lw=2.5, alpha=0.5)
+    ax.plot([12, 96], [lane_new_y, lane_new_y], color=GREEN, lw=2.5, alpha=0.7)
+
+    # Lane labels
+    ax.text(lane_label_x, lane_old_y, "Old Model", ha="left", va="center",
+            color=NAVY, fontsize=11, fontfamily=HEADING_FONT, fontweight="bold")
+    ax.text(lane_label_x, lane_new_y, "New Model", ha="left", va="center",
+            color=GREEN, fontsize=11, fontfamily=HEADING_FONT, fontweight="bold")
+
+    # Process steps
+    steps = [
+        ("Current\nModel",        BLUE,   14),
+        ("Deploy New\nAlongside",  TEAL,   28),
+        ("Evaluate on\nSame Data", PURPLE, 42),
+        ("Shadow\nTraffic",        ORANGE, 56),
+        ("Canary\nRollout",        GREEN,  76),
+        ("Retire\nOld",            "#C0392B", 90),
+    ]
+    box_w = 12
+    for label, color, cx in steps:
+        x = cx - box_w / 2
+        rounded_box(ax, x, box_y, box_w, box_h, color, label,
+                    text_size=11, radius=0.8)
+
+    # Arrows between sequential boxes
+    for i in range(len(steps) - 1):
+        x1 = steps[i][2] + box_w / 2 + 0.3
+        x2 = steps[i + 1][2] - box_w / 2 - 0.3
+        # Skip arrow between Shadow Traffic and Canary (diamond goes there)
+        if i == 3:
+            continue
+        arrow = FancyArrowPatch((x1, box_y + box_h / 2), (x2, box_y + box_h / 2),
+                                arrowstyle="-|>", mutation_scale=14,
+                                color=GRAY, lw=1.5)
+        ax.add_patch(arrow)
+
+    # Decision diamond: "Metrics OK?" between Shadow Traffic and Canary Rollout
+    diamond_cx = 66
+    diamond_cy = box_y + box_h / 2
+    diamond_size = 3.5
+    diamond = Polygon(
+        [(diamond_cx, diamond_cy + diamond_size),
+         (diamond_cx + diamond_size, diamond_cy),
+         (diamond_cx, diamond_cy - diamond_size),
+         (diamond_cx - diamond_size, diamond_cy)],
+        closed=True, facecolor=GOLD, edgecolor=ORANGE, lw=1.5
+    )
+    ax.add_patch(diamond)
+    ax.text(diamond_cx, diamond_cy, "Metrics\nOK?", ha="center", va="center",
+            color=WHITE, fontsize=9, fontfamily=HEADING_FONT, fontweight="bold")
+
+    # Arrow: Shadow Traffic -> diamond
+    arrow = FancyArrowPatch(
+        (steps[3][2] + box_w / 2 + 0.3, box_y + box_h / 2),
+        (diamond_cx - diamond_size - 0.3, diamond_cy),
+        arrowstyle="-|>", mutation_scale=14, color=GRAY, lw=1.5)
+    ax.add_patch(arrow)
+
+    # Arrow: diamond -> Canary Rollout (yes path)
+    arrow = FancyArrowPatch(
+        (diamond_cx + diamond_size + 0.3, diamond_cy),
+        (steps[4][2] - box_w / 2 - 0.3, box_y + box_h / 2),
+        arrowstyle="-|>", mutation_scale=14, color=GRAY, lw=1.5)
+    ax.add_patch(arrow)
+
+    # "No - iterate" arrow: curves UP and OVER from diamond back to "Evaluate on Same Data"
+    # Arc goes above the boxes (connectionstyle rad positive = curve upward)
+    eval_box_cx = steps[2][2]
+    no_arrow = FancyArrowPatch(
+        (diamond_cx, diamond_cy + diamond_size + 0.2),
+        (eval_box_cx, box_y + box_h + 0.3),
+        connectionstyle="arc3,rad=0.4",
+        arrowstyle="-|>", mutation_scale=14,
+        color="#C0392B", lw=1.8, alpha=0.85)
+    ax.add_patch(no_arrow)
+    # Label for the No arrow
+    ax.text((diamond_cx + eval_box_cx) / 2, box_y + box_h + 4.5,
+            "No \u2013 iterate", ha="center", va="center",
+            color="#C0392B", fontsize=10, fontfamily=BODY_FONT, fontweight="bold")
+
+    # Old model X at the end
+    ax.text(96.5, lane_old_y, "\u2716", ha="center", va="center",
+            color="#C0392B", fontsize=18)
+
+    # Progressive rollout percentages below new model lane
+    percentages = ["5%", "10%", "25%", "50%", "100%"]
+    pct_x_start = 68
+    pct_spacing = 5.5
+    for i, pct in enumerate(percentages):
+        ax.text(pct_x_start + i * pct_spacing, lane_new_y - 2.5, pct,
+                ha="center", va="center", color=GREEN, fontsize=9,
+                fontfamily=BODY_FONT)
+    ax.text(pct_x_start + 2 * pct_spacing, lane_new_y - 4.5, "Progressive rollout",
+            ha="center", va="center", color=GRAY, fontsize=9,
+            fontfamily=BODY_FONT, style="italic")
+
+    save(fig, "model-lifecycle-upgrade-process.png")
+
+
+# ---------------------------------------------------------------------------
 # Registry
 # ---------------------------------------------------------------------------
 DIAGRAMS = {
@@ -647,11 +780,17 @@ DIAGRAMS = {
     "day2-quadrant": day2_quadrant,
     "anatomy-complexity": anatomy_complexity,
     "production-gap": production_gap,
+    "model-lifecycle": model_lifecycle,
 }
 
 
 def main():
-    targets = sys.argv[1:] or ["all"]
+    global SHOW_HEADER
+    args = sys.argv[1:]
+    if "--no-header" in args:
+        SHOW_HEADER = False
+        args.remove("--no-header")
+    targets = args or ["all"]
     if "all" in targets:
         targets = list(DIAGRAMS.keys())
     for t in targets:
