@@ -1,15 +1,46 @@
 # Changelog
 
-## Unreleased
+## v0.2.1 - 2026-06-03
 
-- Fix the Marp -> PPTX converter so it stops rendering Markdown blockquote subtitles with a literal leading `>` and so slides with both a blockquote subtitle and an inline diagram push the image down to `Inches(2.3)` to avoid overlapping the subtitle textbox (`prep/tools/marp_to_pptx.py`: `_extract_body_text` strips the prefix, both inline-diagram and IMAGE_MAP-diagram paths respect `has_body`).
-- Register `agentops-four-pillars.png` in `DIAGRAM_IMAGES` so the operating-model visual renders centered and full-width instead of as a tiny stock-photo thumbnail in the top-right corner.
+This release reorganises the short-workshop narrative around a single AgentOps operating model, polishes the Agent Foundations section, and fixes several rendering bugs in the Marp -> PPTX pipeline.
+
+### Highlights
+
+- **New AgentOps operating model.** The deck now tells one story end to end - Evaluate, Ship, Observe, Own - replacing the older six-step loop that confused learners.
+- **Stronger Agent Foundations section.** New "complexity vs anatomy" slide and updated narrative make the "why agents need a new operating model" pitch land more cleanly.
+- **Cleaner slide rendering.** Subtitles no longer show a stray `>`, the four-pillar diagram renders full-width instead of as a corner thumbnail, and diagrams no longer overlap their subtitles.
+
+### Content - Agent Foundations (Richard Healy)
+
+- Add a new "complexity vs anatomy" slide and accompanying `anatomy-complexity.png` diagram to the Agent Foundations section, and re-order the surrounding slides so the foundations story flows from "what an agent is" into "why production is hard". Narratives updated to match.
+- Refresh `production-gap.png` to align with the new ordering.
+- Polish speaker notes throughout the deck so each slide intros its topic cleanly and sets up the next one.
+
+### Content - Four-pillar operating model (Paulo Lacerda)
+
 - Replace the six-step operating loop (`Evaluate, Gate, Observe, Diagnose, Ship, Improve`) with a single four-pillar model (`Evaluate -> Ship -> Observe -> Own`) as the primary AgentOps story across the short track. Old loop items map as Gate+Ship -> Ship and Diagnose+Improve -> Own.
 - Update `short/slides.md`: retitle the operating-model slide and its visual, rename the Evaluation/CI-CD/Observability/Day-2 section dividers to Evaluate/Ship/Observe/Own, rewrite affected speaker notes, and reframe the 30-day adoption path around the four pillars.
-- Add the `agentops-four-pillars` diagram to `prep/tools/make_diagrams.py` and render `short/images/agentops-four-pillars.png`; the slide no longer uses `operating-loop.png`.
 - Update `short/speaker-script.md`, `short/agenda.md`, `short/run-of-show.md`, and `short/index.md` so the narration and delivery materials present the four-pillar model consistently.
+
+### Diagrams
+
+- Add the `agentops-four-pillars` diagram to `prep/tools/make_diagrams.py` and render `short/images/agentops-four-pillars.png`; the operating-model slide no longer uses `operating-loop.png`. (Paulo Lacerda)
+- Add a `model-lifecycle` diagram to `prep/tools/make_diagrams.py` and regenerate every diagram in `short/images/` without an embedded header, so the slide title in the deck no longer competes with the diagram title. (Richard Healy)
+
+### Tooling - Marp -> PPTX converter (Paulo Lacerda)
+
+- Strip the leading `>` from Markdown blockquote subtitles in `_extract_body_text`, so subtitles read as prose instead of showing a literal `>` character.
+- Register `agentops-four-pillars.png` in `DIAGRAM_IMAGES` so the operating-model visual renders centered and full-width instead of as a tiny stock-photo thumbnail in the top-right corner.
+- Push diagram images down to `Inches(2.3)` whenever a slide has both a blockquote subtitle and an inline diagram (both the inline-diagram and `IMAGE_MAP`-diagram paths respect `has_body`), so the diagram no longer overlaps the subtitle textbox.
+
+### Artefacts
+
 - Regenerate `short/slides.pptx` from the updated `slides.md`.
-- Follow-up needed: `short/agentops-short-video.mp4` is now out of sync with the revised script and should be re-rendered via `build_production_video.py` + `compress_production_video.py`, and the deck mirrored to upstream `presentations/04-agentops/`.
+
+### Follow-up
+
+- `short/agentops-short-video.mp4` is now out of sync with the revised script and should be re-rendered via `build_production_video.py` + `compress_production_video.py`.
+- Mirror the deck to the upstream program repo at `presentations/04-agentops/`.
 
 ## v0.2.0
 
