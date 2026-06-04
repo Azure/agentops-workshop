@@ -218,6 +218,37 @@ Versioning when artefacts change:
 - Tag a semver release (`v0.1.0`, `v0.1.1`, ...) when shipping a milestone. Tags are plain semver with no track suffix; one tag covers the whole kit at a point in time.
 - GitHub Releases are optional now (the file lives in git). If you do publish a release, attach the same MP4 as an archival download for `gh release download` users and keep its tag pinned forever (do not delete older releases - instructors may have copied pinned links).
 
+### CHANGELOG and release-notes formatting
+
+The user prefers a CHANGELOG that reads like product release notes, not a flat list of "stuff I changed". Every released version (and the `## Unreleased` section, when it has more than one or two bullets) must follow this structure:
+
+1. **One-line release intro** under the version header summarising what the release is about ("This release reorganises ... and fixes several rendering bugs in the Marp -> PPTX pipeline.").
+2. **`### Highlights`** - three to five short, learner-friendly bullets that someone skimming the release page can understand without context. Lead with the user-visible win, not the file path.
+3. **One or more `### Content - <area> (<Author Name>)` sections** - grouped by area of the deliverable (e.g. Agent Foundations, Four-pillar operating model, Long workshop labs). Author attribution in parentheses is REQUIRED on each grouped section so contributions stay clearly attributable when multiple people land work in the same release. If a section is genuinely co-authored, list both names.
+4. **`### Diagrams`** when any image under `short/images/`, `long/images/`, or `assets/` was added or regenerated. Attribute per diagram in trailing parentheses (e.g. "(Richard Healy)").
+5. **`### Tooling - <component> (<Author Name>)`** for any change under `prep/tools/`, `.github/`, `_config.yml`, build scripts, etc.
+6. **`### Artefacts`** for regenerated binary outputs (`short/slides.pptx`, `short/agentops-short-video.mp4`, ...). Keep this short - just list what was rebuilt.
+7. **`### Follow-up`** for known out-of-sync artefacts or upstream mirroring work that is intentionally deferred.
+
+Rules that apply to every CHANGELOG entry:
+
+- Always attribute contributions by author when more than one person has committed since the previous tag. Use `git log <previous-tag>..HEAD --pretty=format:"%h | %an | %s"` to recover authorship before writing the section.
+- Never collapse multiple authors' work into an undifferentiated bullet list. Group their contributions into their own subsections so a reader can tell who did what.
+- Use plain English in highlights and section headings. Save the file-path-heavy detail for the bullets inside each section.
+- Wrap inline code (file paths, identifiers, CLI flags) in backticks consistently.
+- Prefer ASCII punctuation. No em dashes as sentence separators - use " - " (space hyphen space) instead.
+- Keep the same structure for the matching GitHub Release notes when publishing via `gh release create`, plus a closing `**Contributors**: ...` line that names every committer in the release.
+
+Workflow when shipping a release:
+
+1. Read the existing `## Unreleased` block and the `git log` since the previous tag.
+2. Replace the `## Unreleased` header with `## vX.Y.Z - YYYY-MM-DD` and reorganise the bullets into the Highlights / Content / Diagrams / Tooling / Artefacts / Follow-up structure above, attributing every grouped section to its author(s).
+3. Commit the reorganised CHANGELOG (`git commit -m "Promote Unreleased entries into vX.Y.Z with per-author attribution"`).
+4. Tag it: `git tag -a vX.Y.Z -m "vX.Y.Z - <one-line summary>"`.
+5. Push commits and tag: `git push origin main && git push origin vX.Y.Z`.
+6. Publish the GitHub Release with `gh release create vX.Y.Z --title "vX.Y.Z - <one-line summary>" --notes-file <tempfile>` using release notes that mirror the CHANGELOG structure plus a `**Contributors**` line.
+7. After publishing, add a fresh empty `## Unreleased` block at the top of `CHANGELOG.md` for the next cycle (only if the user is continuing work in the same session - otherwise leave it for the next change).
+
 ## Video production conventions
 
 These conventions apply to every narrated workshop video built in this repo (currently the short-session preview at `prep\short\preview\avatar-preview.mp4` and the production short video at `short\agentops-short-video.mp4`). They are locked because we iterated on them with the user and the resulting look is approved. Do not re-litigate them when adding new slides or new tracks.
