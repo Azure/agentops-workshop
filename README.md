@@ -16,7 +16,7 @@ This README is for **authors and builders** working on the workshop content itse
 | Track | Status | Source |
 |---|---|---|
 | Short (~1 hour) | Ready to deliver | [`short/`](short/index.md) |
-| Long (~8 hours) | Planning skeleton — under construction | [`long/`](long/index.md) |
+| Long - Value Based Delivery (VBD) (~8 hours) | Planning skeleton - under construction | [`long/`](long/index.md) |
 
 ## Repository layout
 
@@ -86,4 +86,3 @@ Before making any release or significant content change visible:
 5. AgentOps practices create the repo and CI/CD release-readiness loop.
 6. Observability connects runtime behavior, traces, incidents, and production learnings back to evaluation.
 7. The demo shows a regression caught before release, fixed, observed, and promoted with evidence.
-

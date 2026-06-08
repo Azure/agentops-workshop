@@ -11,7 +11,7 @@ This site is for **instructors** preparing to deliver the AgentOps workshop. It 
 Two tracks are available:
 
 - **Short workshop** (~1 hour) — ready to deliver.
-- **Long workshop** (~8 hours) — under construction.
+- **Long workshop - Value Based Delivery (VBD) version** (~8 hours) - under construction.
 
 ---
 
@@ -74,9 +74,9 @@ Two tracks are available:
 
 ---
 
-## Long workshop — under construction
+## Long workshop - Value Based Delivery (VBD) version
 
-The full-day (~8 hours) workshop is being designed. The planning pages are visible so you can see where it is heading, but the labs are placeholders.
+The full-day (~8 hours) workshop is the Value Based Delivery (VBD) version. It is still being designed, and the planning pages are visible so you can see where it is heading, but the labs are placeholders.
 
 [See the long workshop plan]({{ '/long/' | relative_url }}){: .btn }
 
@@ -95,4 +95,3 @@ The short workshop introduces the loop with a demo storyline: an existing Foundr
 ## Authoring this workshop
 
 If you are not delivering the workshop but contributing to it, start with the [repository README on GitHub](https://github.com/Azure/agentops-workshop#readme). The README and the `prep/` folder hold the authoring tools, references, and intermediate artefacts used to build everything published here.
-
