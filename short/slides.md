@@ -245,6 +245,7 @@ style: |
 - Four risk categories: harmful content, jailbreak (prompt injection, role hijacking), hallucination (ungrounded claims), data exfiltration (PII leakage, tool abuse)
 - Cadence: pre-release gate, scheduled weekly, post-incident
 - Findings feed the eval dataset as adversarial rows for future regression coverage
+- New at Build 2026: Adaptive Evaluations (preview) convert safety and governance policies directly into automated tests. Paired with ASSERT (Agent Security and Safety Evaluation Run-Time), teams can turn policies into repeatable eval coverage without hand-writing every test case
 - Now that we have evaluation and red teaming producing signals, how do we enforce them? That brings us to Ship
 -->
 
@@ -268,6 +269,7 @@ style: |
 - Deploy gates block bad versions before they reach the next environment
 - Watchdogs catch drift between releases
 - Every gate produces an artifact: eval report, readiness report, release evidence
+- New at Build 2026: Agent Control Specification (ACS) extends gates into runtime. ACS defines eight interception points across the agent lifecycle (startup, input, pre/post-model-call, pre/post-tool-call, output, shutdown) where policies are enforced as code. Works across Foundry, Microsoft Agent Framework, and LangChain. Published open-source under the Agent Governance Toolkit on GitHub
 - With gates enforcing quality, the next question is what happens after we ship. That is where Observe comes in
 -->
 
@@ -334,6 +336,7 @@ style: |
 - Model lifecycle: canary rollout for upgrades; prompt and tool versioned alongside model; rollback drills
 - Cost and capacity: PTU vs pay-as-you-go; token and tool call budgets per tenant; alerting on cost anomalies
 - The four concerns are interlocking - each creates signals that feed back into evaluation and the next release
+- Governance umbrella: Microsoft Agent 365 (GA May 2026) provides the observe, govern, and secure control plane across all agents in the enterprise. The SDK is free and framework-agnostic - works with Microsoft Agent Framework, OpenAI Agents SDK, LangChain, Semantic Kernel. Brings custom and third-party agents under one governance umbrella so Day-2 visibility and policy enforcement are consistent
 - The next two slides go deeper into incident response and model lifecycle
 -->
 
