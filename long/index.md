@@ -1,16 +1,16 @@
 ---
-title: Long Workshop
+title: Long Workshop - VBD
 layout: default
 nav_order: 3
 has_children: true
 ---
 
-# Long Workshop
+# Long Workshop - Value Based Delivery (VBD) version
 
 {: .important }
-> **Under construction.** The long (~8 hours) workshop is being designed. The pages below are planning material, not deliverable content. If you need a session you can run today, see the [short workshop]({{ '/short/' | relative_url }}).
+> **Under construction.** The long (~8 hours) workshop is the Value Based Delivery (VBD) version and is still being designed. The pages below are planning material, not deliverable content. If you need a session you can run today, see the [short workshop]({{ '/short/' | relative_url }}).
 
-This track is the full-day AgentOps workshop. The lab content is not implemented yet. This section defines the planned structure, learning outcomes, sequencing, and directory layout.
+This track is the full-day AgentOps workshop for the Value Based Delivery (VBD) version. The lab content is not implemented yet. This section defines the planned structure, learning outcomes, sequencing, and directory layout.
 
 ## Full-day outcome (planned)
 
@@ -43,4 +43,3 @@ Observability is both a dedicated lab and a thread across the workshop. Every la
 - Safety findings
 - Owner and incident path
 - Runtime telemetry links
-
