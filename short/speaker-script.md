@@ -27,13 +27,16 @@ Dual-voice narration for the AgentOps deck. One primary speaker per slide, with 
 | Foundations | 6-8 (Foundry, checklist, operating model) | SP3 | 4:45 | 9:45 |
 | Foundations | 9 (maturity model) | SP3 | 2:30 | 12:15 |
 | Architecture | 10 (reference architecture) | SP1 | 2:54 (estimate) | 15:09 |
-| Demo | 11 | SP1 | 10:00 | 25:09 |
-| Evaluate | 12-14 | SP2 | 3:53 (estimate) | 29:02 |
-| Ship | 15-16 | SP2 | 2:41 (estimate) | 31:43 |
-| Observe | 17-19 | SP2 | 3:50 (estimate) | 35:33 |
-| Own | 20-23 | TBC | 5:36 (estimate) | 41:09 |
-| Adoption | 24-25 | TBC | 2:17 (estimate) | 43:26 |
-| Thank You + Q&A | 26 | All | 0:22 (estimate) | 43:48 |
+| Evaluate | 11-13 | SP2 | 3:53 (estimate) | 19:02 |
+| Demo - Evaluate | 14 | SP1 | 5:00 | 24:02 |
+| Ship | 15-16 | SP2 | 2:41 (estimate) | 26:43 |
+| Demo - Ship | 17 | SP1 | 5:00 | 31:43 |
+| Observe | 18-20 | SP2 | 3:50 (estimate) | 35:33 |
+| Demo - Observe | 21 | SP1 | 5:00 | 40:33 |
+| Own | 22-25 | SP1 | 5:36 (estimate) | 46:09 |
+| Demo - Own | 26 | SP1 | 5:00 | 51:09 |
+| Your Next Steps | 27-28 | SP2 | 2:17 (estimate) | 53:26 |
+| Thank You + Q&A | 29 | All | 0:22 (estimate) | 53:48 |
 
 ### names suggestions 
 SP1 - Paulo
@@ -55,8 +58,11 @@ It's how we take the production engineering discipline we already trust for trad
 
 **SP3:** We have seven blocks for fifty minutes. 
 First, AgentOps Foundations - why AI operations need a new discipline, what the four-pillar model looks like, and where teams really sit today. 
+
 Then a demo showing the operating model in action on Foundry.
+
 Then the four pillars themselves. 
+
 Evaluate - the release signal that tells us whether a new version is actually better, or just different. 
 Ship - the gates, approvals, and evidence that turn that signal into a release decision. 
 Observe - once the agent is live, how we see what it's doing through traces, metrics, and feedback.
@@ -181,24 +187,14 @@ The takeaway: every box on this diagram maps to a concrete Azure service or Foun
 
 ---
 
-## Slide 11 - Demo
-
-**SP1:** We've covered the foundations, the four-pillar model, the architecture.
-Now let's see it in action.
-This demo walks through the operating model on Foundry - the inner loop, evaluation, gating, and observability working together.
-Watch how the pieces connect: a prompt change triggers evaluation, the gate enforces the threshold, and traces show exactly what happened.
-*Let's see this in action.*
-
----
-
-## Slide 12 - Section: Evaluate
+## Slide 11 - Section: Evaluate
 
 **SP2:** The first item on that checklist, probably the most important one, is evaluation.
 The eval dataset, the thresholds, the release signal. That's where we go next.
 
 ---
 
-## Slide 13 - Evaluation strategy
+## Slide 12 - Evaluation strategy
 
 **SP2:** Three stages of evaluation across the whole life of the agent.
 Stage one - base model selection. Before we write the agent, we pick the model with evidence. We test candidates against a representative dataset. We measure cost, latency, and quality on the actual use case. We choose with evidence, not excitement.
@@ -211,7 +207,7 @@ Don't wait for the perfect dataset. Start with twenty cases. Catch your first re
 
 ---
 
-## Slide 14 - Red teaming and AI safety
+## Slide 13 - Red teaming and AI safety
 
 **SP2:** *Quality and safety are different signals.*
 A quality score tells you whether the answer was coherent, grounded, and useful. It will not tell you whether someone could jailbreak the agent into revealing secrets or trick it into sending a malicious email.
@@ -226,6 +222,13 @@ Cadence: pre-release gate, scheduled weekly, and post-incident. Findings feed st
 One more piece announced at Build 2026 - *Adaptive Evaluations* paired with the *ASSERT* framework. ASSERT stands for Agent Security and Safety Evaluation Run-Time. The idea: take your governance policies and automatically convert them into eval test cases. Instead of hand-writing every adversarial scenario, the platform generates tests from your policies. It's in preview now.
 Quality says the agent is good. Safety says the agent can't be abused. Both have to pass.
 Now - how do we enforce these signals? That brings us to the Ship pillar, and CI/CD gates.
+
+---
+
+## Slide 14 - Demo - Evaluate
+
+**SP1:** Let's see evaluation in action.
+I'll walk through a golden dataset run on Foundry, the evaluator scores, and how the release signal is produced.
 
 ---
 
@@ -251,11 +254,18 @@ Watchdogs - scheduled checks against production. Catch drift, tool failures, ups
 Each gate produces an artifact for the audit trail. When compliance asks "how do you know this was safe?" you point to the artifact.
 And this extends beyond CI/CD now. The *Agent Control Specification* - ACS - announced at Build 2026 defines eight interception points in the agent's runtime: startup, input, pre-model-call, post-model-call, pre-tool-call, post-tool-call, output, and shutdown. Policies evaluated at each point, as code. It works across Foundry, Microsoft Agent Framework, and LangChain. Open-source under the Agent Governance Toolkit on GitHub.
 Think of it as CI/CD gates that follow the agent into production - not just at deploy time, but on every single request.
-GitHub Actions or Azure DevOps pipelines. Either works. The pattern is the same.ure DevOps Pipelines, Foundry's CLI plugs into either. The mechanism is well understood. What's new is what we're measuring and gating on. Now - what happens after we ship? That's where Observe comes in.
+GitHub Actions or Azure DevOps pipelines. Either works. The pattern is the same.
 
 ---
 
-## Slide 17 - Section: Observe
+## Slide 17 - Demo - Ship
+
+**SP1:** Let me show you a failed gate in action.
+A prompt change triggers the pipeline, the evaluator scores drop below threshold, and the gate blocks the deployment. That's the strongest moment in the model.
+
+---
+
+## Slide 18 - Section: Observe
 
 **SP2:** Pipelines and gates are the release-time part of the model. But the operating model doesn't stop at release.
 This is the Observe pillar. We need to see what the agent is doing in production.
@@ -263,7 +273,7 @@ Traces, correlation, and the closed loop.
 
 ---
 
-## Slide 18 - Observability for agents is more than monitoring
+## Slide 19 - Observability for agents is more than monitoring
 
 **SP2:** This distinction matters.
 Monitoring asks: is the service healthy? Is the endpoint up? Is latency within target? Those questions matter, but they're not enough for an agent.
@@ -281,7 +291,7 @@ Without correlation, observability is disconnected dashboards. With it, the same
 
 ---
 
-## Slide 19 - From telemetry to action
+## Slide 20 - From telemetry to action
 
 **SP2:** This is the connective tissue slide for the whole session. *Telemetry is not the goal. Action is.*
 Let's walk through it signal by signal.
@@ -297,7 +307,14 @@ That's how we keep getting better, release after release.
 
 ---
 
-## Slide 20 - Section: Own
+## Slide 21 - Demo - Observe
+
+**SP1:** Let's look at a real trace.
+I'll show the trace waterfall, correlated spans across model calls and tool calls, and how a signal fires an alert and feeds back into the eval dataset.
+
+---
+
+## Slide 22 - Section: Own
 
 **SP1:** The model runs every day after launch.
 This is the Own pillar - Day-2 operations. Running agents in production.
@@ -305,7 +322,7 @@ Where most of the actual work lives, long after the launch demo.
 
 ---
 
-## Slide 21 - Day-2 operations - four concerns
+## Slide 23 - Day-2 operations - four concerns
 
 **SP1:** Day-2 is where most of the operational reality lives. The hard part is not getting the agent to launch. The hard part is keeping it useful, safe, and reliable on day ninety, day one-eighty, day three-sixty-five.
 Four concerns on the quadrant, and they're interlocking.
@@ -316,11 +333,12 @@ Cost and capacity - PTU versus pay-as-you-go, token budgets per tenant, tool cal
 One more thing worth naming here. *Microsoft Agent 365* went generally available in May 2026 as the enterprise governance umbrella for agents. Three pillars: observe, govern, secure. The SDK is free and framework-agnostic - it works with Microsoft Agent Framework, OpenAI Agents SDK, LangChain, Semantic Kernel.
 The point: whether you build your agent on Foundry or bring it from another framework, Agent 365 gives IT one place to see every agent in the tenant, enforce policies, and audit what they did. It pairs with Defender for runtime detection and Purview for data governance.
 That's the Day-2 governance layer that sits above individual agent implementations.
-These concerns are connected. An incident feeds the reliability roadmap. A model change runs through the same gates. A cost anomaly triggers an incident if severe enough. Every one feeds back into evaluation.ion. Let's go deeper into the two concerns customers struggle with most.
+These concerns are connected. An incident feeds the reliability roadmap. A model change runs through the same gates. A cost anomaly triggers an incident if severe enough. Every one feeds back into evaluation.
+Let's go deeper into the two concerns customers struggle with most.
 
 ---
 
-## Slide 22 - AI incident runbook
+## Slide 24 - AI incident runbook
 
 **SP1:** When something goes wrong in production, the runbook turns a fire drill into a sequence.
 The severity table sets expectations.
@@ -337,7 +355,7 @@ Build it. Use it. Update it after every incident.
 
 ---
 
-## Slide 23 - Model lifecycle and canary upgrades
+## Slide 25 - Model lifecycle and canary upgrades
 
 **SP1:** Model lifecycle is the second pain point. Every customer right now is having this conversation.
 The model we depend on is being deprecated. A new model came out. The vendor changed terms. What do we do?
@@ -354,7 +372,13 @@ If you have the eval dataset and release contract from earlier slides, model lif
 
 ---
 
-## Slide 24 - Section: Adoption
+## Slide 26 - Demo - Own
+
+**SP1:** For this last demo, I'll show incident triage from a production trace, a model canary comparison side by side, and how production learnings feed back into the eval dataset to close the loop.
+
+---
+
+## Slide 27 - Section: Your Next Steps
 
 **SP2:** We've covered foundations and the four pillars - evaluate, ship, observe, own. That's the operating model.
 Now the question we get most often: where do I start?
@@ -362,23 +386,23 @@ Start small. Build the pattern.
 
 ---
 
-## Slide 25 - Start with one production-candidate agent
+## Slide 28 - Start with one production-candidate agent
 
-**SP2:** Close with a practical adoption path. *Don't start with every agent. Start with one.*
+**SP2:** Close with a practical path. *Don't start with every agent. Start with one.*
 Step one - pick one agent. One. Not your portfolio. One agent that is close to production today, with a real owner, real users in pilot, and real business value.
 Step two - evaluate it. Define release criteria and a small eval dataset. Minimum quality, groundedness, no new harmful content findings. Build the dataset - even just twenty representative cases. Real user journeys, real edge cases, real mistakes the agent has made before.
 Step three - ship it. Add PR and deploy gates and a readiness evidence pack. The eval runs on PR, runs on deploy. The gate blocks if scores drop. The first time a developer sees a failed PR because of an eval regression, you'll know it's working.
 Step four - observe it. Wire telemetry, traces, dashboards, and alerts. Application Insights connected. OpenTelemetry spans flowing. At least one dashboard, at least one alert for the worst-case failure mode. Doesn't have to be perfect. Has to exist.
 Step five - own it. Review readiness evidence weekly. A thirty-minute meeting. Walk through eval reports, safety findings, incidents, what's going into the dataset. The rhythm is what makes it stick.
 Step six - feed production learnings back into the next evaluation cycle. Reviewed traces become eval rows. Postmortem findings become regression tests. Red team findings become adversarial coverage. The dataset grows. The next gate is stronger.
+And step seven - revisit the maturity model. Identify where your team sits today. Set a concrete goal to reach the next level within ninety days. That's how you build momentum.
 Thirty days. One agent. Four pillars.
 *Move one agent from "it works in testing" to "we can operate it safely."* Evaluate it, ship it with evidence, observe it in production, and own the next improvement cycle.
 Once you've done that, you have the pattern. The pattern scales across the portfolio without re-litigating every decision.
-Thank you for watching.
 
 ---
 
-## Slide 26 - Thank You and Q&A
+## Slide 29 - Thank You and Q&A
 
 **SP3:** Thank you for your time today.
 We have ten minutes for questions.
