@@ -151,24 +151,7 @@ style: |
 - How do we know a version is actually safe to ship? The production readiness checklist answers that
 - It is the contract for any production-candidate agent. Every item maps to one or more later slides
 - Walk the audience through each item briefly so they hold it as the mental model for the rest of the session
-- But where does your team sit today against this checklist? The maturity model helps you locate yourself
--->
-
----
-
-# Maturity model
-> Most teams sit between Initial and Defined - start by moving one production-candidate agent up one level
-
-![AgentOps maturity ribbon with four levels: Initial, Defined, Managed, Optimised](images/maturity-ribbon.png)
-
-<!-- Speaker notes:
-- The checklist defines what good looks like - the maturity model tells you where you are today
-- Initial: ad hoc demos, manual eval, no gates, scattered logs
-- Defined: versioned prompts and agents, pre-prod eval datasets, CI builds artefacts
-- Managed: quality and safety gates in CI, continuous evaluation in production, runbooks and SLOs
-- Optimised: drift and cost guardrails, canary plus auto-rollback, feedback flywheel
-- The practical move is not to boil the ocean - pick one production-candidate agent and move it up one level
-- The question is: how do we produce this evidence repeatably, every release, without heroics? That is what the operating model gives us
+- Now let us see the operating model that connects these items into a repeatable process
 -->
 
 ---
@@ -187,6 +170,23 @@ style: |
 - Observe production behavior through traces, metrics, logs, content safety signals, feedback, cost, and latency
 - Own the workload through diagnosis, incident response, runbooks, model lifecycle, cost management, capacity management, and continuous improvement
 - The output is release evidence and operational confidence
+- Now that we know the model, the question is: where does your team sit today?
+-->
+
+---
+
+# Maturity model
+> Most teams sit between Initial and Defined - start by moving one production-candidate agent up one level
+
+![AgentOps maturity ribbon with four levels: Initial, Defined, Managed, Optimised](images/maturity-ribbon.png)
+
+<!-- Speaker notes:
+- The checklist defines what good looks like. The operating model tells you how to get there. The maturity model tells you where you are today
+- Initial: ad hoc demos, manual eval, no gates, scattered logs
+- Defined: versioned prompts and agents, pre-prod eval datasets, CI builds artefacts
+- Managed: quality and safety gates in CI, continuous evaluation in production, runbooks and SLOs
+- Optimised: drift and cost guardrails, canary plus auto-rollback, feedback flywheel
+- The practical move is not to boil the ocean - pick one production-candidate agent and move it up one level
 - Before we dive into each pillar, let us see what this model looks like as a reference architecture on Foundry
 -->
 

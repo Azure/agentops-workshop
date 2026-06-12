@@ -24,8 +24,8 @@ Dual-voice narration for the AgentOps deck. One primary speaker per slide, with 
 |---------|--------|---------|----------|---------------|
 | Title + Agenda | 1-2 | SP3 | 1:30 | 1:30 |
 | Foundations | 3-5 (gap, building blocks) | SP3 | 3:30 | 5:00 |
-| Foundations | 6-8 (Foundry, checklist, maturity) | SP3 | 4:45 | 9:45 |
-| Foundations | 9 (operating model) | SP3 | 2:30 | 12:15 |
+| Foundations | 6-8 (Foundry, checklist, operating model) | SP3 | 4:45 | 9:45 |
+| Foundations | 9 (maturity model) | SP3 | 2:30 | 12:15 |
 | Architecture | 10 (reference architecture) | SP1 | 2:54 (estimate) | 15:09 |
 | Demo | 11 | SP1 | 10:00 | 25:09 |
 | Evaluate | 12-14 | SP2 | 3:53 (estimate) | 29:02 |
@@ -130,7 +130,23 @@ Every section that follows fills out one or more items on this checklist.
 
 ---
 
-## Slide 8 - Maturity model
+## Slide 8 - AgentOps operating model
+
+**SP3:** So we have the checklist - seven items that tell us what evidence a production release needs.
+The question is: how do we produce that evidence repeatably, every release, without heroics?
+That's what the operating model gives us. Four pillars. Evaluate, ship, observe, own.
+Everything we talk about for the next forty-five minutes lives inside one of these four pillars.
+First: *evaluate.* We have a curated golden dataset of representative user journeys. We run the current and candidate versions against it. We measure quality, groundedness, latency, cost, intent resolution, tool call accuracy. We don't ship blind. Datasets, rubrics, red teaming, thresholds.
+Second: *ship.* The evaluation result becomes a gate in CI/CD. If quality drops below threshold, the pipeline fails. If safety regresses, the pipeline fails. We promote with evidence - human approvals, environment promotion, and a canary rollout where model, prompt, and tools are versioned together. A failed gate is the strongest moment in the model - the point at which a bad version stops before users ever see it.
+Third: *observe.* Once in production, we need traces. The full chain: prompt, plan, model call, tool call, retrieval, safety event, latency, cost, user feedback. We use Foundry observability and Application Insights together, correlated so the same trace answers questions across release, runtime, and evaluation.
+Fourth: *own.* This is where we operate the agent over time. Diagnose root cause from traces and evaluators on production samples. Run the incident runbook. Manage model lifecycle, cost, and capacity. And improve - reviewed traces from production become new rows in the eval dataset, so the next evaluation tests against everything we've learned.
+People, process, platform. People means the agent is owned - there's an on-call, runbooks, reviewers. Process means we follow the four pillars on every change. Platform means Foundry as the control plane with telemetry, traces, evaluators, and pipelines wired together.
+The output is *release evidence* and *operational confidence*.
+Now that we know the model, the question is: where does your team sit today?
+
+---
+
+## Slide 9 - Maturity model
 
 **SP3:** Quick self-assessment. Where is your team right now?
 Four levels, and we'd bet almost everyone is somewhere between the first two.
@@ -139,21 +155,7 @@ Level two - Defined. Prompts are versioned. Agents are versioned. There's a pre-
 Level three - Managed. Quality and safety gates in CI. Continuous evaluation on production. Runbooks and SLOs. This is where most enterprise customers want to be within twelve months.
 Level four - Optimised. Drift and cost guardrails. Canary plus auto-rollback. The feedback flywheel is real - every reviewed production trace becomes a new eval row within hours.
 *Don't try to boil the ocean.* Pick one production-candidate agent. Move it up one level. Build the pattern. Then scale it.
-The question now is: how do we produce this evidence repeatably? That's what the operating model gives us.
-
----
-
-## Slide 9 - AgentOps operating model
-
-**SP3:** This is the operating model itself. Four pillars. Evaluate, ship, observe, own. They're the heart of the session.
-Everything we talk about for the next forty-five minutes lives inside one of these four pillars.
-First: *evaluate.* We have a curated golden dataset of representative user journeys. We run the current and candidate versions against it. We measure quality, groundedness, latency, cost, intent resolution, tool call accuracy. We don't ship blind. Datasets, rubrics, red teaming, thresholds.
-Second: *ship.* The evaluation result becomes a gate in CI/CD. If quality drops below threshold, the pipeline fails. If safety regresses, the pipeline fails. We promote with evidence - human approvals, environment promotion, and a canary rollout where model, prompt, and tools are versioned together. A failed gate is the strongest moment in the model - the point at which a bad version stops before users ever see it.
-Third: *observe.* Once in production, we need traces. The full chain: prompt, plan, model call, tool call, retrieval, safety event, latency, cost, user feedback. We use Foundry observability and Application Insights together, correlated so the same trace answers questions across release, runtime, and evaluation.
-Fourth: *own.* This is where we operate the agent over time. Diagnose root cause from traces and evaluators on production samples. Run the incident runbook. Manage model lifecycle, cost, and capacity. And improve - reviewed traces from production become new rows in the eval dataset, so the next evaluation tests against everything we've learned.
-People, process, platform. People means the agent is owned - there's an on-call, runbooks, reviewers. Process means we follow the four pillars on every change. Platform means Foundry as the control plane with telemetry, traces, evaluators, and pipelines wired together.
-The output is *release evidence* and *operational confidence*.
-Before we dive into each pillar, let's look at what this model actually looks like as an architecture on Foundry.
+Now let's look at what this model actually looks like as a reference architecture on Foundry.
 
 ---
 
