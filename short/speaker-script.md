@@ -26,20 +26,14 @@ Dual-voice narration for the AgentOps deck. One primary speaker per slide, with 
 | Foundations | 3-5 (gap, building blocks) | SP3 | 3:30 | 5:00 |
 | Foundations | 6-8 (Foundry, checklist, operating model) | SP3 | 4:45 | 9:45 |
 | Foundations | 9 (maturity model) | SP3 | 2:30 | 12:15 |
-| Architecture | 10 (reference architecture) | SP1 | 2:54 (estimate) | 15:09 |
-| Demo | 11 | SP1 | 10:00 | 25:09 |
-| Evaluate | 12-14 | SP2 | 3:53 (estimate) | 29:02 |
-| Ship | 15-16 | SP2 | 2:41 (estimate) | 31:43 |
-| Observe | 17-19 | SP2 | 3:50 (estimate) | 35:33 |
-| Own | 20-23 | TBC | 5:36 (estimate) | 41:09 |
-| Adoption | 24-25 | TBC | 2:17 (estimate) | 43:26 |
-| Thank You + Q&A | 26 | All | 0:22 (estimate) | 43:48 |
-
-### names suggestions 
-SP1 - Paulo
-SP2 - DB 
-SP3 - Rick 
----
+| Architecture | 10 (reference architecture) | SP1 | 4:30 (measured) | 16:45 |
+| Demo | 11 | SP1 | 10:00 | 26:45 |
+| Evaluate | 12-14 | SP2 | 3:53 (estimate) | 30:38 |
+| Ship | 15-16 | SP2 | 2:41 (estimate) | 33:19 |
+| Observe | 17-19 | SP2 | 3:50 (estimate) | 37:09 |
+| Own | 20-23 | TBC | 5:36 (estimate) | 42:45 |
+| Adoption | 24-25 | TBC | 2:17 (estimate) | 45:02 |
+| Thank You + Q&A | 26 | All | 0:22 (estimate) | 45:24 |
 
 ## Slide 1 - Title: AgentOps - From Agent Prototype to Production
 
@@ -161,23 +155,45 @@ Now let's look at what this model actually looks like as a reference architectur
 
 ## Slide 10 - AgentOps Architecture
 
-**SP1:** Here's the same four-pillar model, but drawn as a reference architecture on Foundry. The conceptual model on the left becomes concrete components on the right.
-Two columns.
-On the left, *Create, Evaluate, Improve* - the inner loop. Four panels stacked.
-*Sandbox* - a Foundry Project where the team designs the agent. Agent types, instructions, tools, models.
-*Source control* - ADO Repo or GitHub Repo - holding the release candidate, the CI workflow, and the eval evidence as a versioned artifact.
-*Authoring tools* - Copilot CLI and VS Code - for prompt edits, local evals, trace review.
-And *agent frameworks* - Microsoft Agent Framework or LangGraph - for orchestration and MCP tools.
-That's the inner loop.
-Now the right side, *Operationalizing*. Wrapped in Continuous Delivery driven by ADO or GitHub Actions. Three environments, each its own Foundry Project.
-*Dev* - shared development - runs manual tests, quality evals, safety eval.
-*Qa* - staging and test - tightens the gates with integration tests and red team. Same agent, more rigorous evidence.
-Between qa and prod, the *Gated approval* with the release evidence package - human approval, backed by evidence.
-*Prod* - shipping target - runs smoke tests, blue/green deployments, A/B tests. Notice prod is not re-running eval - the evidence was locked at qa. The promotion strategy here is about rollout safety, not requalification.
-The *Agent runtime choice* is identical in every environment - which is the whole point. Prompt Agent - Foundry-managed prompt plus tools plus knowledge. Hosted Agent - your container image, pushed to ACR, run by Agent Service. Or BYO Compute Custom Runtime on Container Apps or AKS if you need full control. Same agent definition, three runtime options, three environments.
-Now the bottom-left panel - *Observability and Control*, the Foundry Control Plane. Four columns mapped one-to-one to the product's Operate navigation. *Overview* - alerts, success rate, cost. *Assets* - agents, models, deployments. *Tracing* - full OpenTelemetry spans. *Evaluation* - continuous scoring on production samples.
-And finally the bottom-right panel - *Azure Platform Services*. Application Insights and Log Analytics for long-term telemetry storage and KQL queries. Azure Monitor for alerts. APIM for rate limiting and routing. Key Vault for secrets. Managed Identity for auth. This is where Foundry meets the Azure landing zone.
-The takeaway: every box on this diagram maps to a concrete Azure service or Foundry feature. Nothing here is aspirational. It's all available today. tools. *Compliance* - guardrail, security posture, data governance. *Quota* - TPM, PTU, rate limiting. Underneath, the *Telemetry backend* - Azure Monitor for dashboards and alerts, Application Insights for traces. That's where Foundry tracing flows to. Two dashed feeds from Observability and Control into dev and into prod - that's the platform pulling telemetry from both environments. And the dashed *Feedback loop* on the left side of the diagram - production learnings, regressions, new failure modes flow back into the inner loop, into the next iteration of prompts, tools, and evaluators. One picture, the whole operating model on Foundry. Now let's dive into the first pillar - Evaluate.
+**SP1:** This picture is the bridge between the operating model and the real implementation.
+So instead of reading it box by box, let's follow one agent version as it moves from an idea to production.
+
+It starts on the left, in the inner loop. This is where the team is still learning.
+The sandbox Foundry Project is the safe place to design the agent: the instructions, the tools, the model choice, the knowledge sources, and the early behavior.
+The developer is working in VS Code or Copilot CLI, using a framework like Microsoft Agent Framework or LangGraph when they need orchestration or MCP tools.
+But the important point is this: even in the inner loop, the agent is already treated like a versioned product.
+The prompt, tool definitions, configuration, CI workflow, and evaluation evidence live in source control, in GitHub or Azure DevOps.
+That means the agent is not just something configured in a portal. It is something the team can review, compare, promote, and roll back.
+
+Then the agent candidate moves to the right side: operationalizing.
+This is the outer loop, where we stop asking "does it work on my machine?" and start asking "do we have enough evidence to promote it?"
+Continuous delivery moves the same candidate through dev, qa, and prod.
+Each environment has its own Foundry Project, because each environment has a different purpose.
+Dev is shared development. It is where the team runs manual tests, quality evaluations, and safety evaluations quickly.
+QA is where the bar gets higher. We add integration testing, red-team coverage, and the release evidence package.
+And between QA and prod, there is a gated approval. That approval should not be a rubber stamp. It should be a human looking at the evidence and deciding whether the version is ready.
+
+When the agent reaches prod, the goal changes again.
+Prod is about safe rollout: smoke tests, blue-green or canary rollout, and controlled exposure.
+We are not trying to rediscover the evaluation result in prod. The evaluation evidence was locked in QA.
+Prod is where we prove the rollout is healthy and where we watch real user behavior carefully.
+
+Now look at the runtime choices across the environments.
+The same pattern works whether this is a Prompt Agent managed by Foundry, a Hosted Agent running as a container through Agent Service, or a BYO compute runtime on Container Apps or AKS.
+That matters because AgentOps should not depend on one runtime shape.
+The operating model is consistent: version the agent, evaluate it, gate it, observe it, and feed production learning back into the next version.
+
+At the bottom is the control plane that keeps the loop connected.
+Foundry gives us the operational view: overview, assets, compliance, quota, traces, and evaluations.
+Application Insights and Log Analytics hold the detailed telemetry, and Azure Monitor turns important signals into alerts.
+This is where a trace from production becomes more than a log line.
+It tells us which version ran, which model call happened, which tool was invoked, what the latency and cost looked like, and whether there was a safety or quality signal.
+
+The dashed feedback loop is the most important part of the diagram.
+Production is not the end of the process. Production teaches the next evaluation set.
+A failed trace becomes a regression case. A safety event becomes a red-team scenario. A latency or cost issue becomes a release criterion.
+That is the AgentOps loop on Foundry: create, evaluate, promote with evidence, observe in production, and improve the next version from what we learned.
+With that architecture in mind, let's dive into the first pillar: Evaluate.
 
 ---
 

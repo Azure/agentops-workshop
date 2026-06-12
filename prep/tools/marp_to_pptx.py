@@ -158,7 +158,7 @@ IMAGE_MAP = {
     "Caching Strategies": "caching-strategy-three-levels.png",
     "Cost Modelling for Agentic Workloads": "cost-modeling-formula-breakdown.png",
     "Multi-Region Architecture for AI": "multi-region-architecture-diagram.png",
-    "A/B Testing Agent Configurations": "model-upgrade-phased-rollout.png",
+    "Canary Rollout for Agent Configurations": "model-upgrade-phased-rollout.png",
 }
 
 # Which images are architecture diagrams (replace code block, centered)
