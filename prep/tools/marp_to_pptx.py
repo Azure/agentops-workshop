@@ -375,7 +375,7 @@ def parse_marp(md_text: str) -> list:
         inline_images = _extract_inline_images(clean)
 
         lower_title = title.lower().strip()
-        if lower_title in ("thank you", "thanks", "thank you!"):
+        if lower_title in ("thank you", "thanks", "thank you!") and not is_lead:
             stype = "thankyou"
         elif lower_title == "notes for presenter":
             stype = "notes"
