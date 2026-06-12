@@ -21,6 +21,7 @@ import sys
 from PIL import Image
 from pptx import Presentation
 from pptx.dml.color import RGBColor
+from pptx.enum.text import PP_ALIGN
 from pptx.oxml.ns import qn
 from pptx.util import Emu, Inches, Pt
 
@@ -281,6 +282,8 @@ def _extract_bullets(lines: list) -> list:
         stripped = ln.strip()
         if re.match(r"^[-*]\s", stripped):
             bullets.append(re.sub(r"^[-*]\s+", "", stripped))
+        elif re.match(r"^\d+\.\s", stripped):
+            bullets.append(re.sub(r"^\d+\.\s+", "", stripped))
     return bullets
 
 
@@ -303,6 +306,8 @@ def _extract_body_text(lines: list) -> list:
         if in_table:
             continue
         if stripped.startswith("#") or re.match(r"^[-*]\s", stripped):
+            continue
+        if re.match(r"^\d+\.\s", stripped):
             continue
         if stripped.startswith("<!--") or stripped == "":
             continue
@@ -345,6 +350,7 @@ def parse_marp(md_text: str) -> list:
         lines = clean.split("\n")
         title = ""
         subtitle = ""
+        blockquote = ""
         content_lines = []
         for ln in lines:
             stripped = ln.strip()
@@ -352,8 +358,15 @@ def parse_marp(md_text: str) -> list:
                 subtitle = stripped.lstrip("#").strip()
             elif stripped.startswith("# "):
                 title = stripped.lstrip("#").strip()
+            elif stripped.startswith(">") and not blockquote:
+                # First blockquote line becomes the subtitle/subheading
+                blockquote = stripped.lstrip(">").strip()
             else:
                 content_lines.append(ln)
+
+        # Prefer ## subtitle; fall back to > blockquote
+        if not subtitle and blockquote:
+            subtitle = blockquote
 
         table = _extract_table(content_lines)
         code_block = _extract_code_block(clean)
@@ -462,10 +475,10 @@ def _add_title_textbox(slide, title_text, font_size=Pt(28), color=WHITE):
                         font_size=font_size, font_name=HEADING_FONT, color=color)
 
 
-def _add_bullets_to_placeholder(slide, bullets, ph_idx=10):
+def _add_bullets_to_placeholder(slide, bullets, ph_idx=10, color=WHITE):
     ph = _ph(slide, ph_idx)
     if ph is None:
-        _add_bullets_textbox(slide, bullets)
+        _add_bullets_textbox(slide, bullets, color=color)
         return
     tf = ph.text_frame
     tf.clear()
@@ -473,10 +486,10 @@ def _add_bullets_to_placeholder(slide, bullets, ph_idx=10):
         para = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         para.level = 0
         para.space_after = Pt(4)
-        _add_formatted_runs(para, bullet, font_size=Pt(16), font_name=BODY_FONT, color=WHITE)
+        _add_formatted_runs(para, bullet, font_size=Pt(16), font_name=BODY_FONT, color=color)
 
 
-def _add_bullets_textbox(slide, bullets, top=Emu(1435100)):
+def _add_bullets_textbox(slide, bullets, top=Emu(1435100), color=WHITE):
     txBox = slide.shapes.add_textbox(Emu(584200), top, Emu(11018838), Emu(4833938))
     txBox.text_frame.word_wrap = True
     for i, bullet in enumerate(bullets):
@@ -487,11 +500,11 @@ def _add_bullets_textbox(slide, bullets, top=Emu(1435100)):
         r.text = "• "
         r.font.size = Pt(16)
         r.font.name = BODY_FONT
-        r.font.color.rgb = WHITE
-        _add_formatted_runs(para, bullet, font_size=Pt(16), font_name=BODY_FONT, color=WHITE)
+        r.font.color.rgb = color
+        _add_formatted_runs(para, bullet, font_size=Pt(16), font_name=BODY_FONT, color=color)
 
 
-def _add_body_text(slide, body_lines, top=None):
+def _add_body_text(slide, body_lines, top=None, color=WHITE):
     if not body_lines:
         return
     top = top or Emu(1435100)
@@ -500,7 +513,7 @@ def _add_body_text(slide, body_lines, top=None):
     for i, line in enumerate(body_lines):
         para = txBox.text_frame.paragraphs[0] if i == 0 else txBox.text_frame.add_paragraph()
         para.space_after = Pt(4)
-        _add_formatted_runs(para, line, font_size=Pt(16), font_name=BODY_FONT, color=WHITE)
+        _add_formatted_runs(para, line, font_size=Pt(16), font_name=BODY_FONT, color=color)
 
 
 def _add_table(slide, table_data, top=Emu(1500000)):
@@ -598,33 +611,78 @@ def convert(input_md: str, output_pptx: str, template_pptx: str,
         images_dir = os.path.join(os.path.dirname(input_md), "images")
     print(f"Images   : {images_dir}")
 
-    prs = Presentation(template_pptx)
+    use_template = os.path.isfile(template_pptx)
+    if use_template:
+        prs = Presentation(template_pptx)
+        # Delete all existing slides
+        while len(prs.slides) > 0:
+            rId = prs.slides._sldIdLst[0].rId
+            prs.part.drop_rel(rId)
+            del prs.slides._sldIdLst[0]
+        print(f"Cleared template ({len(prs.slides)} slides remain)")
+    else:
+        print(f"WARNING: Template not found at {template_pptx} — using blank presentation")
+        prs = Presentation()
+        prs.slide_width = Emu(SLIDE_W)
+        prs.slide_height = Emu(SLIDE_H)
 
-    # Delete all existing slides
-    while len(prs.slides) > 0:
-        rId = prs.slides._sldIdLst[0].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[0]
-    print(f"Cleared template ({len(prs.slides)} slides remain)")
+    # Layout accessors — use branded layouts from reference deck if available,
+    # otherwise fall back to blank presentation's default layouts
+    if use_template:
+        def layout_content():
+            return prs.slide_masters[MASTER_CONTENT].slide_layouts[LAYOUT_CONTENT_IDX]
 
-    # Layout accessors — use branded layouts from reference deck
-    def layout_content():
-        return prs.slide_masters[MASTER_CONTENT].slide_layouts[LAYOUT_CONTENT_IDX]
+        def layout_title():
+            return prs.slide_masters[MASTER_CONTENT].slide_layouts[LAYOUT_TITLE_IDX]
 
-    def layout_title():
-        return prs.slide_masters[MASTER_CONTENT].slide_layouts[LAYOUT_TITLE_IDX]
+        def layout_section():
+            return prs.slide_masters[MASTER_SECTION].slide_layouts[LAYOUT_SECTION_IDX]
 
-    def layout_section():
-        return prs.slide_masters[MASTER_SECTION].slide_layouts[LAYOUT_SECTION_IDX]
+        def layout_divider():
+            return prs.slide_masters[MASTER_DIVIDER].slide_layouts[LAYOUT_DIVIDER_IDX]
 
-    def layout_divider():
-        return prs.slide_masters[MASTER_DIVIDER].slide_layouts[LAYOUT_DIVIDER_IDX]
+        def layout_notes():
+            return prs.slide_masters[MASTER_NOTES].slide_layouts[LAYOUT_NOTES_IDX]
 
-    def layout_notes():
-        return prs.slide_masters[MASTER_NOTES].slide_layouts[LAYOUT_NOTES_IDX]
+        def layout_closing():
+            return prs.slide_masters[MASTER_NOTES].slide_layouts[LAYOUT_CLOSING_IDX]
+    else:
+        # Fallback: blank presentation has one master with a few generic layouts
+        _blank_layout = prs.slide_layouts[6]  # Blank layout
+        _title_layout = prs.slide_layouts[0]  # Title Slide
+        _section_layout = prs.slide_layouts[2]  # Section Header
 
-    def layout_closing():
-        return prs.slide_masters[MASTER_NOTES].slide_layouts[LAYOUT_CLOSING_IDX]
+        def layout_content():
+            return _blank_layout
+
+        def layout_title():
+            return _title_layout
+
+        def layout_section():
+            return _section_layout
+
+        def layout_divider():
+            return _section_layout
+
+        def layout_notes():
+            return _blank_layout
+
+        def layout_closing():
+            return _blank_layout
+
+    # Color scheme: branded template has dark backgrounds; blank has white
+    if use_template:
+        FG = WHITE       # Text color on dark slides
+        FG_TITLE = WHITE
+        FG_SECTION = WHITE
+        FG_SUBTITLE = WHITE
+        TBL_BODY_FG = DARK
+    else:
+        FG = DARK        # Text color on white slides
+        FG_TITLE = BLUE
+        FG_SECTION = DARK
+        FG_SUBTITLE = RGBColor(0x55, 0x55, 0x55)
+        TBL_BODY_FG = DARK
 
     # Parse
     with open(input_md, "r", encoding="utf-8") as f:
@@ -674,33 +732,62 @@ def convert(input_md: str, output_pptx: str, template_pptx: str,
 
         # --- populate ---
         if stype == "title":
-            _set_title(slide, title, Pt(32), color=BLUE)
-            ph12 = _ph(slide, 12)
-            if ph12 and subtitle:
-                _set_paragraph_text(ph12.text_frame.paragraphs[0], subtitle,
-                                    font_size=Pt(20), font_name=BODY_FONT, color=DARK)
-            elif subtitle:
-                tb = slide.shapes.add_textbox(Emu(584200), Emu(3810000),
-                                              Emu(9144000), Emu(246221))
-                _set_paragraph_text(tb.text_frame.paragraphs[0], subtitle,
-                                    font_size=Pt(20), font_name=BODY_FONT, color=DARK)
+            # Same layout as lead slides but with blue H1
+            for shape in list(slide.placeholders):
+                sp = shape._element
+                sp.getparent().remove(sp)
+            h1_top = SLIDE_H // 2 - Emu(350000)
+            tb1 = slide.shapes.add_textbox(Emu(584200), h1_top,
+                                           Emu(11018838), Emu(700000))
+            tb1.text_frame.word_wrap = True
+            para1 = tb1.text_frame.paragraphs[0]
+            para1.alignment = PP_ALIGN.LEFT
+            _add_formatted_runs(para1, title, font_size=Pt(36),
+                                font_name=HEADING_FONT, color=FG_TITLE)
+            if subtitle:
+                h1_bottom = h1_top + Emu(700000)
+                gap = SLIDE_H - h1_bottom
+                h2_top = h1_bottom + int(gap * 0.15)
+                tb2 = slide.shapes.add_textbox(Emu(584200), h2_top,
+                                               Emu(11018838), Emu(600000))
+                tb2.text_frame.word_wrap = True
+                para2 = tb2.text_frame.paragraphs[0]
+                para2.alignment = PP_ALIGN.LEFT
+                _set_paragraph_text(para2, subtitle,
+                                    font_size=Pt(22), font_name=BODY_FONT, color=FG_SUBTITLE)
 
         elif stype == "lead":
-            # Render meaningful section title + subtitle — never just a section number
-            _set_title(slide, title, Pt(36), color=WHITE)
+            # Render H1 and H2 left-aligned; H1 at vertical midpoint,
+            # H2 closer to H1 (30% of remaining gap below H1).
+            for shape in list(slide.placeholders):
+                sp = shape._element
+                sp.getparent().remove(sp)
+            h1_top = SLIDE_H // 2 - Emu(350000)
+            tb1 = slide.shapes.add_textbox(Emu(584200), h1_top,
+                                           Emu(11018838), Emu(700000))
+            tb1.text_frame.word_wrap = True
+            para1 = tb1.text_frame.paragraphs[0]
+            para1.alignment = PP_ALIGN.LEFT
+            _add_formatted_runs(para1, title, font_size=Pt(36),
+                                font_name=HEADING_FONT, color=FG_SECTION)
             if subtitle:
-                tb = slide.shapes.add_textbox(Emu(584200), Emu(2800000),
-                                              Emu(11018838), Emu(600000))
-                tb.text_frame.word_wrap = True
-                _set_paragraph_text(tb.text_frame.paragraphs[0], subtitle,
-                                    font_size=Pt(22), font_name=BODY_FONT, color=WHITE)
+                h1_bottom = h1_top + Emu(700000)
+                gap = SLIDE_H - h1_bottom
+                h2_top = h1_bottom + int(gap * 0.15)
+                tb2 = slide.shapes.add_textbox(Emu(584200), h2_top,
+                                               Emu(11018838), Emu(600000))
+                tb2.text_frame.word_wrap = True
+                para2 = tb2.text_frame.paragraphs[0]
+                para2.alignment = PP_ALIGN.LEFT
+                _set_paragraph_text(para2, subtitle,
+                                    font_size=Pt(22), font_name=BODY_FONT, color=FG_SUBTITLE)
 
         elif stype == "thankyou":
             if title:
-                _add_title_textbox(slide, title, Pt(36))
+                _add_title_textbox(slide, title, Pt(36), color=FG)
 
         elif stype == "notes":
-            _set_title(slide, title, Pt(28))
+            _set_title(slide, title, Pt(28), color=FG)
             ph12 = _ph(slide, 12)
             if ph12 and bullets:
                 tf = ph12.text_frame
@@ -708,47 +795,79 @@ def convert(input_md: str, output_pptx: str, template_pptx: str,
                 for bi, b in enumerate(bullets):
                     para = tf.paragraphs[0] if bi == 0 else tf.add_paragraph()
                     para.space_after = Pt(4)
-                    _add_formatted_runs(para, b, Pt(14), BODY_FONT, WHITE)
+                    _add_formatted_runs(para, b, Pt(14), BODY_FONT, FG)
             elif bullets:
-                _add_bullets_textbox(slide, bullets, top=Emu(1436688))
+                _add_bullets_textbox(slide, bullets, top=Emu(1436688), color=FG)
 
         elif code_block and table:
-            _set_title(slide, title, Pt(28))
-            _add_table(slide, table, top=Emu(1200000))
+            _set_title(slide, title, Pt(28), color=FG)
+            content_top = Emu(1200000)
+            if subtitle:
+                tb = slide.shapes.add_textbox(Emu(584200), Emu(1200000),
+                                              Emu(11018838), Emu(350000))
+                tb.text_frame.word_wrap = True
+                _set_paragraph_text(tb.text_frame.paragraphs[0], subtitle,
+                                    font_size=Pt(18), font_name=BODY_FONT, color=FG_SUBTITLE)
+                content_top = Emu(2095500)
+            _add_table(slide, table, top=content_top)
             tbl_h = Emu(370000 * len(table))
-            _add_code_textbox(slide, code_block, top=Emu(1200000) + tbl_h + Emu(100000))
+            _add_code_textbox(slide, code_block, top=content_top + tbl_h + Emu(100000))
 
         elif code_block:
-            _set_title(slide, title, Pt(28))
-            ctop = Emu(1200000)
+            _set_title(slide, title, Pt(28), color=FG)
+            content_top = Emu(1200000)
+            if subtitle:
+                tb = slide.shapes.add_textbox(Emu(584200), Emu(1200000),
+                                              Emu(11018838), Emu(350000))
+                tb.text_frame.word_wrap = True
+                _set_paragraph_text(tb.text_frame.paragraphs[0], subtitle,
+                                    font_size=Pt(18), font_name=BODY_FONT, color=FG_SUBTITLE)
+                content_top = Emu(2095500)
+            ctop = content_top
             if bullets:
-                _add_bullets_textbox(slide, bullets, top=Emu(1100000))
-                ctop = min(Emu(1100000 + len(bullets) * 280000 + 100000), Emu(3500000))
+                _add_bullets_textbox(slide, bullets, top=ctop, color=FG)
+                ctop = min(Emu(ctop + len(bullets) * 280000 + 100000), Emu(3500000))
             if body_text:
-                _add_body_text(slide, body_text, top=ctop)
+                _add_body_text(slide, body_text, top=ctop, color=FG)
                 ctop = min(ctop + Emu(len(body_text) * 280000 + 100000), Emu(4000000))
             _add_code_textbox(slide, code_block, top=ctop)
 
         elif table:
-            _set_title(slide, title, Pt(28))
-            ttop = Emu(1200000)
+            _set_title(slide, title, Pt(28), color=FG)
+            content_top = Emu(1200000)
+            if subtitle:
+                tb = slide.shapes.add_textbox(Emu(584200), Emu(1200000),
+                                              Emu(11018838), Emu(350000))
+                tb.text_frame.word_wrap = True
+                _set_paragraph_text(tb.text_frame.paragraphs[0], subtitle,
+                                    font_size=Pt(18), font_name=BODY_FONT, color=FG_SUBTITLE)
+                content_top = Emu(2095500)
+            ttop = content_top
             if bullets:
-                _add_bullets_textbox(slide, bullets, top=Emu(1100000))
-                ttop = min(Emu(1100000 + len(bullets) * 280000 + 200000), Emu(3000000))
+                _add_bullets_textbox(slide, bullets, top=ttop, color=FG)
+                ttop = min(Emu(ttop + len(bullets) * 280000 + 200000), Emu(3000000))
             _add_table(slide, table, top=ttop)
             after = Emu(ttop + 370000 * len(table) + 100000)
             if body_text:
-                _add_body_text(slide, body_text, top=after)
+                _add_body_text(slide, body_text, top=after, color=FG)
 
         else:
-            _set_title(slide, title, Pt(28))
+            _set_title(slide, title, Pt(28), color=FG)
+            content_top = Emu(1200000)
+            if subtitle:
+                tb = slide.shapes.add_textbox(Emu(584200), content_top,
+                                              Emu(11018838), Emu(350000))
+                tb.text_frame.word_wrap = True
+                _set_paragraph_text(tb.text_frame.paragraphs[0], subtitle,
+                                    font_size=Pt(18), font_name=BODY_FONT, color=FG_SUBTITLE)
+                content_top = Emu(2095500)
             if bullets:
-                _add_bullets_to_placeholder(slide, bullets, ph_idx=10)
+                _add_bullets_textbox(slide, bullets, top=content_top, color=FG)
             if body_text:
-                bt = Emu(1435100)
+                bt = content_top
                 if bullets:
-                    bt = min(Emu(1435100 + len(bullets) * 280000 + 100000), Emu(5500000))
-                _add_body_text(slide, body_text, top=bt)
+                    bt = content_top + Emu(len(bullets) * 280000 + 100000)
+                _add_body_text(slide, body_text, top=bt, color=FG)
 
         _add_speaker_notes(slide, speaker_notes)
 
@@ -810,9 +929,10 @@ def convert(input_md: str, output_pptx: str, template_pptx: str,
                 if os.path.isfile(inline_path):
                     basename = os.path.basename(inline_path)
                     has_body = bool(sd.get("body_text"))
+                    has_subtitle = bool(sd.get("subtitle"))
                     if _is_diagram(basename):
                         img_left = Inches(0.5)
-                        img_top = Inches(2.3) if has_body else Inches(1.7)
+                        img_top = Inches(2.3) if (has_body or has_subtitle) else Inches(1.7)
                         img_width = Inches(12.0)
                         max_img_h = SLIDE_H - img_top - Emu(200000)
                         with Image.open(inline_path) as im:

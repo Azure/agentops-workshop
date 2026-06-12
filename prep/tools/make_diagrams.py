@@ -13,8 +13,8 @@ Usage:
     python make_diagrams.py --no-header all
 
 Flags:
-    --no-header   Omit the title and subtitle text from diagrams
-                  (useful when the slide already has its own heading).
+    --header      Include the title and subtitle text in diagrams.
+    --no-header   (Legacy, now the default) Omit title and subtitle text.
 """
 
 from __future__ import annotations
@@ -58,8 +58,9 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 DPI = 200
 W, H = 16, 9  # inches; 16:9
 
-# Global flag: when True, add_title() and add_subtitle() become no-ops.
-SHOW_HEADER = True
+# Global flag: when True, add_title() and add_subtitle() render text.
+# Default is False (headers omitted) since slides already have their own headings.
+SHOW_HEADER = False
 
 
 # ---------------------------------------------------------------------------
@@ -373,9 +374,9 @@ def foundry_control_plane():
         ("Surfaces", BLUE,
          ["Foundry portal", "Foundry SDK", "Azure CLI / REST", "GitHub Actions"]),
         ("Capabilities", TEAL,
-         ["Agents + versions", "Quality + safety evaluators",
+         ["Agents + versions", "Quality +\nsafety evaluators",
           "Agent evaluators", "Red Teaming agent",
-          "OpenTelemetry tracing", "Content Safety"]),
+          "OpenTelemetry\ntracing", "Content Safety"]),
         ("Runtime", PURPLE,
          ["Azure AI projects", "Model deployments",
           "Tool / MCP servers", "App Insights + Log Analytics"]),
@@ -626,7 +627,7 @@ def anatomy_complexity():
             ha="center", va="center", color=NAVY, fontsize=13,
             fontfamily=HEADING_FONT, fontweight="bold")
 
-    for i, (tier, color, components, surface) in enumerate(tiers):
+    for i, (tier, color, components, surface) in enumerate(reversed(tiers)):
         y = top_y - i * (row_h + gap)
         # Tier label (colored rounded box)
         rounded_box(ax, col1_x, y, col1_w, row_h, color, tier,
@@ -642,11 +643,11 @@ def anatomy_complexity():
                 ha="center", va="center", color=TEXT_DK,
                 fontsize=11.5, fontfamily=BODY_FONT)
 
-    # Accumulation arrow on the left margin
+    # Accumulation arrow on the left margin (pointing UP = increasing complexity)
     arrow_x = 2.5
-    arrow_top = top_y + row_h / 2
     arrow_bot = top_y - (n - 1) * (row_h + gap) + row_h / 2
-    arrow = FancyArrowPatch((arrow_x, arrow_top), (arrow_x, arrow_bot),
+    arrow_top = top_y + row_h / 2
+    arrow = FancyArrowPatch((arrow_x, arrow_bot), (arrow_x, arrow_top),
                             arrowstyle="-|>", mutation_scale=16,
                             color=GRAY, lw=2, alpha=0.5)
     ax.add_patch(arrow)
@@ -859,8 +860,10 @@ DIAGRAMS = {
 def main():
     global SHOW_HEADER
     args = sys.argv[1:]
+    if "--header" in args:
+        SHOW_HEADER = True
+        args.remove("--header")
     if "--no-header" in args:
-        SHOW_HEADER = False
         args.remove("--no-header")
     targets = args or ["all"]
     if "all" in targets:

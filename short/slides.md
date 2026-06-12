@@ -45,7 +45,7 @@ style: |
 
 <!-- _class: lead -->
 
-# AgentOps
+# Production Readiness Workshop Topic 4 - AgentOps
 ## From Agent Prototype to Production
 
 <!-- Speaker notes:
@@ -61,16 +61,20 @@ style: |
 # Agenda
 
 1. **AgentOps Foundations** - why AI ops is different and the four-pillar model
-2. **Evaluate** - quality, grounding, behavior, and red teaming
-3. **Ship** - gates, evidence, approvals, and environment promotion
-4. **Observe** - traces, correlation, telemetry, and feedback
-5. **Own** - incident response, model lifecycle, cost, and capacity
-6. **Adoption** - start with one production-candidate agent
+2. **Demo** - the operating model in action on Foundry
+3. **Evaluate** - quality, grounding, behavior, and red teaming
+4. **Ship** - gates, evidence, approvals, and environment promotion
+5. **Observe** - traces, correlation, telemetry, and feedback
+6. **Own** - incident response, model lifecycle, cost, and capacity
+7. **Adoption** - start with one production-candidate agent
 
 <!-- Speaker notes:
-- We have six blocks to cover in one hour - here is how we have structured the story
-- The flow follows the four AgentOps pillars: evaluate the agent, ship with evidence, observe production behavior, and own the workload over time
-- The session ends with a practical 30-day starting path
+- We have seven blocks to cover in fifty minutes - here is how we have structured the story
+- We start with Foundations - why agents need a new operating discipline, the four-pillar model, and where teams sit today
+- Then a live demo showing the operating model on Foundry
+- Then the four pillars themselves: evaluate, ship, observe, own
+- We close with a practical 30-day adoption path
+- Ten minutes reserved for Q&A at the end
 - Let us start with Foundations
 -->
 
@@ -100,7 +104,7 @@ style: |
 # Building blocks of a production agent
 > Each tier adds components and complexity - a production agent manages all of these simultaneously
 
-![Progressive table showing how components and operational surface accumulate from prompts through multi-agent systems](images/anatomy-complexity.png)
+![Progressive table showing how components and operational surface accumulate upwards from prompts (bottom) through multi-agent systems (top)](images/anatomy-complexity.png)
 
 <!-- Speaker notes:
 - What makes an agent a production concern? Not just a prompt and a model - layers of capability each bring their own operational surface
@@ -170,7 +174,7 @@ style: |
 ---
 
 # AgentOps operating model
-> Evaluate, ship, observe, and own production agents
+> Four pillars - Evaluate, ship, observe, and own production agents
 
 ![Four AgentOps pillars: Evaluate, Ship, Observe, Own, with example practices under each pillar](images/agentops-four-pillars.png)
 
@@ -189,7 +193,7 @@ style: |
 ---
 
 # AgentOps Architecture
-
+> A complete architecture for AgentOps inner and outer loop
 ![Inner loop (sandbox, source control, authoring tools, agent frameworks) plus outer loop (dev and qa Foundry projects with Prompt Agent / Hosted Agent / BYO compute runtime choice, Gated approval, prod), with Observability and Control as the Foundry Control Plane (Overview, Assets, Compliance, Quota) and Azure Monitor plus Application Insights as the telemetry backend](images/agentops-architecture.png)
 
 <!-- Speaker notes:
@@ -210,13 +214,25 @@ style: |
 
 <!-- _class: lead -->
 
+# Demo
+## Let's see this in action
+
+<!-- Speaker notes:
+- Live demo or recorded walkthrough showing the AgentOps operating model in practice
+- Walk through the inner loop, evaluation, gating, and observability on Foundry
+-->
+
+---
+
+<!-- _class: lead -->
+
 # Evaluate
 ## The release signal for agentic systems
 
 ---
 
 # Evaluation strategy
-> Evaluation is not a one-time score - it is the release signal that grows as production teaches you new failure modes
+> Evaluation is not a one-time score - it's the release signal that grows as production teaches you new failure modes
 
 ![Three-stage evaluation timeline: base model selection, pre-production evaluation, post-production monitoring](images/evaluation-three-stages-timeline.png)
 
@@ -392,9 +408,7 @@ Triage flow:
 ---
 
 # Start with one production-candidate agent
-> Move one agent from "it works in testing" to "we can operate it safely"
-
-30-day start:
+> Your 30-day goal - move one agent from "it works in testing", to "we can operate it safely"
 
 1. **Pick one agent** that is close to production
 2. **Evaluate** it with release criteria and a small eval dataset
@@ -407,4 +421,18 @@ Triage flow:
 - You do not need to boil the ocean. Start with one production-candidate agent and apply the four pillars end to end: evaluate it, ship it with evidence, observe it in production, and own the next improvement cycle
 - Once the pattern is proven on one agent, it scales across the portfolio without re-litigating every decision
 - Thank you - we are happy to take questions
+-->
+
+---
+
+<!-- _class: lead -->
+
+# Thank You
+## Questions and Discussion
+
+<!-- Speaker notes:
+- Thank you for your time today
+- We have ten minutes for questions
+- Happy to go deeper on any of the pillars - evaluation datasets, CI/CD gate design, observability correlation, or Day-2 operations
+- If you want to continue the conversation, reach out to your account team or find us after the session
 -->
