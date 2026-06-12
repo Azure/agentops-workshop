@@ -468,3 +468,24 @@ Triage flow:
 - Happy to go deeper on any of the pillars - evaluation datasets, CI/CD gate design, observability correlation, or Day-2 operations
 - If you want to continue the conversation, reach out to your account team or find us after the session
 -->
+
+---
+
+# Resources
+
+> Further reading
+
+| Resource | URL |
+|---|---|
+| Evaluation approach in Foundry | https://learn.microsoft.com/azure/ai-foundry/concepts/evaluation-approach-gen-ai |
+| Agent evaluators | https://learn.microsoft.com/azure/ai-foundry/concepts/evaluation-evaluators/agent-evaluators |
+| Agent development lifecycle | https://learn.microsoft.com/azure/ai-foundry/agents/concepts/development-lifecycle |
+| Trace agent overview | https://learn.microsoft.com/azure/ai-foundry/observability/concepts/trace-agent-concept |
+| Monitor agents dashboard | https://learn.microsoft.com/azure/ai-foundry/observability/how-to/how-to-monitor-agents-dashboard |
+| AI red teaming agent | https://learn.microsoft.com/azure/ai-foundry/how-to/develop/run-ai-red-teaming-cloud |
+| Application Insights monitoring | https://learn.microsoft.com/azure/ai-foundry/how-to/monitor-applications |
+
+<!-- Speaker notes:
+- Reference links for deeper exploration of each pillar
+- All links point to Microsoft Learn documentation for Azure AI Foundry
+-->
