@@ -1,5 +1,59 @@
 # Changelog
 
+## Unreleased
+
+This update brings the short workshop deck up to date with the latest speaker-flow, demo, Build 2026, and slide-generation changes while tightening release-rollout language for AgentOps delivery.
+
+### Highlights
+
+- **Updated 26-slide short deck flow.** The short deck now includes a dedicated Demo slide and closing Thank You slide, with the maturity model moved after the operating model.
+- **Cleaner architecture narration.** Slide 10 now reads as a story that follows one agent version from inner-loop authoring to production feedback, instead of listing every box in the diagram.
+- **Clearer rollout terminology.** Production rollout language now uses blue-green or canary rollout for safe release, reserving A/B testing for true comparative experiments.
+- **Build 2026 alignment.** Speaker notes now reference ASSERT, ACS, Adaptive Evaluations context, and Microsoft Agent 365 where they support the AgentOps operating model.
+
+### Content - Short workshop deck flow (Richard Healy)
+
+- Add a dedicated `Demo` slide to the short deck and update the speaker script timing table to account for the demo block.
+- Move the `Maturity model` slide after the `AgentOps operating model` so the foundations story flows from model to team self-assessment.
+- Refresh speaker notes and transcript language for readability, timing, and current Build 2026 announcements.
+
+### Content - Architecture and speaker script (Paulo Lacerda)
+
+- Rewrite the slide 10 `AgentOps Architecture` speaker script as a narrative walkthrough of one agent version moving from sandbox authoring through dev, qa, prod, observability, and feedback into the next evaluation cycle.
+- Update slide 10 timing to the measured 4:30 delivery and recalculate downstream running totals in `short/speaker-script.md`.
+- Remove published speaker-name suggestions from `short/speaker-script.md`; the public script now keeps only SP1, SP2, and SP3 markers.
+- Replace ambiguous production rollout wording that mixed A/B testing with canary release semantics. The architecture notes and script now refer to smoke tests plus blue-green or canary rollout for controlled production exposure.
+
+### Content - Long workshop positioning (Paulo Lacerda)
+
+- Clarify the long workshop as the VBD version across the public landing pages.
+
+### Diagrams
+
+- Regenerate short-track diagrams with improved sizing and readability after the deck-generation updates. (Richard Healy)
+- Fix word wrapping in the Foundry architecture diagram. (Richard Healy)
+
+### Tooling - Marp -> PPTX converter (Richard Healy)
+
+- Update the PowerPoint generation pipeline to fix multiple formatting issues and improve generated slide layout fidelity.
+
+### Tooling - Marp -> PPTX converter (Paulo Lacerda)
+
+- Rename the legacy `A/B Testing Agent Configurations` image mapping to `Canary Rollout for Agent Configurations` so future generated decks use rollout terminology consistently.
+
+### Tooling - Release notes convention (Paulo Lacerda)
+
+- Document the release-notes-style CHANGELOG convention in `.github/copilot-instructions.md` so future updates retain intro, Highlights, attributed content sections, diagrams, tooling, artefacts, and follow-up structure.
+
+### Artefacts
+
+- Regenerate `short/slides.pptx` from the updated `short/slides.md`.
+
+### Follow-up
+
+- `short/agentops-short-video.mp4` remains out of sync with the revised 26-slide script and should be re-rendered via `build_production_video.py` plus `compress_production_video.py`.
+- Mirror the updated deck to the upstream program repo at `presentations/04-agentops/`.
+
 ## v0.2.1 - 2026-06-03
 
 This release reorganises the short-workshop narrative around a single AgentOps operating model, polishes the Agent Foundations section, and fixes several rendering bugs in the Marp -> PPTX pipeline.

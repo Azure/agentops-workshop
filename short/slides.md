@@ -61,19 +61,17 @@ style: |
 # Agenda
 
 1. **AgentOps Foundations** - why AI ops is different and the four-pillar model
-2. **Demo** - the operating model in action on Foundry
-3. **Evaluate** - quality, grounding, behavior, and red teaming
-4. **Ship** - gates, evidence, approvals, and environment promotion
-5. **Observe** - traces, correlation, telemetry, and feedback
-6. **Own** - incident response, model lifecycle, cost, and capacity
-7. **Adoption** - start with one production-candidate agent
+2. **Evaluate** - quality, grounding, behavior, and red teaming
+3. **Ship** - gates, evidence, approvals, and environment promotion
+4. **Observe** - traces, correlation, telemetry, and feedback
+5. **Own** - incident response, model lifecycle, cost, and capacity
+6. **Your Next Steps** - from where you are today to the next level of maturity
 
 <!-- Speaker notes:
-- We have seven blocks to cover in fifty minutes - here is how we have structured the story
+- We have six content blocks plus demos after each pillar - here is how we have structured the story
 - We start with Foundations - why agents need a new operating discipline, the four-pillar model, and where teams sit today
-- Then a live demo showing the operating model on Foundry
-- Then the four pillars themselves: evaluate, ship, observe, own
-- We close with a practical 30-day adoption path
+- Then the four pillars: evaluate, ship, observe, own - each followed by a live demo showing that pillar in action
+- We close with your next steps to maturity
 - Ten minutes reserved for Q&A at the end
 - Let us start with Foundations
 -->
@@ -102,7 +100,7 @@ style: |
 ---
 
 # Building blocks of a production agent
-> Each tier adds components and complexity - a production agent manages all of these simultaneously
+> Each tier adds components and complexity - a production agent manages all these simultaneously
 
 ![Progressive table showing how components and operational surface accumulate upwards from prompts (bottom) through multi-agent systems (top)](images/anatomy-complexity.png)
 
@@ -200,7 +198,7 @@ style: |
 - Same four-pillar model, drawn as a reference architecture on Foundry. The conceptual model becomes concrete components on the right
 - Inner loop "Create, Evaluate, Improve" (left column): sandbox Foundry Project for agent types / instructions / tools / models, source control in ADO or GitHub holding release candidate + CI workflow + eval evidence, authoring tools (Copilot CLI, VS Code) for prompt edits and local evals, agent frameworks (Microsoft Agent Framework, LangGraph) for orchestration and MCP tools
 - Outer loop "Operationalizing" (right block): Continuous Delivery via ADO or GitHub Actions promotes the agent through dev (shared development), qa (staging / test - validation and release evidence), and prod (shipping target) - each one its own Foundry Project
-- Pipeline chips get stricter per environment: dev runs manual tests + quality evals + safety eval; qa adds integration tests + red team; prod runs smoke tests + blue/green + A/B tests (no re-eval - the evidence is locked at qa)
+- Pipeline chips get stricter per environment: dev runs manual tests + quality evals + safety eval; qa adds integration tests + red team; prod runs smoke tests plus blue-green or canary rollout (no re-eval - the evidence is locked at qa)
 - Agent runtime choice is identical in every environment: Prompt Agent (Foundry-managed prompt + tools + knowledge) or Hosted Agent (Container Image -> ACR -> Agent Service), with BYO Compute Custom Runtime on ACS or AKS for full control
 - Between qa and prod, the human Gated approval - backed by the release evidence package, not a rubber-stamp click
 - Observability & Control (bottom): the Foundry Control Plane, organised the way the Operate nav organises it - Overview (alerts, success rate, cost), Assets (agents, models, tools), Compliance (guardrail, security posture, data governance), Quota (TPM, PTU, rate limiting)
@@ -208,18 +206,6 @@ style: |
 - Two telemetry feeds (dashed): Observability & Control collects signals from dev and from prod
 - Feedback loop (dashed, going left): production learnings flow back into the inner loop so the next iteration of prompts, tools and evaluators is informed by what really happened in prod
 - With the architecture in mind, let us start with the first pillar: Evaluate
--->
-
----
-
-<!-- _class: lead -->
-
-# Demo
-## Let's see this in action
-
-<!-- Speaker notes:
-- Live demo or recorded walkthrough showing the AgentOps operating model in practice
-- Walk through the inner loop, evaluation, gating, and observability on Foundry
 -->
 
 ---
@@ -269,6 +255,17 @@ style: |
 
 <!-- _class: lead -->
 
+# Evaluate
+## Demo - Paulo Lacerda, Senior Cloud Solution Architect, Microsoft
+
+<!-- Speaker notes:
+- Live demo showing evaluation in action on Foundry: golden dataset, evaluator runs, score comparison, and the release signal
+-->
+
+---
+
+<!-- _class: lead -->
+
 # Ship
 ## Gates that enforce release evidence
 
@@ -287,6 +284,17 @@ style: |
 - Every gate produces an artifact: eval report, readiness report, release evidence
 - New at Build 2026: Agent Control Specification (ACS) extends gates into runtime. ACS defines eight interception points across the agent lifecycle (startup, input, pre/post-model-call, pre/post-tool-call, output, shutdown) where policies are enforced as code. Works across Foundry, Microsoft Agent Framework, and LangChain. Published open-source under the Agent Governance Toolkit on GitHub
 - With gates enforcing quality, the next question is what happens after we ship. That is where Observe comes in
+-->
+
+---
+
+<!-- _class: lead -->
+
+# Ship
+## Demo - Paulo Lacerda, Senior Cloud Solution Architect, Microsoft
+
+<!-- Speaker notes:
+- Live demo showing CI/CD gates in action: pipeline build, evaluation gate, failed gate blocking a regression, evidence artifact
 -->
 
 ---
@@ -329,6 +337,17 @@ style: |
 - Cost anomaly -> throttle via APIM, notify FinOps
 - Positive feedback -> sample into eval dataset
 - This is how Observe feeds Own, and how Own feeds the next Evaluate and Ship cycle
+-->
+
+---
+
+<!-- _class: lead -->
+
+# Observe
+## Demo - Paulo Lacerda, Senior Cloud Solution Architect, Microsoft
+
+<!-- Speaker notes:
+- Live demo showing observability in action: trace waterfall, correlated spans, continuous evaluation scores, and signal-to-action flow
 -->
 
 ---
@@ -402,8 +421,19 @@ Triage flow:
 
 <!-- _class: lead -->
 
-# Adoption
-## Start small, build the pattern
+# Own
+## Demo - Paulo Lacerda, Senior Cloud Solution Architect, Microsoft
+
+<!-- Speaker notes:
+- Live demo showing Day-2 operations: incident triage from trace, model canary comparison, and production learnings feeding back into the eval dataset
+-->
+
+---
+
+<!-- _class: lead -->
+
+# Your Next Steps
+## From where you are today to the next level
 
 ---
 
@@ -415,12 +445,14 @@ Triage flow:
 3. **Ship** it with PR gates, deploy gates, and readiness evidence
 4. **Observe** it with telemetry, traces, dashboards, and alerts
 5. **Own** it with weekly evidence reviews and production learnings
-6. Feed learnings back into the next evaluation cycle
+6. **Feed learnings** back into the next evaluation cycle
+7. **Revisit the maturity model** - set your goal to reach the next level within 90 days
 
 <!-- Speaker notes:
-- You do not need to boil the ocean. Start with one production-candidate agent and apply the four pillars end to end: evaluate it, ship it with evidence, observe it in production, and own the next improvement cycle
+- You do not need to boil the ocean. Start with one production-candidate agent and apply the four pillars end to end
+- Revisit the maturity model from earlier - identify where your team sits today (most are Initial or Defined) and set a concrete goal to reach the next level within 90 days
 - Once the pattern is proven on one agent, it scales across the portfolio without re-litigating every decision
-- Thank you - we are happy to take questions
+- The maturity model is not aspirational - it is a concrete checklist of what changes between levels
 -->
 
 ---

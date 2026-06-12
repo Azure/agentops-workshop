@@ -158,7 +158,7 @@ IMAGE_MAP = {
     "Caching Strategies": "caching-strategy-three-levels.png",
     "Cost Modelling for Agentic Workloads": "cost-modeling-formula-breakdown.png",
     "Multi-Region Architecture for AI": "multi-region-architecture-diagram.png",
-    "A/B Testing Agent Configurations": "model-upgrade-phased-rollout.png",
+    "Canary Rollout for Agent Configurations": "model-upgrade-phased-rollout.png",
 }
 
 # Which images are architecture diagrams (replace code block, centered)
@@ -759,28 +759,73 @@ def convert(input_md: str, output_pptx: str, template_pptx: str,
         elif stype == "lead":
             # Render H1 and H2 left-aligned; H1 at vertical midpoint,
             # H2 closer to H1 (30% of remaining gap below H1).
+            # Special case: if subtitle starts with "Demo", render it as
+            # a smaller kicker line ABOVE the heading, with the remainder
+            # (after " - ") as a secondary line below.
             for shape in list(slide.placeholders):
                 sp = shape._element
                 sp.getparent().remove(sp)
-            h1_top = SLIDE_H // 2 - Emu(350000)
-            tb1 = slide.shapes.add_textbox(Emu(584200), h1_top,
-                                           Emu(11018838), Emu(700000))
-            tb1.text_frame.word_wrap = True
-            para1 = tb1.text_frame.paragraphs[0]
-            para1.alignment = PP_ALIGN.LEFT
-            _add_formatted_runs(para1, title, font_size=Pt(36),
-                                font_name=HEADING_FONT, color=FG_SECTION)
-            if subtitle:
-                h1_bottom = h1_top + Emu(700000)
-                gap = SLIDE_H - h1_bottom
-                h2_top = h1_bottom + int(gap * 0.15)
-                tb2 = slide.shapes.add_textbox(Emu(584200), h2_top,
-                                               Emu(11018838), Emu(600000))
-                tb2.text_frame.word_wrap = True
-                para2 = tb2.text_frame.paragraphs[0]
-                para2.alignment = PP_ALIGN.LEFT
-                _set_paragraph_text(para2, subtitle,
-                                    font_size=Pt(22), font_name=BODY_FONT, color=FG_SUBTITLE)
+
+            is_demo_kicker = subtitle and subtitle.lower().startswith("demo")
+            if is_demo_kicker:
+                # Split subtitle: "Demo - Presenter Name" -> kicker="DEMO", below=Presenter
+                parts = subtitle.split(" - ", 1)
+                kicker_text = parts[0].strip()
+                presenter_text = parts[1].strip() if len(parts) > 1 else ""
+
+                # "DEMO" - large, centred, lighter colour, above midpoint
+                demo_top = Emu(1500000)
+                tb_k = slide.shapes.add_textbox(Emu(584200), demo_top,
+                                                Emu(11018838), Emu(800000))
+                tb_k.text_frame.word_wrap = True
+                para_k = tb_k.text_frame.paragraphs[0]
+                para_k.alignment = PP_ALIGN.CENTER
+                _add_formatted_runs(para_k, kicker_text.upper(),
+                                    font_size=Pt(48), font_name=HEADING_FONT,
+                                    color=FG_SUBTITLE)
+
+                # Pillar name - large, bold, centred
+                h1_top = Emu(2600000)
+                tb1 = slide.shapes.add_textbox(Emu(584200), h1_top,
+                                               Emu(11018838), Emu(900000))
+                tb1.text_frame.word_wrap = True
+                para1 = tb1.text_frame.paragraphs[0]
+                para1.alignment = PP_ALIGN.CENTER
+                _add_formatted_runs(para1, title, font_size=Pt(54),
+                                    font_name=HEADING_FONT, color=FG_SECTION)
+
+                # Presenter at the bottom of the slide, centred
+                if presenter_text:
+                    presenter_top = SLIDE_H - Emu(900000)
+                    tb2 = slide.shapes.add_textbox(Emu(584200), presenter_top,
+                                                   Emu(11018838), Emu(500000))
+                    tb2.text_frame.word_wrap = True
+                    para2 = tb2.text_frame.paragraphs[0]
+                    para2.alignment = PP_ALIGN.CENTER
+                    _set_paragraph_text(para2, presenter_text,
+                                        font_size=Pt(18), font_name=BODY_FONT,
+                                        color=FG_SUBTITLE)
+            else:
+                h1_top = SLIDE_H // 2 - Emu(350000)
+                tb1 = slide.shapes.add_textbox(Emu(584200), h1_top,
+                                               Emu(11018838), Emu(700000))
+                tb1.text_frame.word_wrap = True
+                para1 = tb1.text_frame.paragraphs[0]
+                para1.alignment = PP_ALIGN.LEFT
+                _add_formatted_runs(para1, title, font_size=Pt(36),
+                                    font_name=HEADING_FONT, color=FG_SECTION)
+                if subtitle:
+                    h1_bottom = h1_top + Emu(700000)
+                    gap = SLIDE_H - h1_bottom
+                    h2_top = h1_bottom + int(gap * 0.15)
+                    tb2 = slide.shapes.add_textbox(Emu(584200), h2_top,
+                                                   Emu(11018838), Emu(600000))
+                    tb2.text_frame.word_wrap = True
+                    para2 = tb2.text_frame.paragraphs[0]
+                    para2.alignment = PP_ALIGN.LEFT
+                    _set_paragraph_text(para2, subtitle,
+                                        font_size=Pt(22), font_name=BODY_FONT,
+                                        color=FG_SUBTITLE)
 
         elif stype == "thankyou":
             if title:
