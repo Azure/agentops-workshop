@@ -258,6 +258,8 @@ style: |
 # Evaluate
 ## Demo - Paulo Lacerda, Senior Cloud Solution Architect, Microsoft
 
+<video src="videos/part1-evaluate.mp4" controls width="80%"></video>
+
 <!-- Speaker notes:
 - Live demo showing evaluation in action on Foundry: golden dataset, evaluator runs, score comparison, and the release signal
 -->
@@ -292,6 +294,8 @@ style: |
 
 # Ship
 ## Demo - Paulo Lacerda, Senior Cloud Solution Architect, Microsoft
+
+<video src="videos/part2-ship.mp4" controls width="80%"></video>
 
 <!-- Speaker notes:
 - Live demo showing CI/CD gates in action: pipeline build, evaluation gate, failed gate blocking a regression, evidence artifact
@@ -345,6 +349,8 @@ style: |
 
 # Observe
 ## Demo - Paulo Lacerda, Senior Cloud Solution Architect, Microsoft
+
+<video src="videos/part3-observe.mp4" controls width="80%"></video>
 
 <!-- Speaker notes:
 - Live demo showing observability in action: trace waterfall, correlated spans, continuous evaluation scores, and signal-to-action flow
@@ -423,6 +429,8 @@ Triage flow:
 
 # Own
 ## Demo - Paulo Lacerda, Senior Cloud Solution Architect, Microsoft
+
+<video src="videos/part4-own.mp4" controls width="80%"></video>
 
 <!-- Speaker notes:
 - Live demo showing Day-2 operations: incident triage from trace, model canary comparison, and production learnings feeding back into the eval dataset
