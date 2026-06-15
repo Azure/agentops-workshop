@@ -1,4 +1,4 @@
-# AgentOps Overview — Spoken Narration
+# AgentOps Overview — Video Narration
 
 ## Part 1 — Evaluate (3:30)
 
@@ -78,7 +78,7 @@
 
 ### Intro (card)
 
-> Shipping is easy; owning is the hard part. So now I get into day-two operations: catching regressions before they reach my users, and proving release-readiness with evidence, not opinions. Let me show you both flavors of blocked.
+> Shipping is the easy part. Owning it is where the real work begins. Now I move into day-two operations: catching regressions before they reach users, and proving release readiness with evidence, not opinions. Let me show you both flavors of blocked.
 
 ### Regression caught at PR time
 
