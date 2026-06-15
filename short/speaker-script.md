@@ -44,7 +44,7 @@ Dual-voice narration for the AgentOps deck. Two speakers with an even split acro
 | Own | 22-25 | SP1 | 5:36 (estimate) | 46:09 |
 | Demo - Own | 26 | SP1 | 5:00 | 51:09 |
 | Your Next Steps | 27-28 | SP2 | 2:17 (estimate) | 53:26 |
-| Thank You + Q&A | 29 | SP2 | 0:22 (estimate) | 53:48 |
+| Thank You | 29 | SP2 | 0:22 (estimate) | 53:48 |
 
 ### names suggestions 
 SP1 - Paulo
@@ -680,12 +680,8 @@ You'll have the pattern. The pattern that scales across your portfolio without r
 
 ---
 
-## Slide 29 - Thank You and Q&A
+## Slide 29 - Thank You
 
 **SP2:** Thank you for your time today.
-
-We have ten minutes for questions.
-
-Happy to go deeper on any of the pillars - evaluation datasets, CI/CD gate design, observability correlation, or Day-2 operations.
 
 If you want to continue the conversation, reach out to your account team or find us after the session.

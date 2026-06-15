@@ -66,14 +66,12 @@ style: |
 4. **Observe** - traces, correlation, telemetry, and feedback
 5. **Own** - incident response, model lifecycle, cost, and capacity
 6. **Your Next Steps** - from where you are today to the next level of maturity
-7. **Q&A**
 
 <!-- Speaker notes:
 - We have six content blocks plus demos after each pillar - here is how we have structured the story
 - We start with Foundations - why agents need a new operating discipline, the four-pillar model, and where teams sit today
 - Then the four pillars: evaluate, ship, observe, own - each followed by a live demo showing that pillar in action
 - We close with your next steps to maturity
-- Ten minutes reserved for Q&A at the end
 - Let us start with Foundations
 -->
 
@@ -468,13 +466,10 @@ Triage flow:
 
 <!-- _class: lead -->
 
-# Thank You
-## Questions and Discussion
+# Thank You!
 
 <!-- Speaker notes:
 - Thank you for your time today
-- We have ten minutes for questions
-- Happy to go deeper on any of the pillars - evaluation datasets, CI/CD gate design, observability correlation, or Day-2 operations
 - If you want to continue the conversation, reach out to your account team or find us after the session
 -->
 
