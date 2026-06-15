@@ -36,13 +36,13 @@ A ~1 hour customer-facing AgentOps session. Everything below is ready to deliver
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
   </span>
 </a>
-<a class="download-card download-card--secondary" href="{{ '/short/speaker-script' | relative_url }}">
+<a class="download-card download-card--secondary" href="{{ '/short/video-narration' | relative_url }}">
   <span class="download-card__icon" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/><path d="M8 13h8M8 17h6"/></svg>
   </span>
   <span class="download-card__text">
-    <span class="download-card__title">Speaker script</span>
-    <span class="download-card__meta">Verbatim narration</span>
+    <span class="download-card__title">Video narration</span>
+    <span class="download-card__meta">Verbatim short video narration</span>
   </span>
   <span class="download-card__chevron" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
@@ -64,7 +64,8 @@ In one hour, attendees should understand how AgentOps helps teams answer one pro
 |---|---|
 | [Agenda]({{ '/short/agenda' | relative_url }}) | Customer-facing abstract and timeboxed agenda. |
 | [Run of show]({{ '/short/run-of-show' | relative_url }}) | Presenter timing, transitions, and delivery cues. |
-| [Speaker script]({{ '/short/speaker-script' | relative_url }}) | Verbatim narration for the recorded walkthrough (~50 min). |
+| [Video narration]({{ '/short/video-narration' | relative_url }}) | Verbatim narration for the short recorded video. |
+| [Speaker script]({{ '/short/speaker-script' | relative_url }}) | Verbatim narration for the recorded workshop walkthrough (~50 min). |
 
 ## Required emphasis
 
@@ -73,4 +74,3 @@ The short session must explore observability clearly. It should not reduce obser
 ## Reusing the material
 
 The deck and video are intended to be delivered as-is, lightly customised, or remixed into your own session. If you change content, please keep the four-pillar operating model (Evaluate -> Ship -> Observe -> Own) intact, since the rest of the narrative depends on it.
-
