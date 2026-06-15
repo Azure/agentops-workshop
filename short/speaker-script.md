@@ -7,7 +7,7 @@ nav_order: 6
 
 # Short Workshop Speaker Script (Dual-Voice)
 
-Dual-voice narration for the AgentOps deck. One primary speaker per slide, with an even split across the session.
+Dual-voice narration for the AgentOps deck. Two speakers with an even split across the session.
 
 ## How to use this script
 
@@ -22,31 +22,30 @@ Dual-voice narration for the AgentOps deck. One primary speaker per slide, with 
 
 | Section | Slides | Speaker | Duration | Running Total |
 |---------|--------|---------|----------|---------------|
-| Title + Agenda | 1-2 | SP3 | 1:30 | 1:30 |
-| Foundations | 3-5 (gap, building blocks) | SP3 | 3:30 | 5:00 |
-| Foundations | 6-8 (Foundry, checklist, operating model) | SP3 | 4:45 | 9:45 |
-| Foundations | 9 (maturity model) | SP3 | 2:30 | 12:15 |
+| Title + Agenda | 1-2 | SP2 | 1:30 | 1:30 |
+| Foundations | 3-5 (gap, building blocks) | SP2 | 3:30 | 5:00 |
+| Foundations | 6-8 (Foundry, checklist, operating model) | SP2 | 4:45 | 9:45 |
+| Foundations | 9 (maturity model) | SP2 | 2:30 | 12:15 |
 | Architecture | 10 (reference architecture) | SP1 | 4:30 (measured) | 15:09 |
-| Evaluate | 11-13 | SP2 | 3:53 (estimate) | 19:02 |
+| Evaluate | 11-13 | SP1 | 3:53 (estimate) | 19:02 |
 | Demo - Evaluate | 14 | SP1 | 5:00 | 24:02 |
-| Ship | 15-16 | SP2 | 2:41 (estimate) | 26:43 |
+| Ship | 15-16 | SP1 | 2:41 (estimate) | 26:43 |
 | Demo - Ship | 17 | SP1 | 5:00 | 31:43 |
-| Observe | 18-20 | SP2 | 3:50 (estimate) | 35:33 |
+| Observe | 18-20 | SP1 | 3:50 (estimate) | 35:33 |
 | Demo - Observe | 21 | SP1 | 5:00 | 40:33 |
 | Own | 22-25 | SP1 | 5:36 (estimate) | 46:09 |
 | Demo - Own | 26 | SP1 | 5:00 | 51:09 |
 | Your Next Steps | 27-28 | SP2 | 2:17 (estimate) | 53:26 |
-| Thank You + Q&A | 29 | All | 0:22 (estimate) | 53:48 |
+| Thank You + Q&A | 29 | SP2 | 0:22 (estimate) | 53:48 |
 
 ### names suggestions 
 SP1 - Paulo
-SP2 - DB 
-SP3 - Rick 
+SP2 - Rick 
 ---
 
 ## Slide 1 - Title: AgentOps - From Agent Prototype to Production
 
-**SP3:** Welcome. In the next fifty minutes we're going to talk about the central question for teams building AI agents today. 
+**SP2:** Welcome. In the next fifty minutes we're going to talk about the central question for teams building AI agents today. 
 Not how to build the first demo - we already know how to do that. 
 The question now is harder. *Can we safely ship this agent? And where is the evidence?* 
 That's what this session is about. The operating model we call AgentOps. 
@@ -56,7 +55,7 @@ It's how we take the production engineering discipline we already trust for trad
 
 ## Slide 2 - Agenda
 
-**SP3:** We have seven blocks for fifty minutes. 
+**SP2:** We have seven blocks for fifty minutes. 
 First, AgentOps Foundations - why AI operations need a new discipline, what the four-pillar model looks like, and where teams really sit today. 
 
 Then a demo showing the operating model in action on Foundry.
@@ -74,7 +73,7 @@ Ten minutes reserved for Q&A at the end.
 
 ## Slide 3 - Section: AgentOps Foundations
 
-**SP3:** Let's start with foundations. 
+**SP2:** Let's start with foundations. 
 Before we talk about evaluators, pipelines, or dashboards, we want to spend a few minutes on why we need any of this. 
 Why traditional DevOps isn't enough for agents. 
 What changes when an agent can call tools, hold memory, and make decisions on its own.
@@ -83,7 +82,7 @@ What changes when an agent can call tools, hold memory, and make decisions on it
 
 ## Slide 4 - The production gap
 
-**SP3:** Here's the contrast. On the left, prototype works. On the right, production needs proof.
+**SP2:** Here's the contrast. On the left, prototype works. On the right, production needs proof.
 A prototype is one happy-path demo. The product owner watched it answer three questions correctly and said yes, ship this.
 Production needs repeatable evaluation across dozens or hundreds of cases.
 A prototype gets a manual quality check. Production needs release evidence - something you can show to a security reviewer, a compliance officer, that says this version was tested against these criteria and it passed.
@@ -98,7 +97,7 @@ Without the operating model, every change is a fire drill.
 
 ## Slide 5 - Building blocks of a production agent
 
-**SP3:** Why does this need a new operating discipline? Why can't we just use the DevOps practices we already have?
+**SP2:** Why does this need a new operating discipline? Why can't we just use the DevOps practices we already have?
 The answer is in this table. As we move up, every tier adds new operational surface.
 At the bottom: simple prompts. We send a question, we get an answer. The tradeoffs are quality and cost. Manageable.
 Next tier up: RAG. Now we think about grounding, retrieval quality, data freshness, and permissions. Did the user have access to the data that informed the answer?
@@ -112,7 +111,7 @@ Snapshot testing is just not enough. We need a different kind of evidence.
 
 ## Slide 6 - Microsoft Foundry is the control plane
 
-**SP3:** Let's clarify positioning, because this comes up in every conversation. Where does Foundry fit, and where does AgentOps fit on top?
+**SP2:** Let's clarify positioning, because this comes up in every conversation. Where does Foundry fit, and where does AgentOps fit on top?
 Foundry is the control plane. Three layers.
 The surfaces layer is how teams interact - the portal, the SDK, Azure CLI and REST APIs, and GitHub Actions. Same control plane, different ways in.
 The capabilities layer is what Foundry does for agents. It manages agents and versions. It has built-in evaluators for quality, groundedness, fluency, coherence. It has agent-specific evaluators - intent resolution, task adherence, tool call accuracy. It hosts the AI Red Teaming Agent backed by PyRIT. It supports OpenTelemetry tracing natively. And it integrates with Content Safety for runtime policy checks.
@@ -124,7 +123,7 @@ Foundry is the source of truth. AgentOps is what we do with that truth, to ship 
 
 ## Slide 7 - Production readiness checklist
 
-**SP3:** This is the slide we want you to take a picture of. 
+**SP2:** This is the slide we want you to take a picture of. 
 The production readiness checklist. The release evidence contract for any agent you're about to put in front of users. 
 Seven items. 
 One: target and version are explicit. We know exactly which agent, which version, which prompt, which tools we're releasing. 
@@ -138,7 +137,7 @@ Every section that follows fills out one or more items on this checklist.
 
 ## Slide 8 - AgentOps operating model
 
-**SP3:** So we have the checklist - seven items that tell us what evidence a production release needs.
+**SP2:** So we have the checklist - seven items that tell us what evidence a production release needs.
 The question is: how do we produce that evidence repeatably, every release, without heroics?
 That's what the operating model gives us. Four pillars. Evaluate, ship, observe, own.
 Everything we talk about for the next forty-five minutes lives inside one of these four pillars.
@@ -154,7 +153,7 @@ Now that we know the model, the question is: where does your team sit today?
 
 ## Slide 9 - Maturity model
 
-**SP3:** Quick self-assessment. Where is your team right now?
+**SP2:** Quick self-assessment. Where is your team right now?
 Four levels, and we'd bet almost everyone is somewhere between the first two.
 Level one - Initial. Ad hoc demos. Manual evaluation. Someone types five questions, looks at the answers, says yeah this seems fine. No gates, logs scattered. If you ask the team to explain a regression from last week, they can't.
 Level two - Defined. Prompts are versioned. Agents are versioned. There's a pre-prod eval dataset. CI builds artifacts. The team can answer: what's the current version, what did we test it against? This is the minimum bar for any agent going in front of real users.
@@ -211,14 +210,14 @@ With that architecture in mind, let's dive into the first pillar: Evaluate.
 
 ## Slide 11 - Section: Evaluate
 
-**SP2:** The first item on that checklist, probably the most important one, is evaluation.
+**SP1:** The first item on that checklist, probably the most important one, is evaluation.
 The eval dataset, the thresholds, the release signal. That's where we go next.
 
 ---
 
 ## Slide 12 - Evaluation strategy
 
-**SP2:** Three stages of evaluation across the whole life of the agent.
+**SP1:** Three stages of evaluation across the whole life of the agent.
 Stage one - base model selection. Before we write the agent, we pick the model with evidence. We test candidates against a representative dataset. We measure cost, latency, and quality on the actual use case. We choose with evidence, not excitement.
 Stage two - pre-production evaluation. The candidate version runs against a golden dataset with built-in evaluators. We get scores. We compare against the previous version and against absolute thresholds. If we pass, we promote. If we fail, the regression has to be diagnosed before anything ships.
 The golden dataset does not need to be huge. A few dozen carefully chosen cases tied to real user journeys beats zero cases by an enormous margin.
@@ -231,7 +230,7 @@ Don't wait for the perfect dataset. Start with twenty cases. Catch your first re
 
 ## Slide 13 - Red teaming and AI safety
 
-**SP2:** *Quality and safety are different signals.*
+**SP1:** *Quality and safety are different signals.*
 A quality score tells you whether the answer was coherent, grounded, and useful. It will not tell you whether someone could jailbreak the agent into revealing secrets or trick it into sending a malicious email.
 Those are different problems, with different test cases, and a different cadence.
 Foundry ships an AI Red Teaming Agent backed by PyRIT. Instead of ad-hoc adversarial testing every six months, we automate it on a schedule.
@@ -256,7 +255,7 @@ I'll walk through a golden dataset run on Foundry, the evaluator scores, and how
 
 ## Slide 15 - Section: Ship
 
-**SP2:** We have evaluation. We have red teaming. We have a golden dataset.
+**SP1:** We have evaluation. We have red teaming. We have a golden dataset.
 Now we need to turn all of that into a release decision.
 This is the Ship pillar. Pipelines and gates. CI/CD for agentic AI.
 
@@ -264,7 +263,7 @@ This is the Ship pillar. Pipelines and gates. CI/CD for agentic AI.
 
 ## Slide 16 - CI/CD gates for agentic AI
 
-**SP2:** The pipeline pattern looks familiar - build, evaluate, gate decision, deploy - but the contents are agent-specific.
+**SP1:** The pipeline pattern looks familiar - build, evaluate, gate decision, deploy - but the contents are agent-specific.
 Build means we package the agent. The model version, prompt template, tool definitions, configuration. All versioned together as a single artifact. If the prompt changes, behavior changes. If the tool definition changes, behavior changes. We need a single thing we can roll forward or roll back.
 Evaluate is the stage we just covered. The candidate runs against the golden dataset. The Red Teaming Agent runs. The evaluators produce scores. The result is an evidence pack - eval report, red team report, content safety scan, dependency check.
 Gate decision is the moment of truth. Are scores above thresholds? Did red team find anything new? Is cost within budget? If all yes, the gate passes. If any no, the gate fails.
@@ -289,7 +288,7 @@ A prompt change triggers the pipeline, the evaluator scores drop below threshold
 
 ## Slide 18 - Section: Observe
 
-**SP2:** Pipelines and gates are the release-time part of the model. But the operating model doesn't stop at release.
+**SP1:** Pipelines and gates are the release-time part of the model. But the operating model doesn't stop at release.
 This is the Observe pillar. We need to see what the agent is doing in production.
 Traces, correlation, and the closed loop.
 
@@ -297,7 +296,7 @@ Traces, correlation, and the closed loop.
 
 ## Slide 19 - Observability for agents is more than monitoring
 
-**SP2:** This distinction matters.
+**SP1:** This distinction matters.
 Monitoring asks: is the service healthy? Is the endpoint up? Is latency within target? Those questions matter, but they're not enough for an agent.
 Observability asks a different question. *What did the agent do, and why did it do it?* Not did it respond in 800 milliseconds, but what was the prompt? What tools did it call? What documents did retrieval surface? What safety event fired? What was the chain of decisions?
 For agents, the unit of understanding is the trace, not the endpoint status.
@@ -315,7 +314,7 @@ Without correlation, observability is disconnected dashboards. With it, the same
 
 ## Slide 20 - From telemetry to action
 
-**SP2:** This is the connective tissue slide for the whole session. *Telemetry is not the goal. Action is.*
+**SP1:** This is the connective tissue slide for the whole session. *Telemetry is not the goal. Action is.*
 Let's walk through it signal by signal.
 Latency spike - the trace shows a tool call taking ten times longer than baseline. Azure Monitor fires an alert. The on-call looks at the trace, sees the tool timing out, disables it, falls back to a manual path. The agent stays responsive.
 Tool error rate climbs - thirty percent of calls returning 500s. Disable the tool. The agent gracefully degrades. Users still get value.
@@ -426,7 +425,7 @@ Once you've done that, you have the pattern. The pattern scales across the portf
 
 ## Slide 29 - Thank You and Q&A
 
-**SP3:** Thank you for your time today.
+**SP2:** Thank you for your time today.
 We have ten minutes for questions.
 Happy to go deeper on any of the pillars - evaluation datasets, CI/CD gate design, observability correlation, or Day-2 operations.
 If you want to continue the conversation, reach out to your account team or find us after the session.
