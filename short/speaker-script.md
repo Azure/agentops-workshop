@@ -1,7 +1,10 @@
 ---
 title: Speaker Script
+
 layout: default
+
 parent: Short Workshop
+
 nav_order: 6
 
 ---
@@ -51,13 +54,17 @@ SP2 - Rick
 
 ## Slide 1 - Title: AgentOps - From Agent Prototype to Production
 
-**SP2:** Welcome. In the next fifty minutes we're going to talk about the central question for teams building AI agents today.
+**SP2:** 
 
-Not how to build the first demo - we already know how to do that.
+Welcome everyone to the AgentOps webinar!
 
-The question now is harder. *Can we safely ship this agent? And where is the evidence?*
+In this session, we're going to be talking about the central question for teams building AI agents today....
 
-That's what this session is about. The operating model we call AgentOps.
+Not 'how to build the first demo' - we already know how to do that. 
+
+The question now is harder. *Can we safely ship this agent? And where is the evidence?* 
+
+That's what this session is about. The operating model we call - AgentOps. 
 
 It's how we take the production engineering discipline we already trust for traditional software and apply it to AI agents, where behavior is probabilistic, tools have side effects, and yesterday's safe answer might not be safe tomorrow.
 
@@ -65,37 +72,37 @@ It's how we take the production engineering discipline we already trust for trad
 
 ## Slide 2 - Agenda
 
-**SP2:** We have seven blocks for fifty minutes.
+**SP2:** We have a few sections for this session. 
 
-First, AgentOps Foundations - why AI operations need a new discipline, what the four-pillar model looks like, and where teams really sit today.
+First, AgentOps Foundations - introduction to why AI operations need a new discipline, what the four-pillar model looks like, and where teams feel they sit today. 
 
-Then a demo showing the operating model in action on Foundry.
-
-Then the four pillars themselves.
+Then we'll go a a bit deeper into the four pillars themselves:
 
 Evaluate - the release signal that tells us whether a new version is actually better, or just different.
 
+
 Ship - the gates, approvals, and evidence that turn that signal into a release decision.
+
 
 Observe - once the agent is live, how we see what it's doing through traces, metrics, and feedback.
 
-Own - running the agent over time, incident response and model lifecycle.
+Own - running the agent over time, incident response and model lifecycle. 
 
-And we'll close on Adoption - how to start, on Monday morning, with one agent.
+And we'll close on Adoption and your next steps - how to start, on Monday morning, with one agent.
 
-Ten minutes reserved for Q&A at the end.
+Don't hestitate to put questions in the chat as we go.
 
 ---
 
 ## Slide 3 - Section: AgentOps Foundations
 
-**SP2:** Let's start with foundations.
+**SP2:** Let's start with foundations. 
 
-Before we talk about evaluators, pipelines, or dashboards, we want to spend a few minutes on why we need any of this.
+Before we talk about evaluators, pipelines, or dashboards, we want to spend a few minutes on... why we need any of this.?? 
 
-Why traditional DevOps isn't enough for agents.
+Why isn't traditional DevOps enough for agents? 
 
-What changes when an agent can call tools, hold memory, and make decisions on its own.
+What changes happen when an agent can call tools, hold memory, and make decisions on its own, is it the same?? 
 
 ---
 
@@ -103,11 +110,15 @@ What changes when an agent can call tools, hold memory, and make decisions on it
 
 **SP2:** Here's the contrast. On the left, prototype works. On the right, production needs proof.
 
+
 A prototype is one happy-path demo. The product owner watched it answer three questions correctly and said yes, ship this.
+
 
 Production needs repeatable evaluation across dozens or hundreds of cases.
 
+
 A prototype gets a manual quality check. Production needs release evidence - something you can show to a security reviewer, a compliance officer, that says this version was tested against these criteria and it passed.
+
 
 A prototype is a single-version snapshot. Production has versioned models, versioned prompts, versioned tool definitions. All three change. A new model ships. The prompt gets edited. A tool's API changes. Each one shifts behavior.
 
@@ -119,11 +130,14 @@ The agent is probabilistic. The model can drift. The data behind retrieval can d
 
 *The bottleneck moved.* It used to be: can we build the first demo? Now it is: can we prove that the next version is safe to release?
 
+
 Without the operating model, every change is a fire drill.
 
 ---
 
 ## Slide 5 - Building blocks of a production agent
+
+**SP2:** Why does this need a new operating discipline? Why can't we just use the DevOps practices we already have?
 
 **SP2:** Why does this need a new operating discipline? Why can't we just use the DevOps practices we already have?
 
@@ -165,21 +179,35 @@ Foundry is the source of truth. AgentOps is what we do with that truth, to ship 
 
 ## Slide 7 - Production readiness checklist
 
-**SP2:** This is the slide we want you to take a picture of.
+**SP2:** This is the slide we want you to take a note of.
+
 
 The production readiness checklist. The release evidence contract for any agent you're about to put in front of users.
 
+
 Seven items.
+
 
 One: target and version are explicit. We know exactly which agent, which version, which prompt, which tools we're releasing.
 
+
 Two: an eval dataset exists and thresholds are agreed. Minimum quality, groundedness, intent resolution. Below those, the release stops.
 
-Three: the CI/CD gate actively blocks regressions. Not advisory. If eval drops, the pipeline fails. Four: telemetry and traces are wired. Application Insights collecting, OpenTelemetry spans flowing, trace IDs end to end.
+
+Three: the CI/CD gate actively blocks regressions. Not advisory. If eval drops, the pipeline fails. 
+
+
+Four: telemetry and traces are wired. Application Insights collecting, OpenTelemetry spans flowing, trace IDs end to end.
+
 
 Five: safety and red-team findings are tracked. The Red Teaming Agent has run at least once before release.
 
-Six: release evidence is reviewable. Not in someone's head. In an artifact attached to the release. Seven: owners know what to do when signals fail. There's an on-call, a runbook, a triage flow. It turns "I think it works" into "we have evidence for this release."
+
+Six: release evidence is reviewable. Not in someone's head. In an artifact attached to the release. 
+
+
+Seven: owners know what to do when signals fail. There's an on-call, a runbook, a triage flow. It turns "I think it works" into "we have evidence for this release."
+
 
 Every section that follows fills out one or more items on this checklist.
 
@@ -193,17 +221,23 @@ The question is: how do we produce that evidence repeatably, every release, with
 
 That's what the operating model gives us. Four pillars. Evaluate, ship, observe, own.
 
-Everything we talk about for the next forty-five minutes lives inside one of these four pillars.
+Everything we talk about lives inside one of these four pillars.
 
-First: *evaluate.* We have a curated golden dataset of representative user journeys. We run the current and candidate versions against it. We measure quality, groundedness, latency, cost, intent resolution, tool call accuracy. We don't ship blind. Datasets, rubrics, red teaming, thresholds.
+First: *evaluate.* We have a curated golden dataset of representative user journeys. We run the current and candidate versions against it. We measure quality, groundedness, latency, cost, intent resolution, tool call accuracy. We don't ship blind. That's covering Datasets, rubrics for scoring, red teaming, thresholds for the decision to proceed or not, to Ship.
 
 Second: *ship.* The evaluation result becomes a gate in CI/CD. If quality drops below threshold, the pipeline fails. If safety regresses, the pipeline fails. We promote with evidence - human approvals, environment promotion, and a canary rollout where model, prompt, and tools are versioned together. A failed gate is the strongest moment in the model - the point at which a bad version stops before users ever see it.
 
-Third: *observe.* Once in production, we need traces. The full chain: prompt, plan, model call, tool call, retrieval, safety event, latency, cost, user feedback. We use Foundry observability and Application Insights together, correlated so the same trace answers questions across release, runtime, and evaluation.
+Third: *observe.* Once in production, we need traces. The full chain: prompt, plan, model call, tool call, retrieval, safety event, latency, cost, user feedback. We use Foundry observability and Application Insights together, correlated so the same trace question answers across release, runtime, and evaluation.
 
-Fourth: *own.* This is where we operate the agent over time. Diagnose root cause from traces and evaluators on production samples. Run the incident runbook. Manage model lifecycle, cost, and capacity. And improve - reviewed traces from production become new rows in the eval dataset, so the next evaluation tests against everything we've learned.
+Fourth: *own.* This is where we operate the agent over time. Diagnose root cause from traces and evaluators on production samples. Run the incident runbook. Manage model lifecycle, cost, and capacity. And improve - reviewed traces from production become new rows in the eval dataset, so the next evaluation, tests against everything we've learned.
 
-People, process, platform. People means the agent is owned - there's an on-call, runbooks, reviewers. Process means we follow the four pillars on every change. Platform means Foundry as the control plane with telemetry, traces, evaluators, and pipelines wired together.
+People, process, platform are key to this success. 
+
+People means the agent is owned - there's an on-call, runbooks, reviewers.
+
+Process means we follow the four pillars on every change. 
+ 
+Platform means Foundry as the control plane with telemetry, traces, evaluators, and pipelines wired together.
 
 The output is *release evidence* and *operational confidence*.
 
@@ -225,7 +259,7 @@ Level three - Managed. Quality and safety gates in CI. Continuous evaluation on 
 
 Level four - Optimised. Drift and cost guardrails. Canary plus auto-rollback. The feedback flywheel is real - every reviewed production trace becomes a new eval row within hours.
 
-*Don't try to boil the ocean.* Pick one production-candidate agent. Move it up one level. Build the pattern. Then scale it.
+I'll pause these to let you have a think as to where you currently fit into this. 
 
 Now let's look at what this model actually looks like as a reference architecture on Foundry.
 
@@ -235,47 +269,65 @@ Now let's look at what this model actually looks like as a reference architectur
 
 **SP1:** This picture is the bridge between the operating model and the real implementation.
 
+
 So instead of reading it box by box, let's follow one agent version as it moves from an idea to production.
 
 It starts on the left, in the inner loop. This is where the team is still learning.
 
+
 The sandbox Foundry Project is the safe place to design the agent: the instructions, the tools, the model choice, the knowledge sources, and the early behavior.
+
 
 The developer is working in VS Code or Copilot CLI, using a framework like Microsoft Agent Framework or LangGraph when they need orchestration or MCP tools.
 
+
 But the important point is this: even in the inner loop, the agent is already treated like a versioned product.
 
+
 The prompt, tool definitions, configuration, CI workflow, and evaluation evidence live in source control, in GitHub or Azure DevOps.
+
 
 That means the agent is not just something configured in a portal. It is something the team can review, compare, promote, and roll back.
 
 Then the agent candidate moves to the right side: operationalizing.
 
+
 This is the outer loop, where we stop asking "does it work on my machine?" and start asking "do we have enough evidence to promote it?"
+
 
 Continuous delivery moves the same candidate through dev, qa, and prod.
 
+
 Each environment has its own Foundry Project, because each environment has a different purpose.
+
 
 Dev is shared development. It is where the team runs manual tests, quality evaluations, and safety evaluations quickly.
 
+
 QA is where the bar gets higher. We add integration testing, red-team coverage, and the release evidence package.
+
 
 And between QA and prod, there is a gated approval. That approval should not be a rubber stamp. It should be a human looking at the evidence and deciding whether the version is ready.
 
 When the agent reaches prod, the goal changes again.
 
+
 Prod is about safe rollout: smoke tests, blue-green or canary rollout, and controlled exposure.
 
+
 We are not trying to rediscover the evaluation result in prod. The evaluation evidence was locked in QA.
+
 
 Prod is where we prove the rollout is healthy and where we watch real user behavior carefully.
 
 Now look at the runtime choices across the environments.
 
+
 The same pattern works whether this is a Prompt Agent managed by Foundry, a Hosted Agent running as a container through Agent Service, or a BYO compute runtime on Container Apps or AKS.
 
+
 That matters because AgentOps should not depend on one runtime shape.
+
 
 The operating model is consistent: version the agent, evaluate it, gate it, observe it, and feed production learning back into the next version.
 
@@ -595,11 +647,14 @@ Now the question we get most often: where do I start?
 
 Start small. Build the pattern.
 
+
 ---
 
 ## Slide 28 - Start with one production-candidate agent
 
 **SP2:** Close with a practical path. *Don't start with every agent. Start with one.*
+
+Lets recap and incorporate all that you've seen into your next steps......
 
 Step one - pick one agent. One. Not your portfolio. One agent that is close to production today, with a real owner, real users in pilot, and real business value.
 
@@ -617,9 +672,11 @@ And step seven - revisit the maturity model. Identify where your team sits today
 
 Thirty days. One agent. Four pillars.
 
-*Move one agent from "it works in testing" to "we can operate it safely."* Evaluate it, ship it with evidence, observe it in production, and own the next improvement cycle.
+*You'll have moved your one agent from "it works in testing" to "we can operate it safely."* 
 
-Once you've done that, you have the pattern. The pattern scales across the portfolio without re-litigating every decision.
+You'll own the improvement cycle.
+
+You'll have the pattern. The pattern that scales across your portfolio without re-inventing every decision.
 
 ---
 

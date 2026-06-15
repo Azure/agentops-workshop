@@ -66,6 +66,7 @@ style: |
 4. **Observe** - traces, correlation, telemetry, and feedback
 5. **Own** - incident response, model lifecycle, cost, and capacity
 6. **Your Next Steps** - from where you are today to the next level of maturity
+7. **Q&A**
 
 <!-- Speaker notes:
 - We have six content blocks plus demos after each pillar - here is how we have structured the story
