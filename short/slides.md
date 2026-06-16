@@ -2,8 +2,8 @@
 marp: true
 theme: default
 paginate: true
-header: "Production Readiness Workshop"
-footer: "Topic 4 - AgentOps"
+header: ""
+footer: "AgentOps Workshop"
 style: |
   section.lead h1 {
     font-size: 2.5em;
@@ -45,7 +45,7 @@ style: |
 
 <!-- _class: lead -->
 
-# Production Readiness Workshop Topic 4 - AgentOps
+# AgentOps
 ## From Agent Prototype to Production
 
 <!-- Speaker notes:

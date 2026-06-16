@@ -10,6 +10,7 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 - **Cleaner architecture narration.** Slide 10 now reads as a story that follows one agent version from inner-loop authoring to production feedback, instead of listing every box in the diagram.
 - **Clearer rollout terminology.** Production rollout language now uses blue-green or canary rollout for safe release, reserving A/B testing for true comparative experiments.
 - **Build 2026 alignment.** Speaker notes now reference ASSERT, ACS, Adaptive Evaluations context, and Microsoft Agent 365 where they support the AgentOps operating model.
+- **Standalone AgentOps branding.** The short deck and narrated video now open as an AgentOps Workshop, without parent-program wording.
 
 ### Content - Short workshop deck flow (Richard Healy)
 
@@ -23,6 +24,7 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 - Update slide 10 timing to the measured 4:30 delivery and recalculate downstream running totals in `short/speaker-script.md`.
 - Remove published speaker-name suggestions from `short/speaker-script.md`; the public script now keeps only SP1, SP2, and SP3 markers.
 - Replace ambiguous production rollout wording that mixed A/B testing with canary release semantics. The architecture notes and script now refer to smoke tests plus blue-green or canary rollout for controlled production exposure.
+- Rebrand the short deck title slide as `AgentOps` and remove visible parent-program wording from the short-track deck source.
 
 ### Content - Long workshop positioning (Paulo Lacerda)
 
@@ -54,6 +56,7 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 
 - Regenerate `short/slides.pptx` from the updated `short/slides.md`.
 - Regenerate `short/agentops-short-video.mp4` from the two-speaker script, with embedded demo videos after the Evaluate, Ship, Observe, and Own demo intro slides.
+- Regenerate `short/slides.pptx` and `short/agentops-short-video.mp4` again after removing parent-program branding from the opening slide.
 - Add the four source demo clips under `short/videos/` so the production video can be rebuilt reproducibly.
 
 ### Follow-up
