@@ -2,7 +2,7 @@
 title: "Lab 4: Observability and Trace-Driven Operations"
 layout: default
 parent: Lab Planning Pages
-grand_parent: Long Workshop
+grand_parent: AgentOps VBD Workshop
 nav_order: 4
 ---
 

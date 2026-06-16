@@ -1,11 +1,11 @@
 ---
 title: Run of Show
 layout: default
-parent: Short Workshop
+parent: AgentOps Briefing
 nav_order: 2
 ---
 
-# Short Workshop Run of Show
+# AgentOps Briefing Run of Show
 
 ## Presenter goal
 

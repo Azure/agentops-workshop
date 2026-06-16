@@ -1,20 +1,20 @@
 ---
-title: Long Workshop - VBD
+title: AgentOps VBD Workshop
 layout: default
 nav_order: 3
 has_children: true
 ---
 
-# Long Workshop - Value Based Delivery (VBD) version
+# AgentOps Value Delivery Workshop
 
 {: .important }
-> **Under construction.** The long (~8 hours) workshop is the Value Based Delivery (VBD) version and is still being designed. The pages below are planning material, not deliverable content. If you need a session you can run today, see the [short workshop]({{ '/short/' | relative_url }}).
+> **Under construction.** The full-day (~8 hours) workshop is the Value-Based Delivery (VBD) track and is still being designed. The pages below are planning material, not deliverable content. If you need a session you can run today, see [AgentOps Briefing]({{ '/short/' | relative_url }}).
 
-This track is the full-day AgentOps workshop for the Value Based Delivery (VBD) version. The lab content is not implemented yet. This section defines the planned structure, learning outcomes, sequencing, and directory layout.
+This track is the full-day AgentOps Value Delivery Workshop for VBD. The lab content is not implemented yet. This section defines the planned structure, learning outcomes, sequencing, and directory layout.
 
 ## Full-day outcome (planned)
 
-By the end of the long workshop, attendees should have a practical blueprint for operating one AI agent in production:
+By the end of AgentOps Value Delivery Workshop, attendees should have a practical blueprint for operating one AI agent in production:
 
 - Define an agent target and release-readiness contract.
 - Create an evaluation dataset and quality thresholds.

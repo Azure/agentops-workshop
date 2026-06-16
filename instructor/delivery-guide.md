@@ -20,9 +20,9 @@ The workshop should feel like a production-readiness engagement, not a product t
 - Use failures intentionally. A failed eval or release gate is the clearest way to show value.
 - Keep AgentOps Toolkit references subtle and practical.
 
-## For the short workshop
+## For AgentOps Briefing
 
-The short workshop should prioritize:
+AgentOps Briefing should prioritize:
 
 1. Production gap and AgentOps operating model
 2. Evaluation and release gates
@@ -32,9 +32,9 @@ The short workshop should prioritize:
 
 The observability section should explain trace correlation and the trace-to-evaluation feedback loop.
 
-## For the long workshop
+## For AgentOps Value Delivery Workshop
 
-The long workshop should prioritize:
+AgentOps Value Delivery Workshop should prioritize:
 
 1. One consistent scenario
 2. One readiness artifact per lab
@@ -48,7 +48,7 @@ The dedicated observability lab should be treated as a major part of the day, no
 Before delivery:
 
 - Confirm the target audience and expected technical depth.
-- Confirm whether the session is the short or long workshop.
+- Confirm whether the session is AgentOps Briefing or AgentOps Value Delivery Workshop.
 - Confirm whether live demos, recorded demos, or screenshots will be used.
 - Confirm the Foundry project and agent scenario.
 - Confirm that no sensitive telemetry or tenant data appears in screenshots.

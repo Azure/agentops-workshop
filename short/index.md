@@ -1,11 +1,11 @@
 ---
-title: Short Workshop
+title: AgentOps Briefing
 layout: default
 nav_order: 2
 has_children: true
 ---
 
-# Short Workshop
+# AgentOps Briefing
 
 A ~1 hour customer-facing AgentOps session. Everything below is ready to deliver.
 

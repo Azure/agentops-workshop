@@ -1,11 +1,11 @@
 ---
 title: Agenda
 layout: default
-parent: Long Workshop
+parent: AgentOps VBD Workshop
 nav_order: 1
 ---
 
-# Long Workshop Agenda
+# AgentOps Value Delivery Workshop Agenda
 
 ## Target audience
 
