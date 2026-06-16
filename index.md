@@ -84,11 +84,11 @@ The full-day (~8 hours) workshop is the Value Based Delivery (VBD) version. It i
 
 ## What the workshop is about
 
-AgentOps applies production engineering discipline to AI agents. The workshop walks instructors through an operating loop used to take one agent from prototype to production:
+AgentOps applies production engineering discipline to AI agents. The workshop walks instructors through the four-pillar operating model used to take one agent from prototype to production:
 
-**Evaluate → Gate → Observe → Diagnose → Ship → Improve**
+**Evaluate → Ship → Observe → Own**
 
-The short workshop introduces the loop with a demo storyline: an existing Foundry agent is evaluated, a regression is blocked before release, the issue is fixed, readiness evidence is reviewed, and telemetry links the release decision back to runtime behavior.
+The short workshop introduces the model with a demo storyline: an existing Foundry agent is evaluated, release gates block regressions before production, runtime traces make behavior observable, and Day-2 ownership turns incidents and production learnings into the next evaluation cycle.
 
 ---
 

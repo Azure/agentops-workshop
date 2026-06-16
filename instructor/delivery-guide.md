@@ -8,16 +8,16 @@ nav_order: 4
 
 ## Delivery intent
 
-The workshop should feel like a production-readiness engagement, not a product tour. The instructor should repeatedly connect concepts back to the operating loop:
+The workshop should feel like a production-readiness engagement, not a product tour. The instructor should repeatedly connect concepts back to the AgentOps four-pillar operating model:
 
-**Evaluate -> Gate -> Observe -> Diagnose -> Ship -> Improve**
+**Evaluate -> Ship -> Observe -> Own**
 
 ## Recommended delivery style
 
 - Start from the production question: "Can we safely ship this agent?"
 - Use one production-candidate agent as the thread through the session.
 - Treat observability as an engineering discipline, not as screenshots of dashboards.
-- Use failures intentionally. A failed eval or gate is the clearest way to show value.
+- Use failures intentionally. A failed eval or release gate is the clearest way to show value.
 - Keep AgentOps Toolkit references subtle and practical.
 
 ## For the short workshop
