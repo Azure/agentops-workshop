@@ -10,19 +10,19 @@ Two staging modes per slide:
   the handoff (avoids a "double-fade" ghosting effect where avatar opacity
   is multiplied by the slide dissolve).
 
-* **Core slides (4-23): one-avatar-per-slide.** All SP1/SP2 turns within a
+* **Core slides (4+): one-avatar-per-slide.** All SP1/SP2 turns within a
   core slide are merged into a single super-turn rendered by ONE speaker
   via Azure TTS Avatar with SSML pacing -- the original turn boundaries
   become ``<break time='350ms'/>`` pauses so a 1-2 minute monologue still
   has the natural cadence the dual-voice script was written for.
 
-  Speakers alternate per slide starting with SP2 at slide 4:
-      4 = SP2 (Harry), 5 = SP1 (Lisa), 6 = SP2, ... 23 = SP1.
-  This preserves slide 4's original SP2 opener AND keeps the final
-  "Thank you for watching" line on SP1 (Lisa), exactly matching the
-  script. Slide 3 ends with SP2, so the intro->core handoff is a SAME-
-  speaker continuation -- Harry simply stays in his corner while the
-  slide xfade dissolves.
+  The speaker is taken from the script for that slide, so the rendered
+  video follows the two-speaker content assignment exactly.
+
+* **Demo slots:** after demo-intro slides 14, 17, 21, and 26, the matching
+  MP4 under ``short/videos`` is inserted directly with its original audio and
+  no avatar overlay. Demo files are normalized to the deck canvas before the
+  final slide/demo xfade chain.
 
 The script reuses every v4 helper from ``build_preview.py``: avatar batch
 synthesis, content-hash WEBM caching, chromakey + alpha-fade overlay,
@@ -32,13 +32,13 @@ for slides 4-23), production segments live under a separate
 ``v4p-*`` segment-version namespace inside ``prep/short/preview/segments/``.
 
 Output: ``short/agentops-short-video.mp4`` (replaces the previous
-voiceover-only build from the legacy ``build_video.py``). The artefact
-size will be well over 100 MB and is published via GitHub Releases per
-repo convention -- not committed to git.
+voiceover-only build from the legacy ``build_video.py``). The raw artefact
+is expected to exceed GitHub's 100 MB push limit, so run
+``compress_production_video.py`` before committing the published MP4.
 
 Usage::
 
-    python build_production_video.py                   # full 23-slide build
+    python build_production_video.py                   # full 30-slide build
     python build_production_video.py --skip-avatars    # cache already populated
     python build_production_video.py --force           # ignore segment cache too
     python build_production_video.py --slides 4 5 6    # subset for iteration
@@ -49,6 +49,7 @@ from __future__ import annotations
 import argparse
 import concurrent.futures
 import shutil
+import subprocess
 import sys
 import xml.sax.saxutils as xml_utils
 from pathlib import Path
@@ -71,37 +72,69 @@ from build_preview import (  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent.parent
 OUT_PATH = REPO / "short" / "agentops-short-video.mp4"
+DEMO_DIR = REPO / "short" / "videos"
 
 # Separate segment-version namespace so production renders never collide
 # with preview renders (same slide+turn coords but different turn content
 # for slides 4-23 because of the merged-text mode).
-PROD_SEG_VERSION = "v4p"
+PROD_SEG_VERSION = "v4p2"
 
 # Slides 1..INTRO_END (inclusive) use per-turn jogral.
 INTRO_END = 3
-# Slides CORE_START..23 (inclusive) use merged single-speaker per slide.
+# Slides CORE_START..EXPECTED_LAST_SLIDE (inclusive) use merged single-speaker per slide.
 CORE_START = 4
 
 # Pin the highest slide so an accidental script edit cannot silently
 # stretch the build. parse_script will validate the actual range.
-EXPECTED_LAST_SLIDE = 23
+EXPECTED_LAST_SLIDE = 30
+
+DEMO_VIDEO_BY_SLIDE = {
+    14: DEMO_DIR / "part1-evaluate.mp4",
+    17: DEMO_DIR / "part2-ship.mp4",
+    21: DEMO_DIR / "part3-observe.mp4",
+    26: DEMO_DIR / "part4-own.mp4",
+}
 
 # Inter-turn pause for merged super-turns (matches render_speech.py).
 INTER_TURN_BREAK_MS = 350
 
 
-def core_speaker_for(slide_n: int) -> str:
-    """Alternate SP1/SP2 across core slides, starting with SP2 at slide 4.
+def core_speaker_for(slide_turns: list[tuple[str, str]]) -> str:
+    """Use the scripted speaker for one-avatar-per-slide production mode."""
+    speakers = {speaker for speaker, _raw in slide_turns}
+    if len(speakers) > 1:
+        raise SystemExit(
+            "Production core mode expects one scripted speaker per slide; "
+            f"found mixed speakers: {sorted(speakers)}"
+        )
+    return slide_turns[0][0]
 
-    Slide 3 ends with SP2 (Harry); starting core with SP2 keeps him on
-    screen across the intro->core boundary (the slide xfade just dissolves
-    the background while Harry stays in his bottom-right corner).
 
-    The alternation 4=SP2, 5=SP1, 6=SP2, ... lands the final slide 23
-    on SP1 -- which is the original ("Thank you for watching") speaker
-    in the script -- and preserves slide 4's original SP2 opener.
-    """
-    return "SP2" if (slide_n - CORE_START) % 2 == 0 else "SP1"
+def normalize_demo_segment(src: Path, dst: Path, force: bool) -> None:
+    """Normalize a demo MP4 to the deck canvas while preserving its audio."""
+    if dst.exists() and not force:
+        return
+    if not src.exists():
+        raise SystemExit(f"Missing demo video: {src}")
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    vf = (
+        "fps=30,"
+        "scale=1920:1080:flags=lanczos:force_original_aspect_ratio=decrease,"
+        "pad=1920:1080:(ow-iw)/2:(oh-ih)/2,"
+        "setsar=1,format=yuv420p"
+    )
+    cmd = [
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-i", str(src),
+        "-vf", vf,
+        "-af", "aresample=async=1",
+        "-c:v", "libx264", "-preset", "medium", "-crf", "20",
+        "-pix_fmt", "yuv420p",
+        "-c:a", "aac", "-b:a", "192k",
+        "-movflags", "+faststart",
+        str(dst),
+    ]
+    subprocess.run(cmd, check=True)
 
 
 # ---------------------------------------------------------------------------
@@ -170,8 +203,8 @@ def build_production_turn_list(
                 })
         else:
             # Merged: one SSML-paced super-turn for the whole slide,
-            # single assigned speaker.
-            speaker = core_speaker_for(sn)
+            # using the slide's scripted speaker.
+            speaker = core_speaker_for(slide_turns)
             if speaker == "SP1":
                 voice, (char, style) = VOICE_SP1, AVATAR_SP1
             else:
@@ -304,7 +337,7 @@ def main() -> None:
         )
 
     # ---- Phase 3: concat per slide -----------------------------------------
-    print("\nPhase 3: concat per-turn segments into per-slide segments")
+    print("\nPhase 3: concat per-turn segments into per-slide/demo segments")
     slide_segments: list[tuple[Path, float]] = []
     for sn in slide_nums:
         sn_turns = [t for t in turns if t["slide"] == sn]
@@ -320,6 +353,13 @@ def main() -> None:
         dur = ffprobe_duration(slide_seg)
         slide_segments.append((slide_seg, dur))
         print(f"  slide {sn:02d}: {dur:.2f}s")
+        if sn in DEMO_VIDEO_BY_SLIDE:
+            demo_src = DEMO_VIDEO_BY_SLIDE[sn]
+            demo_seg = SEG_DIR / f"{PROD_SEG_VERSION}-demo-after-slide-{sn:02d}.mp4"
+            normalize_demo_segment(demo_src, demo_seg, args.force)
+            demo_dur = ffprobe_duration(demo_seg)
+            slide_segments.append((demo_seg, demo_dur))
+            print(f"  demo after slide {sn:02d}: {demo_dur:.2f}s ({demo_src.name})")
 
     # ---- Phase 4: chain with xfade -----------------------------------------
     out_path = Path(args.output)

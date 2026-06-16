@@ -49,40 +49,57 @@ PARAGRAPH_BREAK_MS = 150
 def parse_script(script_text: str) -> dict[int, list[tuple[str, str]]]:
     """Return {slide_number: [(speaker, text), ...]} in document order.
 
-    Speaker is 'SP1' or 'SP2'. Text is the raw paragraph content (markdown
-    emphasis still present; stripped later before SSML build).
+    Speaker is 'SP1' or 'SP2'. Text is the raw turn content (markdown emphasis
+    still present; stripped later before SSML build). Speaker turns can span
+    multiple Markdown paragraphs so the rendered script stays easy to read.
     """
     slides: dict[int, list[tuple[str, str]]] = {}
-    current: int | None = None
+    current_slide: int | None = None
+    current_speaker: str | None = None
+    current_parts: list[str] = []
 
     slide_re = re.compile(r"^##\s+Slide\s+(\d+)\s*[-–—]")
-    turn_re = re.compile(r"^\*\*(SP1|SP2):\*\*\s*(.+)$", re.DOTALL)
+    turn_re = re.compile(r"^\*\*(SP1|SP2):\*\*\s*(.*)$")
 
-    # Walk paragraph-by-paragraph (paragraphs are separated by blank lines)
-    paragraphs = re.split(r"\n\s*\n", script_text)
-    for para in paragraphs:
-        para = para.strip()
-        if not para:
-            continue
+    def flush_turn() -> None:
+        nonlocal current_speaker, current_parts
+        if current_slide is not None and current_speaker and current_parts:
+            text = " ".join(part.strip() for part in current_parts if part.strip())
+            if text:
+                slides.setdefault(current_slide, []).append((current_speaker, text))
+        current_speaker = None
+        current_parts = []
 
-        first_line = para.splitlines()[0].strip()
-        m = slide_re.match(first_line)
+    for raw_line in script_text.splitlines():
+        line = raw_line.strip()
+
+        m = slide_re.match(line)
         if m:
-            current = int(m.group(1))
-            slides.setdefault(current, [])
+            flush_turn()
+            current_slide = int(m.group(1))
+            slides.setdefault(current_slide, [])
             continue
 
-        if current is None:
+        if current_slide is None:
             continue
 
-        # Collapse internal newlines so multi-line turns become one paragraph
-        flat = re.sub(r"\s+", " ", para).strip()
-        tm = turn_re.match(flat)
+        if line == "---":
+            flush_turn()
+            continue
+
+        tm = turn_re.match(line)
         if tm:
-            speaker = tm.group(1)
-            text = tm.group(2).strip()
-            slides[current].append((speaker, text))
+            flush_turn()
+            current_speaker = tm.group(1)
+            first_text = tm.group(2).strip()
+            if first_text:
+                current_parts.append(first_text)
+            continue
 
+        if current_speaker and line:
+            current_parts.append(line)
+
+    flush_turn()
     return slides
 
 

@@ -45,6 +45,7 @@ Dual-voice narration for the AgentOps deck. Two speakers with an even split acro
 | Demo - Own | 26 | SP1 | 5:00 | 51:09 |
 | Your Next Steps | 27-28 | SP2 | 2:17 (estimate) | 53:26 |
 | Thank You | 29 | SP2 | 0:22 (estimate) | 53:48 |
+| Resources | 30 | SP2 | 0:20 (estimate) | 54:08 |
 
 ### names suggestions 
 SP1 - Paulo
@@ -685,3 +686,11 @@ You'll have the pattern. The pattern that scales across your portfolio without r
 **SP2:** Thank you for your time today.
 
 If you want to continue the conversation, reach out to your account team or find us after the session.
+
+---
+
+## Slide 30 - Resources
+
+**SP2:** These are the Microsoft Learn resources behind the practices we covered today.
+
+Use them as follow-up references for evaluation, agent lifecycle, observability, red teaming, and Application Insights monitoring.

@@ -41,6 +41,11 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 
 - Rename the legacy `A/B Testing Agent Configurations` image mapping to `Canary Rollout for Agent Configurations` so future generated decks use rollout terminology consistently.
 
+### Tooling - Video production pipeline (Paulo Lacerda)
+
+- Update `prep/tools/render_speech.py` so the speaker parser preserves multi-paragraph speaker turns after readability formatting in `short/speaker-script.md`.
+- Update `prep/tools/build_production_video.py` to render the full 30-slide short deck, follow the scripted two-speaker assignment per slide, and insert the four demo videos from `short/videos/` directly after their demo intro slides.
+
 ### Tooling - Release notes convention (Paulo Lacerda)
 
 - Document the release-notes-style CHANGELOG convention in `.github/copilot-instructions.md` so future updates retain intro, Highlights, attributed content sections, diagrams, tooling, artefacts, and follow-up structure.
@@ -48,10 +53,11 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 ### Artefacts
 
 - Regenerate `short/slides.pptx` from the updated `short/slides.md`.
+- Regenerate `short/agentops-short-video.mp4` from the two-speaker script, with embedded demo videos after the Evaluate, Ship, Observe, and Own demo intro slides.
+- Add the four source demo clips under `short/videos/` so the production video can be rebuilt reproducibly.
 
 ### Follow-up
 
-- `short/agentops-short-video.mp4` remains out of sync with the revised 26-slide script and should be re-rendered via `build_production_video.py` plus `compress_production_video.py`.
 - Mirror the updated deck to the upstream program repo at `presentations/04-agentops/`.
 
 ## v0.2.1 - 2026-06-03
