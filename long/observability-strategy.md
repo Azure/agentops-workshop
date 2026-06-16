@@ -1,7 +1,7 @@
 ---
 title: Observability Strategy
 layout: default
-parent: Long Workshop
+parent: AgentOps VBD Workshop
 nav_order: 3
 ---
 
@@ -11,7 +11,7 @@ nav_order: 3
 
 AgentOps depends on observability because agent behavior cannot be understood from infrastructure metrics alone. Teams need to reconstruct the chain of decisions and dependencies behind an answer, a failed tool call, a safety block, a hallucination, a latency spike, or a cost regression.
 
-The long workshop should teach observability as a practical system:
+AgentOps Value Delivery Workshop should teach observability as a practical system:
 
 1. **Collect** traces, telemetry, safety events, feedback, latency, cost, and release metadata.
 2. **Correlate** every signal to agent version, deployment, eval run, trace ID, and owner.

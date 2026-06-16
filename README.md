@@ -15,15 +15,15 @@ This README is for **authors and builders** working on the workshop content itse
 
 | Track | Status | Source |
 |---|---|---|
-| Short (~1 hour) | Ready to deliver | [`short/`](short/index.md) |
-| Long - Value Based Delivery (VBD) (~8 hours) | Planning skeleton - under construction | [`long/`](long/index.md) |
+| AgentOps Briefing (~1 hour) | Ready to deliver | [`short/`](short/index.md) |
+| AgentOps Value Delivery Workshop - Value-Based Delivery (VBD) (~8 hours) | Planning skeleton - under construction | [`long/`](long/index.md) |
 
 ## Repository layout
 
 | Path | Audience | What's inside |
 |---|---|---|
 | `short/` | Instructor | Agenda, run-of-show, speaker script, `slides.md`, `slides.pptx`, narrated video (released), `images/`. |
-| `long/` | Instructor | Long workshop plan, lab roadmap, observability strategy, lab planning pages. |
+| `long/` | Instructor | AgentOps VBD Workshop plan, lab roadmap, observability strategy, lab planning pages. |
 | `instructor/` | Instructor | Cross-track delivery notes. |
 | `assets/` | Instructor | Shared images, slide exports, sample data. |
 | `index.md`, `_config.yml`, `Gemfile` | Instructor (Jekyll site) | GitHub Pages source. |
@@ -33,7 +33,7 @@ This README is for **authors and builders** working on the workshop content itse
 
 ## Authoring workflow
 
-The short workshop is built from three master sources:
+AgentOps Briefing is built from three master sources:
 
 1. `short/slides.md` (Marp) → `short/slides.pptx`
 2. `short/speaker-script.md` (verbatim narration with `**SP1:**` / `**SP2:**` turns)

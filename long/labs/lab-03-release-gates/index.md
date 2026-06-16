@@ -2,7 +2,7 @@
 title: "Lab 3: Release Gates and Evidence"
 layout: default
 parent: Lab Planning Pages
-grand_parent: Long Workshop
+grand_parent: AgentOps VBD Workshop
 nav_order: 3
 ---
 

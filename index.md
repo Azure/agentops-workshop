@@ -10,12 +10,12 @@ This site is for **instructors** preparing to deliver the AgentOps workshop. It 
 
 Two tracks are available:
 
-- **Short workshop** (~1 hour) — ready to deliver.
-- **Long workshop - Value Based Delivery (VBD) version** (~8 hours) - under construction.
+- **AgentOps Briefing** (~1 hour) - ready to deliver.
+- **AgentOps Value Delivery Workshop** (~8 hours, Value-Based Delivery) - under construction.
 
 ---
 
-## Short workshop — ready to deliver
+## AgentOps Briefing - ready to deliver
 
 <div class="video-preview" markdown="0">
   <video controls preload="metadata" playsinline>
@@ -74,11 +74,11 @@ Two tracks are available:
 
 ---
 
-## Long workshop - Value Based Delivery (VBD) version
+## AgentOps Value Delivery Workshop
 
-The full-day (~8 hours) workshop is the Value Based Delivery (VBD) version. It is still being designed, and the planning pages are visible so you can see where it is heading, but the labs are placeholders.
+The full-day (~8 hours) workshop is the Value-Based Delivery (VBD) track. It is still being designed, and the planning pages are visible so you can see where it is heading, but the labs are placeholders.
 
-[See the long workshop plan]({{ '/long/' | relative_url }}){: .btn }
+[See the VBD workshop plan]({{ '/long/' | relative_url }}){: .btn }
 
 ---
 
@@ -88,7 +88,7 @@ AgentOps applies production engineering discipline to AI agents. The workshop wa
 
 **Evaluate → Ship → Observe → Own**
 
-The short workshop introduces the model with a demo storyline: an existing Foundry agent is evaluated, release gates block regressions before production, runtime traces make behavior observable, and Day-2 ownership turns incidents and production learnings into the next evaluation cycle.
+AgentOps Briefing introduces the model with a demo storyline: an existing Foundry agent is evaluated, release gates block regressions before production, runtime traces make behavior observable, and Day-2 ownership turns incidents and production learnings into the next evaluation cycle.
 
 ---
 

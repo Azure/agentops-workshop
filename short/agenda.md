@@ -1,11 +1,11 @@
 ---
 title: Agenda
 layout: default
-parent: Short Workshop
+parent: AgentOps Briefing
 nav_order: 1
 ---
 
-# Short Workshop Agenda
+# AgentOps Briefing Agenda
 
 ## Recommended title
 

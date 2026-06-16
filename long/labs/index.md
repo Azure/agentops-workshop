@@ -1,7 +1,7 @@
 ---
 title: Lab Planning Pages
 layout: default
-parent: Long Workshop
+parent: AgentOps VBD Workshop
 nav_order: 4
 has_children: true
 ---

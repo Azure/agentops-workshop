@@ -3,13 +3,13 @@ title: Speaker Script
 
 layout: default
 
-parent: Short Workshop
+parent: AgentOps Briefing
 
 nav_order: 6
 
 ---
 
-# Short Workshop Speaker Script (Dual-Voice)
+# AgentOps Briefing Speaker Script (Dual-Voice)
 
 Dual-voice narration for the AgentOps deck. Two speakers with an even split across the session.
 

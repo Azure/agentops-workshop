@@ -2,7 +2,7 @@
 title: "Lab 5: Safety, Red-Team Follow-Through, and Governance"
 layout: default
 parent: Lab Planning Pages
-grand_parent: Long Workshop
+grand_parent: AgentOps VBD Workshop
 nav_order: 5
 ---
 
