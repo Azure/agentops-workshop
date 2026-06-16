@@ -4,7 +4,7 @@ layout: home
 nav_order: 1
 ---
 
-# AgentOps Workshop — Instructor Kit
+# AgentOps Workshop
 
 This site is for **instructors** preparing to deliver the AgentOps workshop. It packages the slides, the narrated walkthrough, the speaker script, and the run-of-show in one place.
 
