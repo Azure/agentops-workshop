@@ -123,3 +123,8 @@
     background-color: #0d0c14;
   }
 }
+
+// Hide the default Just the Docs attribution footer in the left navigation.
+.site-footer {
+  display: none;
+}

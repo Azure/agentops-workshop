@@ -11,6 +11,7 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 - **Clearer rollout terminology.** Production rollout language now uses blue-green or canary rollout for safe release, reserving A/B testing for true comparative experiments.
 - **Build 2026 alignment.** Speaker notes now reference ASSERT, ACS, Adaptive Evaluations context, and Microsoft Agent 365 where they support the AgentOps operating model.
 - **Standalone AgentOps branding.** The short deck and narrated video now open as an AgentOps Workshop, without parent-program wording.
+- **Consistent four-pillar site copy.** The GitHub Pages landing page and instructor guide now use Evaluate, Ship, Observe, Own instead of the older six-step loop.
 
 ### Content - Short workshop deck flow (Richard Healy)
 
@@ -29,6 +30,10 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 ### Content - Long workshop positioning (Paulo Lacerda)
 
 - Clarify the long workshop as the VBD version across the public landing pages.
+
+### Content - GitHub Pages site (Paulo Lacerda)
+
+- Update the landing page and instructor delivery guide to describe the current four-pillar AgentOps model: `Evaluate -> Ship -> Observe -> Own`.
 
 ### Diagrams
 
@@ -51,6 +56,10 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 ### Tooling - Release notes convention (Paulo Lacerda)
 
 - Document the release-notes-style CHANGELOG convention in `.github/copilot-instructions.md` so future updates retain intro, Highlights, attributed content sections, diagrams, tooling, artefacts, and follow-up structure.
+
+### Tooling - GitHub Pages styling (Paulo Lacerda)
+
+- Hide the default Just the Docs attribution footer from the left navigation.
 
 ### Artefacts
 
