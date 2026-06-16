@@ -10,6 +10,7 @@ plugins:
 
 search_enabled: true
 heading_anchors: true
+footer_content: ""
 
 # Exclude preparation/authoring materials from the published site.
 # `prep/` holds references, build tools, and intermediate artefacts that
