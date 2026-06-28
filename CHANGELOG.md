@@ -11,7 +11,7 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 - **Clearer rollout terminology.** Production rollout language now uses blue-green or canary rollout for safe release, reserving A/B testing for true comparative experiments.
 - **Build 2026 alignment.** Speaker notes now reference ASSERT, ACS, Adaptive Evaluations context, and Microsoft Agent 365 where they support the AgentOps operating model.
 - **Standalone AgentOps branding.** The short deck and narrated video now open as an AgentOps Workshop, without parent-program wording.
-- **Consistent four-pillar site copy.** The GitHub Pages landing page and instructor guide now use Evaluate, Ship, Observe, Own instead of the older six-step loop.
+- **Consistent four-pillar site copy.** The GitHub Pages landing page and instructor guide now use Evaluate, Ship, Observe, Operate instead of the older six-step loop.
 - **Cleaner track names.** The public site now labels the one-hour session as AgentOps Briefing and the VBD track as AgentOps Value Delivery Workshop.
 
 ### Content - Short workshop deck flow (Richard Healy)
@@ -34,7 +34,7 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 
 ### Content - GitHub Pages site (Paulo Lacerda)
 
-- Update the landing page and instructor delivery guide to describe the current four-pillar AgentOps model: `Evaluate -> Ship -> Observe -> Own`.
+- Update the landing page and instructor delivery guide to describe the current four-pillar AgentOps model: `Evaluate -> Ship -> Observe -> Operate`.
 - Rename the published workshop tracks to `AgentOps Briefing` and `AgentOps Value Delivery Workshop`, with the side navigation using `AgentOps VBD Workshop` for the full-day track.
 
 ### Diagrams
@@ -66,7 +66,7 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 ### Artefacts
 
 - Regenerate `short/slides.pptx` from the updated `short/slides.md`.
-- Regenerate `short/agentops-short-video.mp4` from the two-speaker script, with embedded demo videos after the Evaluate, Ship, Observe, and Own demo intro slides.
+- Regenerate `short/agentops-short-video.mp4` from the two-speaker script, with embedded demo videos after the Evaluate, Ship, Observe, and Operate demo intro slides.
 - Regenerate `short/slides.pptx` and `short/agentops-short-video.mp4` again after removing parent-program branding from the opening slide.
 - Add the four source demo clips under `short/videos/` so the production video can be rebuilt reproducibly.
 
@@ -80,7 +80,7 @@ This release reorganises the short-workshop narrative around a single AgentOps o
 
 ### Highlights
 
-- **New AgentOps operating model.** The deck now tells one story end to end - Evaluate, Ship, Observe, Own - replacing the older six-step loop that confused learners.
+- **New AgentOps operating model.** The deck now tells one story end to end - Evaluate, Ship, Observe, Operate - replacing the older six-step loop that confused learners.
 - **Stronger Agent Foundations section.** New "complexity vs anatomy" slide and updated narrative make the "why agents need a new operating model" pitch land more cleanly.
 - **Cleaner slide rendering.** Subtitles no longer show a stray `>`, the four-pillar diagram renders full-width instead of as a corner thumbnail, and diagrams no longer overlap their subtitles.
 
@@ -92,8 +92,8 @@ This release reorganises the short-workshop narrative around a single AgentOps o
 
 ### Content - Four-pillar operating model (Paulo Lacerda)
 
-- Replace the six-step operating loop (`Evaluate, Gate, Observe, Diagnose, Ship, Improve`) with a single four-pillar model (`Evaluate -> Ship -> Observe -> Own`) as the primary AgentOps story across the short track. Old loop items map as Gate+Ship -> Ship and Diagnose+Improve -> Own.
-- Update `short/slides.md`: retitle the operating-model slide and its visual, rename the Evaluation/CI-CD/Observability/Day-2 section dividers to Evaluate/Ship/Observe/Own, rewrite affected speaker notes, and reframe the 30-day adoption path around the four pillars.
+- Replace the six-step operating loop (`Evaluate, Gate, Observe, Diagnose, Ship, Improve`) with a single four-pillar model (`Evaluate -> Ship -> Observe -> Operate`) as the primary AgentOps story across the short track. Old loop items map as Gate+Ship -> Ship and Diagnose+Improve -> Operate.
+- Update `short/slides.md`: retitle the operating-model slide and its visual, rename the Evaluation/CI-CD/Observability/Day-2 section dividers to Evaluate/Ship/Observe/Operate, rewrite affected speaker notes, and reframe the 30-day adoption path around the four pillars.
 - Update `short/speaker-script.md`, `short/agenda.md`, `short/run-of-show.md`, and `short/index.md` so the narration and delivery materials present the four-pillar model consistently.
 
 ### Diagrams

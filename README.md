@@ -80,7 +80,7 @@ Before making any release or significant content change visible:
 ## Main storyline
 
 1. Agents are moving from prototype to production.
-2. Production needs evidence: evals, gates, observability, safety, and ownership.
+2. Production needs evidence: evals, gates, observability, safety, and operations.
 3. AgentOps provides the operating model.
 4. Foundry remains the control plane.
 5. AgentOps practices create the repo and CI/CD release-readiness loop.
