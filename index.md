@@ -86,9 +86,9 @@ The full-day (~8 hours) workshop is the Value-Based Delivery (VBD) track. It is 
 
 AgentOps applies production engineering discipline to AI agents. The workshop walks instructors through the four-pillar operating model used to take one agent from prototype to production:
 
-**Evaluate → Ship → Observe → Own**
+**Evaluate → Ship → Observe → Operate**
 
-AgentOps Briefing introduces the model with a demo storyline: an existing Foundry agent is evaluated, release gates block regressions before production, runtime traces make behavior observable, and Day-2 ownership turns incidents and production learnings into the next evaluation cycle.
+AgentOps Briefing introduces the model with a demo storyline: an existing Foundry agent is evaluated, release gates block regressions before production, runtime traces make behavior observable, and Day-2 operations turn incidents and production learnings into the next evaluation cycle.
 
 ---
 

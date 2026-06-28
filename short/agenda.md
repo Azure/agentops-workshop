@@ -14,7 +14,7 @@ nav_order: 1
 Other options:
 
 1. **AgentOps for Production-Ready AI Agents on Microsoft Foundry**
-2. **Evaluate, Ship, Observe, Own: An AgentOps Model for AI Agents**
+2. **Evaluate, Ship, Observe, Operate: An AgentOps Model for AI Agents**
 3. **From Agent Demos to Reliable Operations: A Practical AgentOps Session**
 4. **Operationalizing AI Agents with Evaluation, Observability, and CI/CD Gates**
 
@@ -33,7 +33,7 @@ Attendees leave with a production-readiness checklist and a practical starting p
 | 0:00-0:02 | Opening and promise | Frame the shift from prototype success to production confidence. |
 | 0:02-0:06 | The production gap | Set urgency: prototypes are cheap, production needs proof. |
 | 0:06-0:10 | Complexity from prompts to agents | Show why agentic systems need stronger operating discipline. |
-| 0:10-0:15 | AgentOps operating model | Introduce the four pillars: Evaluate, Ship, Observe, Own. |
+| 0:10-0:15 | AgentOps operating model | Introduce the four pillars: Evaluate, Ship, Observe, Operate. |
 | 0:15-0:19 | Maturity model | Quick self-assessment for the audience. |
 | 0:19-0:24 | Foundry as control plane | Clarify roles across Foundry, Azure Monitor, repo, and CI/CD. |
 | 0:24-0:28 | Production readiness checklist | Make the release evidence contract concrete. |

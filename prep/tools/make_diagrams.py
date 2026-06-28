@@ -242,12 +242,12 @@ def operating_loop():
 
 
 # ---------------------------------------------------------------------------
-# Diagram: four-pillar operating model (Evaluate -> Ship -> Observe -> Own)
+# Diagram: four-pillar operating model (Evaluate -> Ship -> Observe -> Operate)
 # ---------------------------------------------------------------------------
 def four_pillars():
     fig, ax = new_canvas()
     add_title(ax, "AgentOps operating model: four pillars")
-    add_subtitle(ax, "Evaluate, ship, observe, and own production agents. Foundry stays the control plane.")
+    add_subtitle(ax, "Evaluate, ship, observe, and operate production agents. Foundry stays the control plane.")
 
     pillars = [
         ("Evaluate", BLUE,
@@ -256,7 +256,7 @@ def four_pillars():
          ["gates", "approvals", "release evidence", "canary"]),
         ("Observe", GREEN,
          ["traces", "metrics", "feedback", "correlation"]),
-        ("Own", ORANGE,
+        ("Operate", ORANGE,
          ["diagnose", "runbooks", "improve", "model lifecycle"]),
     ]
 
@@ -296,7 +296,7 @@ def four_pillars():
                                     color=GRAY, lw=2.0)
             ax.add_patch(arrow)
 
-    # Feedback connector: Own loops back to Evaluate (dashed, flat, below cards)
+    # Feedback connector: Operate loops back to Evaluate (dashed, flat, below cards)
     lx1 = x0 + (n - 1) * (box_w + gap) + box_w / 2
     lx2 = x0 + box_w / 2
     feedback = FancyArrowPatch((lx1, card_y - 1), (lx2, card_y - 1),
