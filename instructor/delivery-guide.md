@@ -10,7 +10,7 @@ nav_order: 4
 
 The workshop should feel like a production-readiness engagement, not a product tour. The instructor should repeatedly connect concepts back to the AgentOps four-pillar operating model:
 
-**Evaluate -> Ship -> Observe -> Own**
+**Evaluate -> Ship -> Observe -> Operate**
 
 ## Recommended delivery style
 

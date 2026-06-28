@@ -92,7 +92,7 @@ DEMO_VIDEO_BY_SLIDE = {
     14: DEMO_DIR / "part1-evaluate.mp4",
     17: DEMO_DIR / "part2-ship.mp4",
     21: DEMO_DIR / "part3-observe.mp4",
-    26: DEMO_DIR / "part4-own.mp4",
+    26: DEMO_DIR / "part4-operate.mp4",
 }
 
 # Inter-turn pause for merged super-turns (matches render_speech.py).
