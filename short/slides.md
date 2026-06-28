@@ -64,13 +64,13 @@ style: |
 2. **Evaluate** - quality, grounding, behavior, and red teaming
 3. **Ship** - gates, evidence, approvals, and environment promotion
 4. **Observe** - traces, correlation, telemetry, and feedback
-5. **Own** - incident response, model lifecycle, cost, and capacity
+5. **Operate** - incident response, model lifecycle, cost, and capacity
 6. **Your Next Steps** - from where you are today to the next level of maturity
 
 <!-- Speaker notes:
 - We have six content blocks plus demos after each pillar - here is how we have structured the story
 - We start with Foundations - why agents need a new operating discipline, the four-pillar model, and where teams sit today
-- Then the four pillars: evaluate, ship, observe, own - each followed by a live demo showing that pillar in action
+- Then the four pillars: evaluate, ship, observe, operate - each followed by a live demo showing that pillar in action
 - We close with your next steps to maturity
 - Let us start with Foundations
 -->
@@ -91,7 +91,7 @@ style: |
 
 <!-- Speaker notes:
 - Teams can stand up a GenAI prototype in days - but getting to production is a different story. That gap is what we call the production gap
-- Production introduces new operational risk: quality, safety, monitoring, cost, ownership, and release confidence
+- Production introduces new operational risk: quality, safety, monitoring, cost, operations, and release confidence
 - Agents add non-determinism, tool-calling risk, prompt regression, and changing user behavior
 - So what exactly are we managing? The next slide breaks open the components that make an agent a production concern
 -->
@@ -154,9 +154,9 @@ style: |
 ---
 
 # AgentOps operating model
-> Four pillars - Evaluate, ship, observe, and own production agents
+> Four pillars - Evaluate, ship, observe, and operate production agents
 
-![Four AgentOps pillars: Evaluate, Ship, Observe, Own, with example practices under each pillar](images/agentops-four-pillars.png)
+![Four AgentOps pillars: Evaluate, Ship, Observe, Operate, with example practices under each pillar](images/agentops-four-pillars.png)
 
 <!-- Speaker notes:
 - The checklist tells us what evidence we need. The operating model tells us how to apply it across the agent lifecycle
@@ -165,7 +165,7 @@ style: |
 - Evaluate pre-production behavior using golden datasets, rubrics, red teaming, and thresholds
 - Ship with CI/CD gates, release evidence, human approvals, environment promotion, and canary
 - Observe production behavior through traces, metrics, logs, content safety signals, feedback, cost, and latency
-- Own the workload through diagnosis, incident response, runbooks, model lifecycle, cost management, capacity management, and continuous improvement
+- Operate the workload through diagnosis, incident response, runbooks, model lifecycle, cost management, capacity management, and continuous improvement
 - The output is release evidence and operational confidence
 - Now that we know the model, the question is: where does your team sit today?
 -->
@@ -339,7 +339,7 @@ style: |
 - Eval score drop -> pause canary, open ticket
 - Cost anomaly -> throttle via APIM, notify FinOps
 - Positive feedback -> sample into eval dataset
-- This is how Observe feeds Own, and how Own feeds the next Evaluate and Ship cycle
+- This is how Observe feeds Operate, and how Operate feeds the next Evaluate and Ship cycle
 -->
 
 ---
@@ -359,7 +359,7 @@ style: |
 
 <!-- _class: lead -->
 
-# Own
+# Operate
 ## Running agents in production
 
 ---
@@ -370,7 +370,7 @@ style: |
 ![Day-2 quadrant: Reliability + SLOs, Incident response, Model lifecycle, Cost + capacity](images/day2-quadrant.png)
 
 <!-- Speaker notes:
-- This is the Own pillar. Shipping is not the finish line, it is where the real operational work begins. Day-2 has four concerns teams need to own
+- This is the Operate pillar. Shipping is not the finish line, it is where the real operational work begins. Day-2 has four concerns teams need to manage
 - Reliability and SLOs: availability, latency, error rate budgets; tool dependency failure modes; graceful degradation
 - Incident response: runbooks per severity; on-call rotation that knows the agent; postmortems with model plus prompt context
 - Model lifecycle: canary rollout for upgrades; prompt and tool versioned alongside model; rollback drills
@@ -399,7 +399,7 @@ Triage flow:
 - When something goes wrong in production, you need a structured response - not a fire drill. The runbook turns chaos into a sequence
 - The severity table sets expectations so teams do not over-react or under-react
 - The triage flow makes containment explicit - stop the bleed before debugging
-- The runbook is part of Own because it turns production signals into containment, evidence-backed fixes, and future evaluation coverage
+- The runbook is part of Operate because it turns production signals into containment, evidence-backed fixes, and future evaluation coverage
 - Every closed incident produces evidence that updates the eval dataset, the gate criteria, or the operating model
 - The other recurring Day-2 challenge is model lifecycle - let us look at that next
 -->
@@ -417,7 +417,7 @@ Triage flow:
 - Triggers: deprecation, new model availability, cost or performance pressure, vendor change
 - Canary process: pin current model as baseline; run new model against eval dataset offline; promote to canary traffic slice; compare live quality, cost, latency, safety; roll forward or roll back with evidence
 - Ownership: AI platform team coordinates, application team validates
-- Model lifecycle is part of Own because every model, prompt, or tool change becomes a new release candidate that must go back through Evaluate and Ship
+- Model lifecycle is part of Operate because every model, prompt, or tool change becomes a new release candidate that must go back through Evaluate and Ship
 - Canary upgrades map cleanly to model changes if the eval dataset and release contract are already in place
 - We have covered the full loop - now the question is: where do you start?
 -->
@@ -426,10 +426,10 @@ Triage flow:
 
 <!-- _class: lead -->
 
-# Own
+# Operate
 ## Demo - Paulo Lacerda, Senior Cloud Solution Architect, Microsoft
 
-<video src="videos/part4-own.mp4" controls width="80%"></video>
+<video src="videos/part4-operate.mp4" controls width="80%"></video>
 
 <!-- Speaker notes:
 - Live demo showing Day-2 operations: incident triage from trace, model canary comparison, and production learnings feeding back into the eval dataset
@@ -451,7 +451,7 @@ Triage flow:
 2. **Evaluate** it with release criteria and a small eval dataset
 3. **Ship** it with PR gates, deploy gates, and readiness evidence
 4. **Observe** it with telemetry, traces, dashboards, and alerts
-5. **Own** it with weekly evidence reviews and production learnings
+5. **Operate** it with weekly evidence reviews and production learnings
 6. **Feed learnings** back into the next evaluation cycle
 7. **Revisit the maturity model** - set your goal to reach the next level within 90 days
 

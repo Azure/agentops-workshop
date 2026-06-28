@@ -41,8 +41,8 @@ Dual-voice narration for the AgentOps deck. Two speakers with an even split acro
 | Demo - Ship | 17 | SP1 | 5:00 | 31:43 |
 | Observe | 18-20 | SP1 | 3:50 (estimate) | 35:33 |
 | Demo - Observe | 21 | SP1 | 5:00 | 40:33 |
-| Own | 22-25 | SP1 | 5:36 (estimate) | 46:09 |
-| Demo - Own | 26 | SP1 | 5:00 | 51:09 |
+| Operate | 22-25 | SP1 | 5:36 (estimate) | 46:09 |
+| Demo - Operate | 26 | SP1 | 5:00 | 51:09 |
 | Your Next Steps | 27-28 | SP2 | 2:17 (estimate) | 53:26 |
 | Thank You | 29 | SP2 | 0:22 (estimate) | 53:48 |
 | Resources | 30 | SP2 | 0:20 (estimate) | 54:08 |
@@ -87,7 +87,7 @@ Ship - the gates, approvals, and evidence that turn that signal into a release d
 
 Observe - once the agent is live, how we see what it's doing through traces, metrics, and feedback.
 
-Own - running the agent over time, incident response and model lifecycle. 
+Operate - running the agent over time, incident response and model lifecycle. 
 
 And we'll close on Adoption and your next steps - how to start, on Monday morning, with one agent.
 
@@ -220,7 +220,7 @@ Every section that follows fills out one or more items on this checklist.
 
 The question is: how do we produce that evidence repeatably, every release, without heroics?
 
-That's what the operating model gives us. Four pillars. Evaluate, ship, observe, own.
+That's what the operating model gives us. Four pillars. Evaluate, ship, observe, operate.
 
 Everything we talk about lives inside one of these four pillars.
 
@@ -230,7 +230,7 @@ Second: *ship.* The evaluation result becomes a gate in CI/CD. If quality drops 
 
 Third: *observe.* Once in production, we need traces. The full chain: prompt, plan, model call, tool call, retrieval, safety event, latency, cost, user feedback. We use Foundry observability and Application Insights together, correlated so the same trace question answers across release, runtime, and evaluation.
 
-Fourth: *own.* This is where we operate the agent over time. Diagnose root cause from traces and evaluators on production samples. Run the incident runbook. Manage model lifecycle, cost, and capacity. And improve - reviewed traces from production become new rows in the eval dataset, so the next evaluation, tests against everything we've learned.
+Fourth: *operate.* This is where we operate the agent over time. Diagnose root cause from traces and evaluators on production samples. Run the incident runbook. Manage model lifecycle, cost, and capacity. And improve - reviewed traces from production become new rows in the eval dataset, so the next evaluation, tests against everything we've learned.
 
 People, process, platform are key to this success. 
 
@@ -528,7 +528,7 @@ Positive feedback - a user gave a thumbs-up on a tricky question. That trace get
 
 Every signal triggers a concrete operational response. Every response feeds back into the eval set, the gates, or the runbook.
 
-*This is how Observe feeds Own, and how Own feeds the next Evaluate and Ship cycle.* The closed loop.
+*This is how Observe feeds Operate, and how Operate feeds the next Evaluate and Ship cycle.* The closed loop.
 
 That's how we keep getting better, release after release.
 
@@ -542,11 +542,11 @@ I'll show the trace waterfall, correlated spans across model calls and tool call
 
 ---
 
-## Slide 22 - Section: Own
+## Slide 22 - Section: Operate
 
 **SP1:** The model runs every day after launch.
 
-This is the Own pillar - Day-2 operations. Running agents in production.
+This is the Operate pillar - Day-2 operations. Running agents in production.
 
 Where most of the actual work lives, long after the launch demo.
 
@@ -634,7 +634,7 @@ If you have the eval dataset and release contract from earlier slides, model lif
 
 ---
 
-## Slide 26 - Demo - Own
+## Slide 26 - Demo - Operate
 
 **SP1:** For this last demo, I'll show incident triage from a production trace, a model canary comparison side by side, and how production learnings feed back into the eval dataset to close the loop.
 
@@ -642,7 +642,7 @@ If you have the eval dataset and release contract from earlier slides, model lif
 
 ## Slide 27 - Section: Your Next Steps
 
-**SP2:** We've covered foundations and the four pillars - evaluate, ship, observe, own. That's the operating model.
+**SP2:** We've covered foundations and the four pillars - evaluate, ship, observe, operate. That's the operating model.
 
 Now the question we get most often: where do I start?
 
@@ -665,7 +665,7 @@ Step three - ship it. Add PR and deploy gates and a readiness evidence pack. The
 
 Step four - observe it. Wire telemetry, traces, dashboards, and alerts. Application Insights connected. OpenTelemetry spans flowing. At least one dashboard, at least one alert for the worst-case failure mode. Doesn't have to be perfect. Has to exist.
 
-Step five - own it. Review readiness evidence weekly. A thirty-minute meeting. Walk through eval reports, safety findings, incidents, what's going into the dataset. The rhythm is what makes it stick.
+Step five - operate it. Review readiness evidence weekly. A thirty-minute meeting. Walk through eval reports, safety findings, incidents, what's going into the dataset. The rhythm is what makes it stick.
 
 Step six - feed production learnings back into the next evaluation cycle. Reviewed traces become eval rows. Postmortem findings become regression tests. Red team findings become adversarial coverage. The dataset grows. The next gate is stronger.
 
@@ -675,7 +675,7 @@ Thirty days. One agent. Four pillars.
 
 *You'll have moved your one agent from "it works in testing" to "we can operate it safely."* 
 
-You'll own the improvement cycle.
+You'll run the improvement cycle.
 
 You'll have the pattern. The pattern that scales across your portfolio without re-inventing every decision.
 

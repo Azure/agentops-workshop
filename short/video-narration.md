@@ -74,11 +74,11 @@
 
 > And that is the heart of Observe: every conversation becomes a trace, every eval score becomes telemetry, and the interesting traces feed straight back into my eval dataset. Production is not a black box, it is the next iteration of my gate. The next challenge is what happens when something does break - and how I prove the release is still safe to ship.
 
-## Part 4 — Own (3:14)
+## Part 4 — Operate (3:14)
 
 ### Intro (card)
 
-> Shipping is the easy part. Owning it is where the real work begins. Now I move into day-two operations: catching regressions before they reach users, and proving release readiness with evidence, not opinions. Let me show you both flavors of blocked.
+> Shipping is the easy part. Operating it is where the real work begins. Now I move into day-two operations: catching regressions before they reach users, and proving release readiness with evidence, not opinions. Let me show you both flavors of blocked.
 
 ### Regression caught at PR time
 
@@ -98,4 +98,4 @@
 
 ### End card
 
-> And that is the AgentOps story end to end: I evaluate before I ship, I ship through gates that run on every pull request, I observe what real traffic actually does, and I own the agent the way I own any production service - with regressions caught at PR time and a release reviewer who sees evidence, not opinions. Every loop closes back into the next gate. The bar moves up, never down.
+> And that is the AgentOps story end to end: I evaluate before I ship, I ship through gates that run on every pull request, I observe what real traffic actually does, and I operate the agent the way I operate any production service - with regressions caught at PR time and a release reviewer who sees evidence, not opinions. Every loop closes back into the next gate. The bar moves up, never down.

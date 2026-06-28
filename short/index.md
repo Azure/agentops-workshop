@@ -73,4 +73,4 @@ The short session must explore observability clearly. It should not reduce obser
 
 ## Reusing the material
 
-The deck and video are intended to be delivered as-is, lightly customised, or remixed into your own session. If you change content, please keep the four-pillar operating model (Evaluate -> Ship -> Observe -> Own) intact, since the rest of the narrative depends on it.
+The deck and video are intended to be delivered as-is, lightly customised, or remixed into your own session. If you change content, please keep the four-pillar operating model (Evaluate -> Ship -> Observe -> Operate) intact, since the rest of the narrative depends on it.
