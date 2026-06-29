@@ -2,6 +2,59 @@
 
 ## Unreleased
 
+## v0.4.0 - 2026-06-29
+
+This release turns the full-day AgentOps Value Delivery (VBD) track from a planning-only skeleton into a deliverable workshop: a six-section Marp deck, six hands-on labs plus a capstone, ten cross-lab artefact templates, five new diagrams, and the customer-facing VBD packaging (datasheet, prerequisites, instructor guide). The whole track teaches the four-pillar AgentOps model - Evaluate, Ship, Observe, Operate - and uses the AgentOps Accelerator (`Azure/agentops`) as the concrete implementation path.
+
+### Highlights
+
+- **Full-day VBD workshop is now deliverable.** A facilitator can open `long/slides.pptx`, follow `long/instructor-guide.md`, and run six labs plus a capstone end to end.
+- **Hands-on labs that build a real release-readiness package.** Each lab produces at least one artefact, and the capstone composes them into a single production-readiness narrative for one of the customer's own agents.
+- **Observability is the deepest lab.** Lab 4 defines the seven correlation keys (agent version, eval run, release/deployment ID, trace ID, safety findings, owner) and the trace-to-evaluation feedback loop described in `long/observability-strategy.md`.
+- **Ten downloadable artefact templates.** One markdown template per artefact in `long/lab-roadmap.md`, carrying a consistent identity block so the thread survives across labs.
+- **Customer-facing VBD packaging.** New datasheet, prerequisites checklist, and instructor/field-engagement guide so the engagement can be scheduled.
+- **No "Under construction".** The long track landing pages, root home page, and README now show the VBD track as ready to deliver.
+
+### Content - Long workshop deck (Paulo Lacerda)
+
+- Add `long/slides.md`, a Marp deck covering the six AgentOps sections (Foundations, ADLC, Evaluation, CI/CD, Observability, Day-2) expanded to a full day, with `<!-- Speaker notes: ... -->` on every content slide and lead-class dividers per pillar and per lab bridge.
+
+### Content - Hands-on labs and capstone (Paulo Lacerda)
+
+- Add full instructor-quality lab pages: `long/labs/lab-01-foundations`, `lab-02-evaluation`, `lab-03-release-gates`, `lab-04-observability`, `lab-05-safety-governance`, `lab-06-continuous-improvement`, and `labs/capstone`. Each has objective, prerequisites, step-by-step instructions, the artefact it produces, observability metadata to capture, time budget, facilitator tips, and discussion prompts, and uses the AgentOps Accelerator CLI as the implementation path.
+
+### Content - Cross-lab artefact templates (Paulo Lacerda)
+
+- Add ten templates under `long/labs/templates/` (agent target inventory, release-readiness contract, evaluation dataset plan, baseline and threshold plan, CI/CD gate plan, readiness evidence package, observability correlation model, dashboard and alert plan, safety and red-team follow-through plan, incident and improvement plan) plus a templates index.
+
+### Content - VBD packaging and landing pages (Paulo Lacerda)
+
+- Add `long/datasheet.md`, `long/prerequisites.md`, and `long/instructor-guide.md` (the field engagement guide).
+- Refresh `long/index.md` (remove "Under construction"), retime `long/agenda.md` to real lab durations, and update `long/labs/index.md` status to Ready.
+- Update the root `index.md` and `README.md` so the VBD track reads as ready to deliver.
+- Record the four-pillar lock and long-track implementation note in `prep/references/content-decisions.md`.
+
+### Diagrams
+
+- Add five long-track diagrams to `long/images/`: full-day flow, lab dependency graph, release-evidence package, observability correlation model, and governance RACI map. (Paulo Lacerda)
+
+### Tooling - make_diagrams.py (Paulo Lacerda)
+
+- Extend `prep/tools/make_diagrams.py` with a `long` target, a `save_long()` helper, an arrow helper, and five diagram functions that render the long-track images into `long/images/`.
+
+### Artefacts
+
+- Generate `long/slides.pptx` from `long/slides.md` via `prep/tools/marp_to_pptx.py`.
+
+### Follow-up
+
+- The branded `template.pptx` is gitignored and unavailable in this environment, so `long/slides.pptx` was built with the converter's blank-presentation fallback. Re-export with the branded template when mirroring upstream.
+- Mirror the final deck into upstream `tbhamidipati/prod-readiness-workshop:presentations/04-agentops/` (separate private repo).
+- Publish the `v0.4.0` git tag and GitHub Release with notes mirroring this entry plus a `**Contributors**` line.
+- Optional narrated VBD intro video (`long/agentops-vbd-intro.mp4`) once the deck is stable.
+- `.github/copilot-instructions.md` still references the older six-step loop in two places; the four-pillar model is the locked convention (see `prep/references/content-decisions.md`).
+
+
 ## v0.3.0 - 2026-06-29
 
 This update brings the short workshop deck up to date with the latest speaker-flow, demo, Build 2026, and slide-generation changes while tightening release-rollout language for AgentOps delivery.

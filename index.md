@@ -11,7 +11,7 @@ This site is for **instructors** preparing to deliver the AgentOps workshop. It 
 Two tracks are available:
 
 - **AgentOps Briefing** (~1 hour) - ready to deliver.
-- **AgentOps Value Delivery Workshop** (~8 hours, Value-Based Delivery) - under construction.
+- **AgentOps Value Delivery Workshop** (~8 hours, Value-Based Delivery) - ready to deliver.
 
 ---
 
@@ -76,7 +76,7 @@ Two tracks are available:
 
 ## AgentOps Value Delivery Workshop
 
-The full-day (~8 hours) workshop is the Value-Based Delivery (VBD) track. It is still being designed, and the planning pages are visible so you can see where it is heading, but the labs are placeholders.
+The full-day (~8 hours) workshop is the Value-Based Delivery (VBD) track. It expands the four-pillar model into six hands-on labs plus a capstone, so a customer takes one of their own Foundry agents from prototype to production and leaves with a filled-in release-readiness package and a 30-day plan.
 
 [See the VBD workshop plan]({{ '/long/' | relative_url }}){: .btn }
 

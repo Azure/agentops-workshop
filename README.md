@@ -16,7 +16,7 @@ This README is for **authors and builders** working on the workshop content itse
 | Track | Status | Source |
 |---|---|---|
 | AgentOps Briefing (~1 hour) | Ready to deliver | [`short/`](short/index.md) |
-| AgentOps Value Delivery Workshop - Value-Based Delivery (VBD) (~8 hours) | Planning skeleton - under construction | [`long/`](long/index.md) |
+| AgentOps Value Delivery Workshop - Value-Based Delivery (VBD) (~8 hours) | Ready to deliver | [`long/`](long/index.md) |
 
 ## Repository layout
 
