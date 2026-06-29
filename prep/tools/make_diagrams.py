@@ -839,9 +839,295 @@ def model_lifecycle():
     save(fig, "model-lifecycle-upgrade-process.png")
 
 
+# ===========================================================================
+# Long-track (full-day VBD workshop) diagrams.
+#
+# These render with the same aesthetic but save into long/images/ instead of
+# short/images/. They cover the full-day flow, lab dependency graph, release
+# evidence package, observability correlation model, and governance / RACI map.
+# ===========================================================================
+LONG_OUT_DIR = REPO_ROOT / "long" / "images"
+LONG_OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def save_long(fig, name):
+    path = LONG_OUT_DIR / name
+    fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor=WHITE,
+                edgecolor="none", pad_inches=0.3)
+    plt.close(fig)
+    print(f"  saved: {path}  ({path.stat().st_size:,} bytes)")
+
+
+def _arrow(ax, x1, y1, x2, y2, color=GRAY, lw=1.4, style="-|>", alpha=0.9,
+           dashed=False):
+    ax.add_patch(FancyArrowPatch(
+        (x1, y1), (x2, y2), arrowstyle=style, mutation_scale=12,
+        linewidth=lw, color=color, alpha=alpha,
+        linestyle="--" if dashed else "-",
+        shrinkA=0, shrinkB=0))
+
+
+def full_day_flow():
+    """Horizontal timeline: kickoff -> six labs -> capstone -> closeout."""
+    fig, ax = new_canvas()
+    add_title(ax, "Full-day flow: kickoff, six labs, capstone")
+    steps = [
+        ("Kickoff", NAVY, "0:30"),
+        ("Lab 1\nFoundations", BLUE, "60m"),
+        ("Lab 2\nEvaluation", TEAL, "75m"),
+        ("Lab 3\nRelease gates", GREEN, "60m"),
+        ("Lab 4\nObservability", ORANGE, "90m"),
+        ("Lab 5\nSafety + gov", PURPLE, "45m"),
+        ("Lab 6\nImprovement", GOLD, "35m"),
+        ("Capstone\nreview", NAVY, "30m"),
+    ]
+    n = len(steps)
+    base_x = 3
+    span = 100 - 2 * base_x
+    step_x = span / n
+    box_w = step_x * 0.82
+    box_h = 9
+    y = 24
+    centers = []
+    for i, (label, color, dur) in enumerate(steps):
+        x = base_x + i * step_x + (step_x - box_w) / 2
+        rounded_box(ax, x, y, box_w, box_h, color, label, text_size=10.5)
+        cx = x + box_w / 2
+        centers.append(cx)
+        ax.text(cx, y - 2, dur, ha="center", va="top", color=GRAY,
+                fontsize=9, fontfamily=BODY_FONT)
+        if i > 0:
+            _arrow(ax, centers[i - 1] + box_w / 2, y + box_h / 2,
+                   x, y + box_h / 2, color=GRAY, lw=1.2)
+    # Pillar band under the labs
+    ax.text(50, 14, "Evaluate  ->  Ship  ->  Observe  ->  Operate",
+            ha="center", va="center", color=NAVY, fontsize=13,
+            fontfamily=HEADING_FONT, fontweight="bold")
+    ax.text(50, 9, "Each lab produces one release-readiness artefact; the capstone composes them.",
+            ha="center", va="center", color=GRAY, fontsize=10.5,
+            fontfamily=BODY_FONT, style="italic")
+    save_long(fig, "full-day-flow.png")
+
+
+def lab_dependency_graph():
+    """Artefact flow from Lab 1 through the capstone."""
+    fig, ax = new_canvas()
+    add_title(ax, "Lab dependency graph")
+    # Lab 1 on the left feeds everything; labs 2-6 chain; all feed capstone.
+    lab1 = (5, 20, 16, 7)
+    rounded_box(ax, *lab1, BLUE, "Lab 1\nTarget +\ncontract", text_size=10)
+    chain = [
+        ("Lab 2\nEval +\nbaseline", TEAL),
+        ("Lab 3\nGates +\nevidence", GREEN),
+        ("Lab 4\nObservability\nmodel", ORANGE),
+        ("Lab 5\nSafety +\ngovernance", PURPLE),
+        ("Lab 6\nIncident +\nimprove", GOLD),
+    ]
+    cx0 = 26
+    cw, ch = 12, 9
+    gap = 2.4
+    y_chain = 28
+    centers = []
+    for i, (label, color) in enumerate(chain):
+        x = cx0 + i * (cw + gap)
+        rounded_box(ax, x, y_chain, cw, ch, color, label, text_size=9.5)
+        centers.append((x, x + cw))
+        if i == 0:
+            _arrow(ax, lab1[0] + lab1[2], lab1[1] + lab1[3] / 2,
+                   x, y_chain + ch / 2)
+        else:
+            px = centers[i - 1][1]
+            _arrow(ax, px, y_chain + ch / 2, x, y_chain + ch / 2)
+    # Capstone box bottom-centre, fed by all
+    cap = (34, 6, 32, 8)
+    rounded_box(ax, *cap, NAVY, "Capstone: release-readiness review", text_size=10)
+    cap_cx = cap[0] + cap[2] / 2
+    for (x0, x1) in centers:
+        cx = (x0 + x1) / 2
+        _arrow(ax, cx, y_chain, cap_cx, cap[1] + cap[3], color=GRAY,
+               lw=1.0, alpha=0.5, dashed=True)
+    _arrow(ax, lab1[0] + lab1[2] / 2, lab1[1], cap[0], cap[1] + cap[3] / 2,
+           color=GRAY, lw=1.0, alpha=0.5, dashed=True)
+    ax.text(50, 3.2, "Observability metadata (agent version, eval run, release id, trace id, owner) threads through every lab",
+            ha="center", va="center", color=GRAY, fontsize=9.5,
+            fontfamily=BODY_FONT, style="italic")
+    save_long(fig, "lab-dependency-graph.png")
+
+
+def release_evidence_package():
+    """Eight evidence sections composing into one reviewable package."""
+    fig, ax = new_canvas()
+    add_title(ax, "Release-evidence package")
+    sections = [
+        ("Target +\nversion", BLUE),
+        ("Evaluation\nevidence", TEAL),
+        ("Gate\nresult", GREEN),
+        ("Observability\nlinks", ORANGE),
+        ("Safety +\nred team", PURPLE),
+        ("Known\nrisks", GOLD),
+        ("Owner +\nescalation", NAVY),
+        ("Next eval\nimprovements", BLUE),
+    ]
+    # Two rows of four chips on the left feeding a package box on the right.
+    chip_w, chip_h = 15, 7
+    x0 = 4
+    y_top = 32
+    col_gap = 1.6
+    row_gap = 2.0
+    for idx, (label, color) in enumerate(sections):
+        r = idx // 4
+        c = idx % 4
+        x = x0 + c * (chip_w + col_gap)
+        y = y_top - r * (chip_h + row_gap)
+        outline = FancyBboxPatch(
+            (x, y), chip_w, chip_h,
+            boxstyle="round,pad=0.0,rounding_size=0.6",
+            linewidth=1.6, facecolor=WHITE, edgecolor=color)
+        ax.add_patch(outline)
+        ax.text(x + chip_w / 2, y + chip_h / 2, label, ha="center",
+                va="center", color=TEXT_DK, fontsize=10,
+                fontfamily=BODY_FONT)
+    # Package box
+    pkg = (74, 12, 22, 22)
+    rounded_box(ax, *pkg, NAVY, "Readiness\nevidence\npackage", text_size=13)
+    chips_right = x0 + 4 * (chip_w + col_gap) - col_gap
+    _arrow(ax, chips_right, 24, pkg[0], pkg[1] + pkg[3] / 2, color=GRAY, lw=1.6)
+    ax.text(85, 8, "Reviewed at the qa -> prod gated approval",
+            ha="center", va="center", color=GRAY, fontsize=9.5,
+            fontfamily=BODY_FONT, style="italic")
+    save_long(fig, "release-evidence-package.png")
+
+
+def observability_correlation_model():
+    """Trace spans on the left correlated by keys on the right."""
+    fig, ax = new_canvas()
+    add_title(ax, "Observability correlation model")
+    spans = [
+        ("User request", BLUE),
+        ("Agent plan", TEAL),
+        ("Model call(s)", GREEN),
+        ("Retrieval", ORANGE),
+        ("Tool call(s)", PURPLE),
+        ("Safety event", GOLD),
+        ("Response + feedback", NAVY),
+    ]
+    sw, sh = 26, 4.2
+    sx = 5
+    sy0 = 36
+    sgap = 1.0
+    ax.text(sx + sw / 2, sy0 + sh + 2.5, "Trace spans", ha="center",
+            va="bottom", color=NAVY, fontsize=12, fontfamily=HEADING_FONT,
+            fontweight="bold")
+    span_mid_ys = []
+    for i, (label, color) in enumerate(spans):
+        y = sy0 - i * (sh + sgap)
+        rounded_box(ax, sx, y, sw, sh, color, label, text_size=10.5)
+        span_mid_ys.append(y + sh / 2)
+    # Correlation keys column
+    keys = [
+        "trace_id", "session_id", "agent_version", "deployment_id",
+        "eval_run_id", "release_id", "owner",
+    ]
+    kx, kw, kh = 66, 30, 3.6
+    ky0 = 35
+    kgap = 1.2
+    ax.text(kx + kw / 2, ky0 + kh + 2.5, "Correlation keys", ha="center",
+            va="bottom", color=NAVY, fontsize=12, fontfamily=HEADING_FONT,
+            fontweight="bold")
+    for i, key in enumerate(keys):
+        y = ky0 - i * (kh + kgap)
+        outline = FancyBboxPatch(
+            (kx, y), kw, kh, boxstyle="round,pad=0.0,rounding_size=0.5",
+            linewidth=1.5, facecolor=LIGHT, edgecolor=NAVY)
+        ax.add_patch(outline)
+        ax.text(kx + kw / 2, y + kh / 2, key, ha="center", va="center",
+                color=TEXT_DK, fontsize=10.5, fontfamily=BODY_FONT)
+    # Linking arrows: every span carries every key (draw a few representative)
+    for my in span_mid_ys:
+        _arrow(ax, sx + sw, my, kx, ky0 + kh / 2, color=GRAY, lw=0.7,
+               alpha=0.25, style="-")
+    ax.text(50, 4, "Every span carries every correlation key, so one trace ties to its version, eval, release, and owner",
+            ha="center", va="center", color=GRAY, fontsize=9.5,
+            fontfamily=BODY_FONT, style="italic")
+    save_long(fig, "observability-correlation-model.png")
+
+
+def governance_raci_map():
+    """RACI grid: activities x roles."""
+    fig, ax = new_canvas()
+    add_title(ax, "Governance / RACI map")
+    activities = [
+        "Evaluation sign-off",
+        "Release approval",
+        "Safety / red-team review",
+        "Incident response",
+        "Cost ownership",
+    ]
+    roles = ["Builder", "Platform / DevOps", "Governance", "Decision maker"]
+    # Sample RACI assignment (illustrative defaults shown in the deck).
+    raci = [
+        ["R", "C", "C", "A"],
+        ["C", "R", "C", "A"],
+        ["C", "C", "R/A", "I"],
+        ["R", "R", "C", "A"],
+        ["C", "R", "I", "A"],
+    ]
+    colors = {"R": GREEN, "A": ORANGE, "C": BLUE, "I": GRAY, "R/A": PURPLE}
+    label_w = 26
+    grid_x0 = 4 + label_w
+    grid_w = 96 - grid_x0
+    col_w = grid_w / len(roles)
+    row_h = 5.2
+    y_top = 31
+    header_y = 38
+    # Role headers
+    for j, role in enumerate(roles):
+        x = grid_x0 + j * col_w
+        ax.text(x + col_w / 2, header_y, role, ha="center", va="center",
+                color=NAVY, fontsize=10, fontfamily=HEADING_FONT,
+                fontweight="bold")
+    for i, act in enumerate(activities):
+        y = y_top - i * row_h
+        ax.text(4, y + row_h / 2 - 0.5, act, ha="left", va="center",
+                color=TEXT_DK, fontsize=10, fontfamily=BODY_FONT)
+        for j in range(len(roles)):
+            x = grid_x0 + j * col_w
+            val = raci[i][j]
+            cell = FancyBboxPatch(
+                (x + 0.6, y + 0.4), col_w - 1.2, row_h - 1.0,
+                boxstyle="round,pad=0.0,rounding_size=0.4",
+                linewidth=0, facecolor=colors.get(val, GRAY))
+            ax.add_patch(cell)
+            ax.text(x + col_w / 2, y + row_h / 2 - 0.3, val, ha="center",
+                    va="center", color=WHITE, fontsize=11,
+                    fontfamily=HEADING_FONT, fontweight="bold")
+    # Legend
+    legend = [("R", "Responsible"), ("A", "Accountable"),
+              ("C", "Consulted"), ("I", "Informed")]
+    lx = 4
+    for k, (code, name) in enumerate(legend):
+        x = lx + k * 22
+        sw = 3
+        cell = FancyBboxPatch((x, 3), sw, 3,
+                              boxstyle="round,pad=0.0,rounding_size=0.4",
+                              linewidth=0, facecolor=colors[code])
+        ax.add_patch(cell)
+        ax.text(x + sw + 1, 4.5, f"{code} = {name}", ha="left", va="center",
+                color=TEXT_DK, fontsize=9.5, fontfamily=BODY_FONT)
+    save_long(fig, "governance-raci-map.png")
+
+
 # ---------------------------------------------------------------------------
 # Registry
 # ---------------------------------------------------------------------------
+LONG_DIAGRAMS = {
+    "full-day-flow": full_day_flow,
+    "lab-dependency-graph": lab_dependency_graph,
+    "release-evidence-package": release_evidence_package,
+    "observability-correlation-model": observability_correlation_model,
+    "governance-raci-map": governance_raci_map,
+}
+
 DIAGRAMS = {
     "complexity-ladder": complexity_ladder,
     "operating-loop": operating_loop,
@@ -868,7 +1154,13 @@ def main():
     targets = args or ["all"]
     if "all" in targets:
         targets = list(DIAGRAMS.keys())
+    if "long" in targets:
+        targets = [t for t in targets if t != "long"] + list(LONG_DIAGRAMS.keys())
     for t in targets:
+        if t in LONG_DIAGRAMS:
+            print(f"rendering (long): {t}")
+            LONG_DIAGRAMS[t]()
+            continue
         if t not in DIAGRAMS:
             print(f"unknown diagram: {t}")
             continue
