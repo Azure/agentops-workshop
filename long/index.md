@@ -7,39 +7,58 @@ has_children: true
 
 # AgentOps Value Delivery Workshop
 
-{: .important }
-> **Under construction.** The full-day (~8 hours) workshop is the Value-Based Delivery (VBD) track and is still being designed. The pages below are planning material, not deliverable content. If you need a session you can run today, see [AgentOps Briefing]({{ '/short/' | relative_url }}).
+This is the full-day (~8 hour) AgentOps Value Delivery (VBD) Workshop. Where the
+[AgentOps Briefing]({{ '/short/' | relative_url }}) answers *"what is AgentOps and why
+does it matter"*, this track answers *"how do I actually take one of my agents to
+production"*. Attendees leave with a 30-day plan plus a release-readiness package
+filled in for one of their own production-candidate agents.
 
-This track is the full-day AgentOps Value Delivery Workshop for VBD. The lab content is not implemented yet. This section defines the planned structure, learning outcomes, sequencing, and directory layout.
+The workshop teaches the four-pillar AgentOps operating model - **Evaluate -> Ship ->
+Observe -> Operate** - through a presentation deck and six hands-on labs plus a
+capstone. Microsoft Foundry stays the control plane; Azure Monitor and Application
+Insights are the runtime observability layer. Labs use the open-source
+[AgentOps Accelerator](https://github.com/Azure/agentops) as the concrete
+implementation path for evaluation, CI/CD gates, and observability signals.
 
-## Full-day outcome (planned)
+## Full-day outcome
 
-By the end of AgentOps Value Delivery Workshop, attendees should have a practical blueprint for operating one AI agent in production:
+By the end of the workshop, each attendee has, for one real agent:
 
-- Define an agent target and release-readiness contract.
-- Create an evaluation dataset and quality thresholds.
-- Add CI/CD release gates and readiness evidence.
-- Instrument observability for traces, telemetry, alerts, safety events, latency, and cost.
-- Connect production traces back to evaluation and continuous improvement.
-- Understand governance, red-team follow-through, and incident response patterns.
+- An agent target inventory and a release-readiness contract.
+- An evaluation dataset plan with metrics, thresholds, and a baseline comparison.
+- CI/CD release gates and a readiness evidence package.
+- Observability wired for traces, telemetry correlation, dashboards, and alerts.
+- A safety and red-team follow-through plan plus a governance and ownership map.
+- An incident-response and continuous-improvement loop that turns production traces
+  into future evaluation coverage.
+- A capstone production-readiness review that composes every artefact into a
+  go/no-go decision.
 
-## Planning pages
+## How the day is organized
 
 | Page | Purpose |
 |---|---|
-| [Agenda]({{ '/long/agenda' | relative_url }}) | Full-day time plan. |
-| [Lab roadmap]({{ '/long/lab-roadmap' | relative_url }}) | Lab sequence and learning objectives. |
-| [Observability strategy]({{ '/long/observability-strategy' | relative_url }}) | Cross-cutting observability plan for the full-day workshop. |
-| [Lab planning pages]({{ '/long/labs/' | relative_url }}) | Placeholder lab plans for future implementation. |
+| [Datasheet]({{ '/long/datasheet' | relative_url }}) | One-page customer-facing summary: outcomes, duration, level, prerequisites. |
+| [Prerequisites]({{ '/long/prerequisites' | relative_url }}) | What the customer needs in place before Day 1. |
+| [Agenda]({{ '/long/agenda' | relative_url }}) | Full-day time plan that matches the real lab timings. |
+| [Lab roadmap]({{ '/long/lab-roadmap' | relative_url }}) | Lab sequence, learning objectives, and the artefact each lab produces. |
+| [Observability strategy]({{ '/long/observability-strategy' | relative_url }}) | Cross-cutting observability thread that runs through every lab. |
+| [Labs]({{ '/long/labs/' | relative_url }}) | The six hands-on labs, the capstone, and the artefact templates. |
+| [Instructor guide]({{ '/long/instructor-guide' | relative_url }}) | Facilitator setup, timing, and lab-by-lab pitfalls. |
 
-## Observability treatment
+## The observability thread
 
-Observability is both a dedicated lab and a thread across the workshop. Every lab should preserve enough metadata to support release evidence and runtime diagnosis:
+Observability is both a dedicated lab (Lab 4) and a thread across the whole workshop.
+Every lab preserves the metadata needed for release evidence and runtime diagnosis:
 
-- Agent version
-- Dataset and eval run
-- Release or deployment ID
-- Trace ID
-- Safety findings
-- Owner and incident path
+- Agent version and deployment ID
+- Evaluation dataset and run ID
+- Release or gate decision ID
+- Trace ID convention
+- Safety and red-team findings
+- Owner and escalation path
 - Runtime telemetry links
+
+Lab 1 defines these identifiers, Lab 4 expands them into a correlation model, and the
+capstone consumes them. See the [observability strategy]({{ '/long/observability-strategy' | relative_url }})
+for the full thread.

@@ -2,7 +2,7 @@
 title: Observability Strategy
 layout: default
 parent: AgentOps VBD Workshop
-nav_order: 3
+nav_order: 5
 ---
 
 # Observability Strategy

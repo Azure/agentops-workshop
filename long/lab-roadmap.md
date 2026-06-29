@@ -2,12 +2,16 @@
 title: Lab Roadmap
 layout: default
 parent: AgentOps VBD Workshop
-nav_order: 2
+nav_order: 4
 ---
 
 # Lab Roadmap
 
-This roadmap defines the intended lab sequence. The labs are placeholders for now and should not be implemented until the workshop plan is approved.
+This roadmap defines the lab sequence, learning objectives, and the artefact each lab
+produces. The labs are implemented under [`long/labs/`](labs/) and use the four-pillar
+AgentOps model (Evaluate -> Ship -> Observe -> Operate) with the
+[AgentOps Accelerator](https://github.com/Azure/agentops) as the reference
+implementation.
 
 ## Planned labs
 
@@ -23,18 +27,21 @@ This roadmap defines the intended lab sequence. The labs are placeholders for no
 
 ## Cross-lab artifacts
 
-The implemented workshop should eventually produce these artifacts:
+The workshop produces ten artefacts, one per row below. Each has a downloadable
+[template](labs/templates/):
 
-- Agent target inventory
-- Release-readiness contract
-- Evaluation dataset plan
-- Baseline and threshold plan
-- CI/CD gate plan
-- Readiness evidence package
-- Observability correlation model
-- Dashboard and alert plan
-- Safety and red-team follow-through plan
-- Incident response and continuous improvement plan
+| Artefact | Template | Produced in |
+|---|---|---|
+| Agent target inventory | [agent-target-inventory.md](labs/templates/agent-target-inventory/) | Lab 1 |
+| Release-readiness contract | [release-readiness-contract.md](labs/templates/release-readiness-contract/) | Lab 1 |
+| Evaluation dataset plan | [evaluation-dataset-plan.md](labs/templates/evaluation-dataset-plan/) | Lab 2 |
+| Baseline and threshold plan | [baseline-and-threshold-plan.md](labs/templates/baseline-and-threshold-plan/) | Lab 2 |
+| CI/CD gate plan | [cicd-gate-plan.md](labs/templates/cicd-gate-plan/) | Lab 3 |
+| Readiness evidence package | [readiness-evidence-package.md](labs/templates/readiness-evidence-package/) | Lab 3 |
+| Observability correlation model | [observability-correlation-model.md](labs/templates/observability-correlation-model/) | Lab 4 |
+| Dashboard and alert plan | [dashboard-and-alert-plan.md](labs/templates/dashboard-and-alert-plan/) | Lab 4 |
+| Safety and red-team follow-through plan | [safety-redteam-followthrough-plan.md](labs/templates/safety-redteam-followthrough-plan/) | Lab 5 |
+| Incident response and continuous improvement plan | [incident-and-improvement-plan.md](labs/templates/incident-and-improvement-plan/) | Lab 6 |
 
 ## Observability thread
 
