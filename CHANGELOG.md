@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.3.0 - 2026-06-29
+
 This update brings the short workshop deck up to date with the latest speaker-flow, demo, Build 2026, and slide-generation changes while tightening release-rollout language for AgentOps delivery.
 
 ### Highlights
@@ -41,6 +43,7 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 
 - Regenerate short-track diagrams with improved sizing and readability after the deck-generation updates. (Richard Healy)
 - Fix word wrapping in the Foundry architecture diagram. (Richard Healy)
+- Regenerate `short/images/agentops-four-pillars.png` so the diagram shows the renamed `Operate` pillar. (Paulo Lacerda)
 
 ### Tooling - Marp -> PPTX converter (Richard Healy)
 
@@ -68,11 +71,13 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 - Regenerate `short/slides.pptx` from the updated `short/slides.md`.
 - Regenerate `short/agentops-short-video.mp4` from the two-speaker script, with embedded demo videos after the Evaluate, Ship, Observe, and Operate demo intro slides.
 - Regenerate `short/slides.pptx` and `short/agentops-short-video.mp4` again after removing parent-program branding from the opening slide.
+- Regenerate `short/slides.pptx` once more after the `Own` -> `Operate` pillar rename so the section-divider slides match the rest of the materials.
 - Add the four source demo clips under `short/videos/` so the production video can be rebuilt reproducibly.
 
 ### Follow-up
 
-- Mirror the updated deck to the upstream program repo at `presentations/04-agentops/`.
+- Mirror the updated deck to the upstream program repo at `presentations/04-agentops/`. (PR opened: private-program-owner/prod-readiness-workshop#2.)
+- Author the full-day VBD workshop content (`long/slides.md`, `long/labs/lab-01..06`, `long/labs/capstone`, `long/images/`); currently only the planning skeleton exists.
 
 ## v0.2.1 - 2026-06-03
 
