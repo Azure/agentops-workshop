@@ -7,11 +7,11 @@ nav_order: 2
 
 # Lab Roadmap
 
-This roadmap defines the intended lab sequence. The labs are placeholders for now and should not be implemented until the workshop plan is approved.
+This roadmap defines the full-day VBD lab sequence. The labs are facilitator-ready design exercises; they do not require attendees to write application code.
 
-## Planned labs
+## Labs
 
-| Lab | Duration | Level | Planned outcome |
+| Lab | Duration | Level | Outcome |
 |---|---:|---|---|
 | [Lab 1: Foundations and control plane](labs/lab-01-foundations/) | 60 min | no-code / low-code | Identify the agent target, Foundry project, repo contract, and production-readiness question. |
 | [Lab 2: Evaluation design](labs/lab-02-evaluation/) | 75 min | low-code | Define dataset, metrics, thresholds, baseline comparison, and regression candidates. |
@@ -23,7 +23,7 @@ This roadmap defines the intended lab sequence. The labs are placeholders for no
 
 ## Cross-lab artifacts
 
-The implemented workshop should eventually produce these artifacts:
+The workshop produces these artifacts:
 
 - Agent target inventory
 - Release-readiness contract
@@ -35,6 +35,15 @@ The implemented workshop should eventually produce these artifacts:
 - Dashboard and alert plan
 - Safety and red-team follow-through plan
 - Incident response and continuous improvement plan
+
+## Lab-to-pillar mapping
+
+| Pillar | Covered in | Evidence produced |
+|---|---|---|
+| Evaluate | Lab 2, Lab 5, Lab 6 | Dataset, metrics, thresholds, red-team findings, incident-derived eval rows. |
+| Ship | Lab 1, Lab 3, Capstone | Readiness contract, CI/CD gates, approvals, release evidence package. |
+| Observe | Lab 1, Lab 4, Lab 6 | Trace schema, correlation model, dashboard plan, alerts, trace review workflow. |
+| Operate | Lab 4, Lab 5, Lab 6, Capstone | Incident path, safety governance, owner model, continuous improvement plan. |
 
 ## Observability thread
 

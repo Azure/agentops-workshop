@@ -8,18 +8,17 @@ nav_order: 2
 
 # Lab 2: Evaluation Design
 
-{: .planning }
-This is a planning placeholder. Lab implementation content has not been written yet.
+This lab defines how the team will know whether the agent behaves well enough to ship.
 
-## Planned duration
+## Duration
 
 75 minutes
 
-## Planned outcome
+## Outcome
 
 Attendees design an evaluation strategy for one production-candidate agent.
 
-## Planned concepts
+## Concepts
 
 - Golden datasets
 - Regression candidates
@@ -28,7 +27,7 @@ Attendees design an evaluation strategy for one production-candidate agent.
 - Quality, groundedness, safety, latency, and cost metrics
 - Evaluation evidence as a release signal
 
-## Planned artifact
+## Artifact
 
 An evaluation plan:
 
@@ -40,13 +39,29 @@ An evaluation plan:
 - Baseline strategy
 - Review cadence
 
+## Exercise flow
+
+1. **List critical journeys.** Identify the highest-value and highest-risk user journeys for the selected agent.
+2. **Create dataset slices.** Group examples by happy path, edge case, safety risk, grounding risk, tool failure, and known incident pattern.
+3. **Define expected behavior.** Capture what a good answer, safe refusal, grounded citation, or tool action should look like.
+4. **Select metrics.** Choose quality, groundedness, safety, latency, cost, and task-completion metrics that are meaningful for the release decision.
+5. **Set gates.** Define minimum thresholds and baseline deltas that would block a release.
+6. **Close the loop.** Decide how production traces, user feedback, red-team findings, and incidents become future evaluation rows.
+
+## Facilitator prompts
+
+- Which cases must never regress?
+- Which failures should block a PR and which should block environment promotion?
+- What is the baseline: prior agent version, human answer, known-good response, or policy?
+- Which production traces are important enough to preserve as regression tests?
+
 ## Observability angle
 
-This lab should explain how production traces become future evaluation cases. The evaluation dataset should include a field or convention for linking a row back to a trace, incident, customer journey, or red-team finding.
+Production traces become future evaluation cases. The evaluation dataset should include a field or convention for linking a row back to a trace, incident, customer journey, or red-team finding.
 
-## Implementation backlog
+## Completion criteria
 
-- Define a sample dataset format.
-- Decide which metrics are mandatory vs. optional.
-- Add example quality and safety criteria.
-- Define how eval output maps to release evidence.
+- The team has at least five dataset slices.
+- Each critical metric has a threshold or baseline comparison.
+- Release-blocking failures are explicit.
+- The trace-to-eval promotion rule is documented.

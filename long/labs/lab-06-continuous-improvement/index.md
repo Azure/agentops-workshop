@@ -8,18 +8,17 @@ nav_order: 6
 
 # Lab 6: Incident Response and Continuous Improvement
 
-{: .planning }
-This is a planning placeholder. Lab implementation content has not been written yet.
+This lab closes the AgentOps loop by turning production signals into stronger future releases.
 
-## Planned duration
+## Duration
 
 35 minutes
 
-## Planned outcome
+## Outcome
 
 Attendees plan how operational incidents, failed traces, and user feedback become fixes and future release gates.
 
-## Planned concepts
+## Concepts
 
 - Incident triage
 - Trace review
@@ -29,7 +28,7 @@ Attendees plan how operational incidents, failed traces, and user feedback becom
 - Ownership
 - Continuous readiness review
 
-## Planned artifact
+## Artifact
 
 A continuous improvement plan:
 
@@ -40,13 +39,28 @@ A continuous improvement plan:
 - Release-gate update
 - Owner and SLA
 
+## Exercise flow
+
+1. **Pick incident examples.** Use one bad answer, one failed tool call, one latency spike, and one safety event.
+2. **Triage the trace.** Decide what data the responder needs to reconstruct the agent path.
+3. **Classify root cause.** Map each issue to prompt, model, retrieval, tool, safety policy, app code, dependency, user behavior, or data freshness.
+4. **Choose mitigation.** Decide whether to rollback, disable a tool, adjust prompt, update retrieval source, change threshold, or add guardrail.
+5. **Update the system.** Convert the incident into eval rows, release-gate changes, dashboard changes, owner actions, and review cadence.
+
+## Facilitator prompts
+
+- What is the first place the on-call engineer looks?
+- Which failures require rollback vs. safe degradation?
+- How does the team prevent the same trace pattern from recurring?
+- Which owner has to close the loop before the next release?
+
 ## Observability angle
 
-The lab should show how observability closes the AgentOps loop. A trace should lead to a diagnosis, a fix, a new eval row, and a stronger release gate.
+Observability closes the AgentOps loop. A trace should lead to a diagnosis, a fix, a new eval row, and a stronger release gate.
 
-## Implementation backlog
+## Completion criteria
 
-- Define incident examples.
-- Create a trace triage worksheet.
-- Define root cause categories.
-- Add a template for converting incidents into eval cases.
+- Incident intake path is documented.
+- Root-cause categories are agreed.
+- Trace triage checklist is ready.
+- Eval-backlog and release-gate updates are part of the runbook.

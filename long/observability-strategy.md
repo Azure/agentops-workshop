@@ -11,7 +11,7 @@ nav_order: 3
 
 AgentOps depends on observability because agent behavior cannot be understood from infrastructure metrics alone. Teams need to reconstruct the chain of decisions and dependencies behind an answer, a failed tool call, a safety block, a hallucination, a latency spike, or a cost regression.
 
-AgentOps Value Delivery Workshop should teach observability as a practical system:
+AgentOps Value Delivery Workshop teaches observability as a practical system:
 
 1. **Collect** traces, telemetry, safety events, feedback, latency, cost, and release metadata.
 2. **Correlate** every signal to agent version, deployment, eval run, trace ID, and owner.
@@ -33,9 +33,9 @@ AgentOps Value Delivery Workshop should teach observability as a practical syste
 | Cost observability | Token usage, model mix, gateway controls, budget signals, per-agent cost. |
 | Operations observability | Alerts, owners, incidents, service health, escalation path, review cadence. |
 
-## Planned Lab 4 focus
+## Lab 4 focus
 
-Lab 4 should be the deepest observability experience. It should eventually guide attendees through:
+Lab 4 is the deepest observability experience. It guides attendees through:
 
 - Defining a trace schema for an agent interaction.
 - Identifying what Foundry captures and what the application must add.
@@ -47,7 +47,7 @@ Lab 4 should be the deepest observability experience. It should eventually guide
 
 ## Dashboard plan
 
-The workshop should eventually include a dashboard design with these views:
+The workshop includes a dashboard design with these views:
 
 1. **Executive readiness view**
    - Release status

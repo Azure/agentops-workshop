@@ -11,7 +11,7 @@ This site is for **instructors** preparing to deliver the AgentOps workshop. It 
 Two tracks are available:
 
 - **AgentOps Briefing** (~1 hour) - ready to deliver.
-- **AgentOps Value Delivery Workshop** (~8 hours, Value-Based Delivery) - under construction.
+- **AgentOps Value Delivery Workshop** (~8 hours, Value-Based Delivery) - facilitator-ready design-lab plan.
 
 ---
 
@@ -76,7 +76,7 @@ Two tracks are available:
 
 ## AgentOps Value Delivery Workshop
 
-The full-day (~8 hours) workshop is the Value-Based Delivery (VBD) track. It is still being designed, and the planning pages are visible so you can see where it is heading, but the labs are placeholders.
+The full-day (~8 hours) workshop is the Value-Based Delivery (VBD) track. It expands the briefing into a facilitated production-readiness working session where attendees build the operating blueprint for one production-candidate agent.
 
 [See the VBD workshop plan]({{ '/long/' | relative_url }}){: .btn }
 

@@ -8,26 +8,25 @@ nav_order: 1
 
 # Lab 1: Foundations and Control Plane
 
-{: .planning }
-This is a planning placeholder. Lab implementation content has not been written yet.
+This lab turns the AgentOps story into a concrete target: one agent, one release decision, one owner model, and one traceability contract.
 
-## Planned duration
+## Duration
 
 60 minutes
 
-## Planned outcome
+## Outcome
 
 Attendees identify the production-candidate agent, map the Foundry control plane, and define the release-readiness question.
 
-## Planned concepts
+## Concepts
 
-- AgentOps operating loop
+- AgentOps four-pillar model: Evaluate, Ship, Observe, Operate
 - Microsoft Foundry as the control plane
 - Agent target and version identity
 - Repo-side release-readiness contract
 - Ownership and environment boundaries
 
-## Planned artifact
+## Artifact
 
 An agent readiness profile:
 
@@ -39,9 +38,24 @@ An agent readiness profile:
 - Release-readiness question
 - Initial telemetry expectations
 
+## Exercise flow
+
+1. **Pick the agent.** Choose one agent or agent scenario that is closest to production value.
+2. **Draw the control plane.** Identify Foundry project, models, tools, data sources, safety controls, repo, deployment environments, and telemetry destination.
+3. **Name the release decision.** Write the exact decision the team wants evidence for, such as "Can version 0.7 move from pilot to production?"
+4. **Define identity.** Decide how agent version, prompt version, model deployment, tool version, dataset, eval run, release ID, and trace ID will be linked.
+5. **Assign owners.** Name the application owner, platform owner, safety reviewer, telemetry owner, and incident responder.
+
+## Facilitator prompts
+
+- What would make this agent unsafe or not ready to release?
+- Which assets can change independently and therefore need versioning?
+- If the agent fails tomorrow, who owns diagnosis and who owns rollback?
+- Which signals must exist before the team can call the release observable?
+
 ## Observability angle
 
-This lab should define the identifiers required for later observability:
+This lab defines the identifiers required for later observability:
 
 - Agent ID
 - Version or deployment ID
@@ -49,9 +63,9 @@ This lab should define the identifiers required for later observability:
 - Trace ID convention
 - Owner and escalation path
 
-## Implementation backlog
+## Completion criteria
 
-- Choose sample agent scenario.
-- Define prerequisites and access model.
-- Create screenshots or guided steps for Foundry navigation.
-- Decide whether the lab uses a live Foundry project, screenshots, or a simulated walkthrough.
+- The team can name the target agent and version.
+- The release-readiness question is written in one sentence.
+- Required correlation identifiers are listed.
+- Owners and environments are identified.

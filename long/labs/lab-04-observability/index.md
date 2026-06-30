@@ -8,18 +8,17 @@ nav_order: 4
 
 # Lab 4: Observability and Trace-Driven Operations
 
-{: .planning }
-This is a planning placeholder. Lab implementation content has not been written yet.
+This lab is the center of the VBD workshop. It defines how the team sees, diagnoses, and improves agent behavior after release.
 
-## Planned duration
+## Duration
 
 90 minutes
 
-## Planned outcome
+## Outcome
 
 Attendees design an observability model for a production AI agent and connect traces back to evaluation, release evidence, and incident response.
 
-## Planned concepts
+## Concepts
 
 - Agent traces
 - Model call telemetry
@@ -32,7 +31,7 @@ Attendees design an observability model for a production AI agent and connect tr
 - Foundry trace and evaluation context
 - Trace-to-evaluation feedback loop
 
-## Planned artifact
+## Artifact
 
 An observability design:
 
@@ -45,7 +44,7 @@ An observability design:
 - Trace review workflow
 - Eval-backlog promotion criteria
 
-## Planned exercise flow
+## Exercise flow
 
 1. Identify the agent interaction path.
 2. List the trace spans needed to explain behavior.
@@ -54,6 +53,24 @@ An observability design:
 5. Define alerts for tool failure, latency regression, safety events, and cost spikes.
 6. Review an example trace and decide whether it becomes a new eval case.
 7. Add observability evidence to the release-readiness package.
+
+## Dashboard design exercise
+
+Design four views:
+
+| View | Must answer |
+|---|---|
+| Executive readiness | Is this release healthy, blocked, or carrying accepted risk? |
+| Operations | Are users seeing errors, latency, failed tools, safety events, or cost spikes? |
+| Agent behavior | What path did the agent take through model, retrieval, tools, and safety controls? |
+| Improvement backlog | Which traces, feedback, or incidents should become new eval cases? |
+
+## Facilitator prompts
+
+- Could an on-call engineer explain a bad answer from one trace?
+- Which signals live in Foundry and which must come from the app or gateway?
+- Which dashboard view would a service owner check every morning?
+- Which telemetry gaps would block production release?
 
 ## Observability model
 
@@ -84,10 +101,9 @@ Minimum correlation:
 - Incident or alert ID
 - Owner
 
-## Implementation backlog
+## Completion criteria
 
-- Decide which telemetry views are available in the demo environment.
-- Create safe sample traces or screenshots if live telemetry is not available.
-- Define KQL examples later, if appropriate.
-- Decide whether dashboards are built live or shown as planning artifacts.
-- Add a trace-review worksheet.
+- Trace spans and correlation fields are defined.
+- Dashboard views are sketched.
+- Alert categories are mapped to owners.
+- The team has a rule for turning traces into evaluation backlog items.

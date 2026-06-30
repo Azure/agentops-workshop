@@ -8,18 +8,30 @@ has_children: true
 
 # Lab Planning Pages
 
-This section contains planning placeholders for the future hands-on labs.
+This section contains the facilitator guide for the VBD design-lab exercises.
 
-Do not treat these pages as runnable lab instructions yet. Each lab currently defines the intended outcome, artifact, observability angle, and implementation backlog.
+These labs are designed to be run with a customer's real agent context or as a tabletop exercise. They are not runnable application labs and do not include solution code. Each lab produces a concrete readiness artifact that feeds the capstone.
 
 ## Labs
 
-| Lab | Status |
+| Lab | Output |
 |---|---|
-| [Lab 1: Foundations and control plane](lab-01-foundations/) | Planning only |
-| [Lab 2: Evaluation design](lab-02-evaluation/) | Planning only |
-| [Lab 3: Release gates and evidence](lab-03-release-gates/) | Planning only |
-| [Lab 4: Observability and trace-driven operations](lab-04-observability/) | Planning only |
-| [Lab 5: Safety, red-team follow-through, and governance](lab-05-safety-governance/) | Planning only |
-| [Lab 6: Incident response and continuous improvement](lab-06-continuous-improvement/) | Planning only |
-| [Capstone: Production-readiness review](capstone/) | Planning only |
+| [Lab 1: Foundations and control plane](lab-01-foundations/) | Agent readiness profile. |
+| [Lab 2: Evaluation design](lab-02-evaluation/) | Evaluation contract. |
+| [Lab 3: Release gates and evidence](lab-03-release-gates/) | Release evidence plan. |
+| [Lab 4: Observability and trace-driven operations](lab-04-observability/) | Observability model. |
+| [Lab 5: Safety, red-team follow-through, and governance](lab-05-safety-governance/) | Safety and governance plan. |
+| [Lab 6: Incident response and continuous improvement](lab-06-continuous-improvement/) | Continuous improvement runbook. |
+| [Capstone: Production-readiness review](capstone/) | One-page production-readiness review. |
+
+## Facilitator setup
+
+Before the workshop, ask the customer team to bring:
+
+- One production-candidate agent or representative agent scenario.
+- The current repo, prompt, model, tool, and data-source ownership model.
+- Any existing evaluation results, manual test cases, or red-team findings.
+- Any existing deployment process, approval workflow, or incident path.
+- Any current telemetry, traces, dashboard screenshots, or support examples.
+
+If those artifacts are not available, run the labs as tabletop exercises and mark every unknown as an action item in the capstone.

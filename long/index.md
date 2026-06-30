@@ -7,14 +7,18 @@ has_children: true
 
 # AgentOps Value Delivery Workshop
 
-{: .important }
-> **Under construction.** The full-day (~8 hours) workshop is the Value-Based Delivery (VBD) track and is still being designed. The pages below are planning material, not deliverable content. If you need a session you can run today, see [AgentOps Briefing]({{ '/short/' | relative_url }}).
+{: .note }
+> **Facilitator-ready plan.** This VBD track is a full-day design-lab workshop. It is ready to use as a guided customer working session, but it intentionally does not include runnable lab code or sample implementations yet.
 
-This track is the full-day AgentOps Value Delivery Workshop for VBD. The lab content is not implemented yet. This section defines the planned structure, learning outcomes, sequencing, and directory layout.
+This track expands the one-hour AgentOps Briefing into an eight-hour Value Delivery Workshop. The goal is to help a customer team define the production operating model for one real or representative AI agent, using the four AgentOps pillars:
 
-## Full-day outcome (planned)
+**Evaluate -> Ship -> Observe -> Operate**
 
-By the end of AgentOps Value Delivery Workshop, attendees should have a practical blueprint for operating one AI agent in production:
+The workshop is delivered as a facilitated design lab. Attendees leave with a concrete AgentOps readiness package, not just a conceptual overview.
+
+## Full-day outcome
+
+By the end of the VBD workshop, attendees should have a practical blueprint for operating one AI agent in production:
 
 - Define an agent target and release-readiness contract.
 - Create an evaluation dataset and quality thresholds.
@@ -23,14 +27,25 @@ By the end of AgentOps Value Delivery Workshop, attendees should have a practica
 - Connect production traces back to evaluation and continuous improvement.
 - Understand governance, red-team follow-through, and incident response patterns.
 
-## Planning pages
+## Workshop structure
+
+| Block | Purpose | Output |
+|---|---|---|
+| Foundations | Select the target agent, owners, environments, and readiness question. | Agent readiness profile. |
+| Evaluate | Define datasets, metrics, thresholds, baseline comparison, and regression handling. | Evaluation contract. |
+| Ship | Convert evaluation evidence into PR gates, deployment gates, approvals, and release notes. | Release evidence plan. |
+| Observe | Design trace, telemetry, dashboard, alert, and feedback-loop coverage. | Observability model. |
+| Operate | Define safety follow-through, incident response, cost review, model lifecycle, and continuous improvement. | Operating runbook. |
+| Capstone | Decide whether the agent is ready to move forward and what risks remain. | Production-readiness review. |
+
+## Workshop pages
 
 | Page | Purpose |
 |---|---|
 | [Agenda]({{ '/long/agenda' | relative_url }}) | Full-day time plan. |
 | [Lab roadmap]({{ '/long/lab-roadmap' | relative_url }}) | Lab sequence and learning objectives. |
 | [Observability strategy]({{ '/long/observability-strategy' | relative_url }}) | Cross-cutting observability plan for the full-day workshop. |
-| [Lab planning pages]({{ '/long/labs/' | relative_url }}) | Placeholder lab plans for future implementation. |
+| [Lab guide]({{ '/long/labs/' | relative_url }}) | Facilitator-ready design-lab exercises and artifacts. |
 
 ## Observability treatment
 
@@ -43,3 +58,7 @@ Observability is both a dedicated lab and a thread across the workshop. Every la
 - Safety findings
 - Owner and incident path
 - Runtime telemetry links
+
+## What this is not
+
+This VBD track is not an AgentOps Toolkit walkthrough and not an app-build tutorial. It is a production-readiness working session around Microsoft Foundry, repo-side release evidence, CI/CD gates, Azure Monitor and Application Insights telemetry, safety review, and Day-2 operations.
