@@ -6,6 +6,15 @@ nav_order: 4
 
 # Instructor Delivery Guide
 
+This page is the instructor hub. Each track has its own one-page datasheet and its own delivery guide, delivered as PDFs:
+
+| Track | Datasheet | Delivery guide |
+|---|---|---|
+| AgentOps Briefing (~1 hour) | [Briefing datasheet (PDF)]({{ '/short/agentops-briefing-datasheet.pdf' | relative_url }}) | [Briefing delivery guide (PDF)]({{ '/short/agentops-briefing-delivery-guide.pdf' | relative_url }}) |
+| AgentOps VBD Workshop (~8 hours) | [VBD datasheet (PDF)]({{ '/long/agentops-vbd-datasheet.pdf' | relative_url }}) | [VBD delivery guide (PDF)]({{ '/long/agentops-vbd-delivery-guide.pdf' | relative_url }}) |
+
+The PDFs are the per-track source of truth for run-of-show, timing, and facilitator cues. The notes below are shared guidance that applies to both tracks.
+
 ## Delivery intent
 
 The workshop should feel like a production-readiness engagement, not a product tour. The instructor should repeatedly connect concepts back to the AgentOps four-pillar operating model:

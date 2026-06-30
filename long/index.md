@@ -8,35 +8,35 @@ has_children: true
 # AgentOps Value Delivery Workshop
 
 {: .note }
-> **Facilitator-ready workshop.** This VBD track is a full-day design-lab workshop. It is ready to use as a guided customer working session, but it intentionally does not include runnable lab code or sample implementations.
+> **Facilitator-ready, hands-on.** This VBD track is a full-day, hands-on workshop. Across seven connected labs, attendees build and operate one real agent on Microsoft Foundry, and every lab consumes the artifact the previous lab produced.
 
-This track expands the one-hour AgentOps Briefing into an eight-hour Value Delivery Workshop. The goal is to help a customer team define the production operating model for one real or representative AI agent, using the four AgentOps pillars:
+This track expands the one-hour AgentOps Briefing into an eight-hour Value Delivery Workshop. Attendees take one agent - the Contoso Travel Agent - all the way around the four AgentOps pillars on Microsoft Foundry:
 
 **Evaluate -> Ship -> Observe -> Operate**
 
-The workshop is delivered as a facilitated design lab. Attendees leave with a concrete AgentOps readiness package, not just a conceptual overview.
+The workshop is delivered as a sequence of hands-on labs. Attendees leave with a working end-to-end AgentOps pipeline and an evidence pack, not just a conceptual overview.
 
 ## Full-day outcome
 
-By the end of the VBD workshop, attendees should have a practical blueprint for operating one AI agent in production:
+By the end of the VBD workshop, attendees have built and operated one AI agent in production:
 
-- Define an agent target and release-readiness contract.
-- Create an evaluation dataset and quality thresholds.
-- Add CI/CD release gates and readiness evidence.
+- Deploy the agent to Microsoft Foundry and set up the workspace and CLI.
+- Author an evaluation suite with concrete quality thresholds.
+- Add CI/CD release gates and watch them block a deliberate regression.
 - Instrument observability for traces, telemetry, alerts, safety events, latency, and cost.
 - Connect production traces back to evaluation and continuous improvement.
-- Understand governance, red-team follow-through, and incident response patterns.
+- Run the full loop on a red-to-green pull request and produce an evidence pack.
 
 ## Workshop structure
 
-| Block | Purpose | Output |
+| Block | What attendees do | Built artifact |
 |---|---|---|
-| Foundations | Select the target agent, owners, environments, and readiness question. | Agent readiness profile. |
-| Evaluate | Define datasets, metrics, thresholds, baseline comparison, and regression handling. | Evaluation contract. |
-| Ship | Convert evaluation evidence into PR gates, deployment gates, approvals, and release notes. | Release evidence package. |
-| Observe | Design trace, telemetry, dashboard, alert, and feedback-loop coverage. | Observability model. |
-| Operate | Define safety follow-through, incident response, cost review, model lifecycle, and continuous improvement. | Operating runbook. |
-| Capstone | Decide whether the agent is ready to move forward and what risks remain. | Production-readiness review. |
+| Foundations | Deploy travel-agent:1 and set up the agentops-vbd workspace and CLI. | Live agent and configured workspace. |
+| Evaluate | Author an eval suite that scores the agent on real criteria. | Passing evaluation suite. |
+| Ship | Turn the eval suite into a CI gate that blocks a regression. | Gated, passing pipeline. |
+| Observe | Emit traces and correlate runtime telemetry to a release. | Dashboards and correlated traces. |
+| Operate | Add safety follow-through and turn a trace into a new eval case. | Standing safety checks and a closed feedback loop. |
+| Capstone | Drive a red pull request to green through the full loop. | Production-readiness evidence pack. |
 
 ## Workshop pages
 
@@ -45,7 +45,7 @@ By the end of the VBD workshop, attendees should have a practical blueprint for 
 | [Agenda]({{ '/long/agenda' | relative_url }}) | Full-day schedule. |
 | [Lab roadmap]({{ '/long/lab-roadmap' | relative_url }}) | Lab sequence and learning objectives. |
 | [Observability strategy]({{ '/long/observability-strategy' | relative_url }}) | Cross-cutting observability model for the full-day workshop. |
-| [Lab guide]({{ '/long/labs/' | relative_url }}) | Facilitator-ready design-lab exercises and artifacts. |
+| [Lab guide]({{ '/long/labs/' | relative_url }}) | Step-by-step hands-on labs from Lab 1 through the capstone. |
 
 ## Observability treatment
 

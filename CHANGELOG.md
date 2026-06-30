@@ -11,6 +11,7 @@ This update rebuilds the full-day VBD track from a facilitator planning skeleton
 - **Grounded in the real accelerator.** Commands use the public Azure AgentOps accelerator (PyPI `agentops-accelerator`, CLI `agentops`) and Microsoft Foundry, so the loop Evaluate, Ship, Observe, Operate is tangible on a live agent.
 - **A continuity spine you can verify.** Dataset, baseline, regression versions, evidence pack, telemetry, governance, and trace promotion flow through fixed file paths and agent versions from Lab 1 to the capstone.
 - **A working CI/CD gate.** The capstone generates a GitHub Actions pull request gate that blocks a regressed agent version before merge and publishes a release evidence pack.
+- **Briefing-quality VBD landing.** The home page VBD section now matches the Briefing section with instructor download cards and a resource table, and each track ships its own branded datasheet and delivery guide as a PDF.
 
 ### Content - AgentOps VBD Workshop (Paulo Lacerda)
 
@@ -21,6 +22,21 @@ This update rebuilds the full-day VBD track from a facilitator planning skeleton
 - Lab 5 adds a content-safety evaluator, governance assertions, and a red-team pass; Lab 6 promotes the flagged production trace back into the dataset and refreshes the baseline.
 - Capstone generates a GitHub Actions pull request gate, demonstrates a green pass and a red regression block, and assembles the final production-readiness evidence and ship decision.
 - Rewrite `long/labs/index.md` and `long/lab-roadmap.md` to a hands-on framing with the running example, a build-and-artifact table, the continuity spine, and a prerequisites checklist.
+
+### Content - Home page and instructor materials (Paulo Lacerda)
+
+- Bring the home `index.md` VBD section to parity with the Briefing section: hands-on intro, instructor download cards (datasheet, delivery guide, workshop plan - no video), private-repo downloads note, and a six-row resource table.
+- Add datasheet and delivery-guide PDF cards plus matching resource-table rows to the Briefing section.
+- Rewrite `long/index.md` and `long/agenda.md` from design-lab and tabletop framing to hands-on: built-artifact tables, an eight-hour hands-on flow that includes the capstone, and facilitator checkpoints tied to real lab outputs.
+- Repoint `instructor/delivery-guide.md` into an instructor hub that links each track's datasheet and delivery guide PDF, keeping the shared facilitation guidance.
+
+### Artefacts
+
+- Generate four branded PDFs: `short/agentops-briefing-datasheet.pdf`, `short/agentops-briefing-delivery-guide.pdf`, `long/agentops-vbd-datasheet.pdf`, and `long/agentops-vbd-delivery-guide.pdf`. Each track gets its own distinct datasheet and delivery guide.
+
+### Tooling - PDF generator (Paulo Lacerda)
+
+- Add `prep/tools/build_pdfs.py`, a reportlab generator that renders the four branded PDFs (navy header band, pillar chips, tables, callouts, footers) from an in-script content model. Re-run with `python prep/tools/build_pdfs.py`.
 
 ### Follow-up
 

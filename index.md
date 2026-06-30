@@ -11,7 +11,7 @@ This site is for **instructors** preparing to deliver the AgentOps workshop. It 
 Two tracks are available:
 
 - **AgentOps Briefing** (~1 hour) - ready to deliver.
-- **AgentOps Value Delivery Workshop** (~8 hours, Value-Based Delivery) - facilitator-ready design-lab plan.
+- **AgentOps Value Delivery Workshop** (~8 hours, Value-Based Delivery) - facilitator-ready, hands-on labs.
 
 ---
 
@@ -61,24 +61,97 @@ Two tracks are available:
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
   </span>
 </a>
+<a class="download-card download-card--secondary" href="{{ '/short/agentops-briefing-datasheet.pdf' | relative_url }}">
+  <span class="download-card__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/><path d="M8 12h8M8 16h5"/></svg>
+  </span>
+  <span class="download-card__text">
+    <span class="download-card__title">Datasheet</span>
+    <span class="download-card__meta">PDF · one-page overview</span>
+  </span>
+  <span class="download-card__chevron" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
+  </span>
+</a>
+<a class="download-card download-card--secondary" href="{{ '/short/agentops-briefing-delivery-guide.pdf' | relative_url }}">
+  <span class="download-card__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="4" width="8" height="4" rx="1"/><path d="M9 4H7a2 2 0 00-2 2v13a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2h-2"/><path d="M9 13l2 2 4-4"/></svg>
+  </span>
+  <span class="download-card__text">
+    <span class="download-card__title">Delivery guide</span>
+    <span class="download-card__meta">PDF · how to deliver</span>
+  </span>
+  <span class="download-card__chevron" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
+  </span>
+</a>
 </div>
 
 <p class="downloads-note" markdown="0">Repository access required: this repository is private, so the preview and download links resolve only for signed-in members of the <strong>Azure</strong> GitHub organization.</p>
 
 | Resource | What it is |
 |---|---|
+| [Datasheet (PDF)]({{ '/short/agentops-briefing-datasheet.pdf' | relative_url }}) | One-page overview: audience, flow, and outcomes. |
+| [Delivery guide (PDF)]({{ '/short/agentops-briefing-delivery-guide.pdf' | relative_url }}) | How to deliver the briefing, section by section. |
 | [Agenda]({{ '/short/agenda' | relative_url }}) | Customer-facing abstract and timeboxed agenda. |
 | [Run of show]({{ '/short/run-of-show' | relative_url }}) | Presenter timing, transitions, and delivery cues. |
 | [Speaker script]({{ '/short/speaker-script' | relative_url }}) | Verbatim word-for-word narration (~50 min). |
-| [Instructor delivery guide]({{ '/instructor/delivery-guide' | relative_url }}) | Cross-track notes on what to emphasize. |
 
 ---
 
 ## AgentOps Value Delivery Workshop
 
-The full-day (~8 hours) workshop is the Value-Based Delivery (VBD) track. It expands the briefing into a facilitated production-readiness working session where attendees build the operating blueprint for one production-candidate agent.
+The full-day (~8 hours) workshop is the Value-Based Delivery (VBD) track. Across seven connected, hands-on labs, attendees take one agent - the Contoso Travel Agent - all the way around the operating loop on Microsoft Foundry. Every lab consumes the artifact the previous lab produced, so attendees leave with a working end-to-end AgentOps pipeline, not disconnected demos.
 
-[See the VBD workshop plan]({{ '/long/' | relative_url }}){: .btn }
+<div class="download-cards" markdown="0">
+<a class="download-card" href="{{ '/long/agentops-vbd-datasheet.pdf' | relative_url }}">
+  <span class="download-card__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/><path d="M8 12h8M8 16h5"/></svg>
+  </span>
+  <span class="download-card__text">
+    <span class="download-card__title">Datasheet</span>
+    <span class="download-card__meta">PDF · labs, audience, outcomes</span>
+  </span>
+  <span class="download-card__chevron" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
+  </span>
+</a>
+<a class="download-card" href="{{ '/long/agentops-vbd-delivery-guide.pdf' | relative_url }}">
+  <span class="download-card__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="4" width="8" height="4" rx="1"/><path d="M9 4H7a2 2 0 00-2 2v13a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2h-2"/><path d="M9 13l2 2 4-4"/></svg>
+  </span>
+  <span class="download-card__text">
+    <span class="download-card__title">Delivery guide</span>
+    <span class="download-card__meta">PDF · lab-by-lab facilitation</span>
+  </span>
+  <span class="download-card__chevron" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>
+  </span>
+</a>
+<a class="download-card download-card--secondary" href="{{ '/long/' | relative_url }}">
+  <span class="download-card__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
+  </span>
+  <span class="download-card__text">
+    <span class="download-card__title">Workshop plan</span>
+    <span class="download-card__meta">Full agenda and lab roadmap</span>
+  </span>
+  <span class="download-card__chevron" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+  </span>
+</a>
+</div>
+
+<p class="downloads-note" markdown="0">Repository access required: this repository is private, so the preview and download links resolve only for signed-in members of the <strong>Azure</strong> GitHub organization.</p>
+
+| Resource | What it is |
+|---|---|
+| [Datasheet (PDF)]({{ '/long/agentops-vbd-datasheet.pdf' | relative_url }}) | One-page overview: the seven labs, audience, and outcomes. |
+| [Delivery guide (PDF)]({{ '/long/agentops-vbd-delivery-guide.pdf' | relative_url }}) | Room logistics, pacing checkpoints, and lab-by-lab notes. |
+| [Agenda]({{ '/long/agenda' | relative_url }}) | Full-day flow, audience, and facilitator checkpoints. |
+| [Lab roadmap]({{ '/long/lab-roadmap' | relative_url }}) | The seven labs, durations, and the continuity spine. |
+| [Lab guide]({{ '/long/labs/' | relative_url }}) | Step-by-step hands-on labs (Lab 1 through capstone). |
+| [Observability strategy]({{ '/long/observability-strategy' | relative_url }}) | Trace, telemetry, and dashboard plan for the deep dive. |
 
 ---
 

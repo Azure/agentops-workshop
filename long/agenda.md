@@ -7,7 +7,7 @@ nav_order: 1
 
 # AgentOps Value Delivery Workshop Agenda
 
-This is the full-day VBD version of the AgentOps workshop. It is designed as a facilitated working session for one customer team and one production-candidate agent.
+This is the full-day VBD version of the AgentOps workshop. It is a hands-on lab day for one team and one agent: attendees install the Azure AgentOps accelerator, deploy the Contoso Travel Agent to Microsoft Foundry, and operate it end to end. Each lab builds on the artifact the previous lab produced.
 
 ## Target audience
 
@@ -19,46 +19,47 @@ This is the full-day VBD version of the AgentOps workshop. It is designed as a f
 
 ## Prerequisites
 
-The workshop can be run in two modes:
+The labs are hands-on against a real Microsoft Foundry project. Before the workshop, each attendee should have:
 
-- **Design-lab mode** - use the customer's real agent, repo, Foundry project, and telemetry access.
-- **Tabletop mode** - use the provided prompts and worksheets when live access is not available.
+- An Azure subscription and access to a Microsoft Foundry project (model `gpt-4o-mini` or equivalent).
+- Python 3.10+, the Azure CLI, and git installed locally.
+- A GitHub repository they can push to (used for the CI/CD release gate).
+- An Application Insights resource for observability (Lab 4).
+- Permissions to deploy an agent and view evaluation, telemetry, and deployment artifacts.
 
-For design-lab mode, attendees should have:
-
-- Access to a Microsoft Foundry project.
-- A pre-created or sample agent.
-- Permissions to view or configure evaluation, telemetry, and deployment artifacts.
-- GitHub repository access for workflow and release-gate examples.
-- Azure Monitor or Application Insights access for observability examples.
+If live Azure access is not available for some attendees, they can pair with a teammate who does; the continuity spine means every attendee still sees the full end-to-end flow.
 
 ## Full-day flow
+
+Per-lab learning objectives and the artifact each lab hands to the next are in the [Lab roadmap]({{ '/long/lab-roadmap' | relative_url }}). Lab time budgets below are tuned to fit an eight-hour day.
 
 | Time | Segment | Format | Outcome |
 |---:|---|---|---|
 | 0:00-0:30 | Welcome and AgentOps foundations | Presentation + discussion | Align on the production-readiness problem and the four-pillar AgentOps model. |
-| 0:30-1:30 | Lab 1: Foundations and control plane | Guided working session | Map the agent target, Foundry control plane, repo contract, and release-readiness question. |
-| 1:30-1:45 | Break | Break | - |
-| 1:45-3:00 | Lab 2: Evaluation design | Guided working session | Define dataset strategy, metrics, thresholds, and baseline comparison. |
-| 3:00-4:00 | Lab 3: Release gates and evidence | Guided working session | Define PR and deployment gates, reports, and readiness artifacts. |
-| 4:00-4:45 | Lunch / extended break | Break | - |
-| 4:45-6:15 | Lab 4: Observability and trace-driven operations | Guided working session | Define agent traces, telemetry correlation, dashboards, alerts, and trace-to-eval feedback. |
-| 6:15-6:30 | Break | Break | - |
-| 6:30-7:15 | Lab 5: Safety, red-team follow-through, and governance | Guided working session | Define safety evidence, governance ownership, auditability, and risk controls. |
-| 7:15-7:50 | Lab 6: Incident response and continuous improvement | Guided working session | Define diagnostics, incident workflow, trace triage, and eval-set updates. |
-| 7:50-8:00 | Wrap-up and next steps | Discussion | Leave with a 30-day implementation backlog for one production-candidate agent. |
+| 0:30-1:15 | Lab 1: Foundations and control plane | Hands-on lab | Install the accelerator, deploy `travel-agent:1` to Foundry, and run `agentops init`. |
+| 1:15-2:15 | Lab 2: Evaluation | Hands-on lab | Build a JSONL dataset, set thresholds, run `agentops eval run`, and capture a green baseline. |
+| 2:15-3:10 | Lab 3: Release gates and evidence | Hands-on lab | Regress to `travel-agent:2`, fail the baseline-compared gate, and produce an evidence pack. |
+| 3:10-3:20 | Break | Break | - |
+| 3:20-4:35 | Lab 4: Observability and trace-driven operations | Hands-on lab | Turn on Foundry + App Insights tracing, import telemetry, open Cockpit, and drill into a trace. |
+| 4:35-5:15 | Lunch | Break | - |
+| 5:15-6:05 | Lab 5: Safety, red-team follow-through, and governance | Hands-on lab | Add a content-safety evaluator, wire governance-as-code, and run a Foundry red-team scan. |
+| 6:05-6:50 | Lab 6: Incident response and continuous improvement | Hands-on lab | Promote a real trace into the dataset, re-evaluate, and move the baseline forward. |
+| 6:50-7:00 | Break | Break | - |
+| 7:00-7:50 | Capstone: Production-readiness review | Hands-on lab | Generate a GitHub Actions PR gate, prove it green and red, and sign a ship decision. |
+| 7:50-8:00 | Wrap-up and next steps | Discussion | Leave with a working pipeline, an evidence pack, and a 30-day backlog. |
 
 ## Facilitator checkpoints
 
 | Checkpoint | Question |
 |---|---|
-| End of Lab 1 | Can the team name the exact agent version and production-readiness decision? |
-| End of Lab 2 | Are quality, groundedness, safety, latency, and cost gates measurable? |
-| End of Lab 3 | Would a failing evaluation block the release in the real delivery path? |
+| End of Lab 1 | Is `travel-agent:1` deployed and does `agentops init` succeed against the workspace? |
+| End of Lab 2 | Does `agentops eval run` produce a green baseline with measurable thresholds? |
+| End of Lab 3 | Does the weakened `travel-agent:2` make the gate exit non-zero and produce an evidence pack? |
 | End of Lab 4 | Can the team trace a production answer back to version, deployment, eval run, and owner? |
-| End of Lab 5 | Are safety findings connected to governance, telemetry, and future evaluations? |
-| End of Lab 6 | Does the incident workflow create stronger future release gates? |
+| End of Lab 5 | Are content-safety and red-team findings recorded in the evidence pack and governance files? |
+| End of Lab 6 | Did a real trace become a permanent regression row that the baseline now covers? |
+| End of Capstone | Does the GitHub Actions gate block the red PR and pass once it is fixed? |
 
 ## Delivery principle
 
-Every lab should produce one artifact that contributes to release readiness. The full-day workshop should not become a collection of disconnected demos.
+Every lab produces one working artifact that the next lab consumes. The full-day workshop is one continuous build, not a collection of disconnected demos.
