@@ -2,12 +2,29 @@
 
 ## Unreleased
 
+This update rebuilds the full-day VBD track from a facilitator planning skeleton into seven true hands-on labs that carry one live Microsoft Foundry agent through the complete AgentOps operating model.
+
+### Highlights
+
+- **From tabletop to keyboard.** The seven VBD labs are now step-by-step, beginner-proof, hands-on labs with exact commands and exact portal clicks, instead of high-level design exercises.
+- **One agent, end to end.** Every lab builds on the same running example, the Contoso Travel Agent, and consumes the artifact the previous lab produced, so attendees experience the operating model as one continuous story.
+- **Grounded in the real accelerator.** Commands use the public Azure AgentOps accelerator (PyPI `agentops-accelerator`, CLI `agentops`) and Microsoft Foundry, so the loop Evaluate, Ship, Observe, Operate is tangible on a live agent.
+- **A continuity spine you can verify.** Dataset, baseline, regression versions, evidence pack, telemetry, governance, and trace promotion flow through fixed file paths and agent versions from Lab 1 to the capstone.
+- **A working CI/CD gate.** The capstone generates a GitHub Actions pull request gate that blocks a regressed agent version before merge and publishes a release evidence pack.
+
 ### Content - AgentOps VBD Workshop (Paulo Lacerda)
 
-- Turn the `long/` track from an under-construction planning skeleton into a facilitator-ready VBD design-lab workshop plan.
-- Update the site home, README, VBD agenda, lab roadmap, and observability strategy so the full-day workshop is visible as a usable Value Delivery Workshop track.
-- Expand each VBD lab page with outcomes, exercise flow, facilitator prompts, completion criteria, and capstone decision guidance while keeping the track planning-only and free of lab solution code.
-- Remove visible `planning`, `planned`, and `placeholder` language from the VBD navigation and lab pages so the full-day track reads like a workshop guide.
+- Rewrite Labs 1 through 6 and the capstone as hands-on labs grounded in `Azure/agentops` and Microsoft Foundry, replacing the previous design-exercise framing.
+- Lock a continuity spine around the Contoso Travel Agent (`travel-agent:1/:2/:3`), a shared `agentops-vbd/` workspace, and fixed paths `.agentops/data/travel-smoke.jsonl`, `.agentops/baseline/results.json`, and `.agentops/release/latest/evidence.md`.
+- Lab 1 installs the accelerator, signs in to Azure, creates the Foundry Prompt Agent, and runs `agentops init`; Lab 2 builds the JSONL eval dataset, thresholds, first `agentops eval run`, and a green baseline.
+- Lab 3 ships a deliberately regressed `travel-agent:2`, proves the gate fails with exit code `2` against the baseline, and produces a Doctor evidence pack; Lab 4 enables Foundry and Application Insights tracing, imports telemetry, opens Cockpit as the local command center, and flags a bad trace.
+- Lab 5 adds a content-safety evaluator, governance assertions, and a red-team pass; Lab 6 promotes the flagged production trace back into the dataset and refreshes the baseline.
+- Capstone generates a GitHub Actions pull request gate, demonstrates a green pass and a red regression block, and assembles the final production-readiness evidence and ship decision.
+- Rewrite `long/labs/index.md` and `long/lab-roadmap.md` to a hands-on framing with the running example, a build-and-artifact table, the continuity spine, and a prerequisites checklist.
+
+### Follow-up
+
+- Mirror the hands-on VBD labs and updated roadmap into the upstream `presentations/04-agentops/` materials when that private repo is reachable.
 
 ## v0.3.0 - 2026-06-29
 
