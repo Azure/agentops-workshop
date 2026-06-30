@@ -1,14 +1,14 @@
 # AgentOps Workshop — author guide
 
 > **Delivering the workshop?** Use the instructor site instead:
-> **https://azure.github.io/agentops-workshop/**
+> **https://studious-couscous-1qj2kwp.pages.github.io/**
 > The PowerPoint deck and narrated video are one click away from the home page.
 
 This README is for **authors and builders** working on the workshop content itself. The repository has two audiences served from the same source:
 
 | Audience | Entry point | Purpose |
 |---|---|---|
-| Instructor delivering the workshop | [GitHub Pages site](https://azure.github.io/agentops-workshop/) | Download slides, video, speaker script. |
+| Instructor delivering the workshop | [GitHub Pages site](https://studious-couscous-1qj2kwp.pages.github.io/) | Download slides, video, speaker script. |
 | Author building the workshop | This README + `prep/` | Edit content, regenerate artefacts, publish. |
 
 ## Tracks
