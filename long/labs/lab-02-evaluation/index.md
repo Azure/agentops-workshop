@@ -1,7 +1,7 @@
 ---
 title: "Lab 2: Evaluation Design"
 layout: default
-parent: Lab Planning Pages
+parent: Labs
 grand_parent: AgentOps VBD Workshop
 nav_order: 2
 ---
@@ -29,7 +29,7 @@ Attendees design an evaluation strategy for one production-candidate agent.
 
 ## Artifact
 
-An evaluation plan:
+An evaluation contract:
 
 - Dataset scope
 - Example user journeys

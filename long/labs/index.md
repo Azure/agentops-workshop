@@ -1,12 +1,12 @@
 ---
-title: Lab Planning Pages
+title: Labs
 layout: default
 parent: AgentOps VBD Workshop
 nav_order: 4
 has_children: true
 ---
 
-# Lab Planning Pages
+# Labs
 
 This section contains the facilitator guide for the VBD design-lab exercises.
 
@@ -18,9 +18,9 @@ These labs are designed to be run with a customer's real agent context or as a t
 |---|---|
 | [Lab 1: Foundations and control plane](lab-01-foundations/) | Agent readiness profile. |
 | [Lab 2: Evaluation design](lab-02-evaluation/) | Evaluation contract. |
-| [Lab 3: Release gates and evidence](lab-03-release-gates/) | Release evidence plan. |
+| [Lab 3: Release gates and evidence](lab-03-release-gates/) | Release evidence package. |
 | [Lab 4: Observability and trace-driven operations](lab-04-observability/) | Observability model. |
-| [Lab 5: Safety, red-team follow-through, and governance](lab-05-safety-governance/) | Safety and governance plan. |
+| [Lab 5: Safety, red-team follow-through, and governance](lab-05-safety-governance/) | Safety and governance workflow. |
 | [Lab 6: Incident response and continuous improvement](lab-06-continuous-improvement/) | Continuous improvement runbook. |
 | [Capstone: Production-readiness review](capstone/) | One-page production-readiness review. |
 

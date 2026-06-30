@@ -1,7 +1,7 @@
 ---
 title: "Lab 5: Safety, Red-Team Follow-Through, and Governance"
 layout: default
-parent: Lab Planning Pages
+parent: Labs
 grand_parent: AgentOps VBD Workshop
 nav_order: 5
 ---
@@ -16,7 +16,7 @@ This lab makes safety and governance operational rather than a one-time review.
 
 ## Outcome
 
-Attendees plan how Responsible AI findings, safety policies, red-team results, and governance controls become operational evidence.
+Attendees define how Responsible AI findings, safety policies, red-team results, and governance controls become operational evidence.
 
 ## Concepts
 
@@ -31,7 +31,7 @@ Attendees plan how Responsible AI findings, safety policies, red-team results, a
 
 ## Artifact
 
-A safety and governance plan:
+A safety and governance workflow:
 
 - Safety signal inventory
 - Red-team finding workflow
@@ -65,4 +65,4 @@ Safety events must be observable in production. The lab plans how safety blocks,
 - Safety scenarios are linked to controls.
 - Red-team follow-through is explicit.
 - Governance approvals and risk acceptance are documented.
-- Safety telemetry is part of the observability plan.
+- Safety telemetry is part of the observability model.

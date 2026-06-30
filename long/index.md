@@ -8,7 +8,7 @@ has_children: true
 # AgentOps Value Delivery Workshop
 
 {: .note }
-> **Facilitator-ready plan.** This VBD track is a full-day design-lab workshop. It is ready to use as a guided customer working session, but it intentionally does not include runnable lab code or sample implementations yet.
+> **Facilitator-ready workshop.** This VBD track is a full-day design-lab workshop. It is ready to use as a guided customer working session, but it intentionally does not include runnable lab code or sample implementations.
 
 This track expands the one-hour AgentOps Briefing into an eight-hour Value Delivery Workshop. The goal is to help a customer team define the production operating model for one real or representative AI agent, using the four AgentOps pillars:
 
@@ -33,7 +33,7 @@ By the end of the VBD workshop, attendees should have a practical blueprint for 
 |---|---|---|
 | Foundations | Select the target agent, owners, environments, and readiness question. | Agent readiness profile. |
 | Evaluate | Define datasets, metrics, thresholds, baseline comparison, and regression handling. | Evaluation contract. |
-| Ship | Convert evaluation evidence into PR gates, deployment gates, approvals, and release notes. | Release evidence plan. |
+| Ship | Convert evaluation evidence into PR gates, deployment gates, approvals, and release notes. | Release evidence package. |
 | Observe | Design trace, telemetry, dashboard, alert, and feedback-loop coverage. | Observability model. |
 | Operate | Define safety follow-through, incident response, cost review, model lifecycle, and continuous improvement. | Operating runbook. |
 | Capstone | Decide whether the agent is ready to move forward and what risks remain. | Production-readiness review. |
@@ -42,9 +42,9 @@ By the end of the VBD workshop, attendees should have a practical blueprint for 
 
 | Page | Purpose |
 |---|---|
-| [Agenda]({{ '/long/agenda' | relative_url }}) | Full-day time plan. |
+| [Agenda]({{ '/long/agenda' | relative_url }}) | Full-day schedule. |
 | [Lab roadmap]({{ '/long/lab-roadmap' | relative_url }}) | Lab sequence and learning objectives. |
-| [Observability strategy]({{ '/long/observability-strategy' | relative_url }}) | Cross-cutting observability plan for the full-day workshop. |
+| [Observability strategy]({{ '/long/observability-strategy' | relative_url }}) | Cross-cutting observability model for the full-day workshop. |
 | [Lab guide]({{ '/long/labs/' | relative_url }}) | Facilitator-ready design-lab exercises and artifacts. |
 
 ## Observability treatment

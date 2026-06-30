@@ -1,7 +1,7 @@
 ---
 title: "Lab 1: Foundations and Control Plane"
 layout: default
-parent: Lab Planning Pages
+parent: Labs
 grand_parent: AgentOps VBD Workshop
 nav_order: 1
 ---

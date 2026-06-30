@@ -22,9 +22,9 @@ AgentOps Value Delivery Workshop teaches observability as a practical system:
 
 ## Observability domains
 
-| Domain | Planned coverage |
+| Domain | Coverage |
 |---|---|
-| Trace observability | User request, agent plan, model calls, retrieval, tool calls, safety events, response, feedback. |
+| Trace observability | User request, agent decision path, model calls, retrieval, tool calls, safety events, response, feedback. |
 | Release observability | Version, deployment, commit, prompt, environment, eval run, and gate result. |
 | Quality observability | Eval trends, baseline deltas, production feedback, trace review outcomes. |
 | Safety observability | Content safety events, red-team findings, jailbreak attempts, blocked responses, policy outcomes. |
@@ -45,7 +45,7 @@ Lab 4 is the deepest observability experience. It guides attendees through:
 - Reviewing a trace and deciding whether it should become a new eval case.
 - Adding an observability section to the readiness evidence package.
 
-## Dashboard plan
+## Dashboard design
 
 The workshop includes a dashboard design with these views:
 
@@ -77,9 +77,9 @@ The workshop includes a dashboard design with these views:
    - Red-team findings
    - Open action items
 
-## Alert plan
+## Alert model
 
-Planned alert categories:
+Alert categories:
 
 - Tool dependency failure above threshold
 - Latency regression after deployment

@@ -1,7 +1,7 @@
 ---
 title: "Lab 4: Observability and Trace-Driven Operations"
 layout: default
-parent: Lab Planning Pages
+parent: Labs
 grand_parent: AgentOps VBD Workshop
 nav_order: 4
 ---
@@ -77,7 +77,7 @@ Design four views:
 Minimum signals:
 
 - User request
-- Agent plan or reasoning boundary, where available
+- Agent decision path or reasoning boundary, where available
 - Model call
 - Retrieval event
 - Tool call

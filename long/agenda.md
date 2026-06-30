@@ -40,13 +40,13 @@ For design-lab mode, attendees should have:
 | 0:30-1:30 | Lab 1: Foundations and control plane | Guided working session | Map the agent target, Foundry control plane, repo contract, and release-readiness question. |
 | 1:30-1:45 | Break | Break | - |
 | 1:45-3:00 | Lab 2: Evaluation design | Guided working session | Define dataset strategy, metrics, thresholds, and baseline comparison. |
-| 3:00-4:00 | Lab 3: Release gates and evidence | Guided working session | Plan PR and deployment gates, reports, and readiness artifacts. |
+| 3:00-4:00 | Lab 3: Release gates and evidence | Guided working session | Define PR and deployment gates, reports, and readiness artifacts. |
 | 4:00-4:45 | Lunch / extended break | Break | - |
-| 4:45-6:15 | Lab 4: Observability and trace-driven operations | Guided working session | Plan agent traces, telemetry correlation, dashboards, alerts, and trace-to-eval feedback. |
+| 4:45-6:15 | Lab 4: Observability and trace-driven operations | Guided working session | Define agent traces, telemetry correlation, dashboards, alerts, and trace-to-eval feedback. |
 | 6:15-6:30 | Break | Break | - |
-| 6:30-7:15 | Lab 5: Safety, red-team follow-through, and governance | Guided working session | Plan safety evidence, governance ownership, auditability, and risk controls. |
-| 7:15-7:50 | Lab 6: Incident response and continuous improvement | Guided working session | Plan diagnostics, incident workflow, trace triage, and eval-set updates. |
-| 7:50-8:00 | Wrap-up and next steps | Discussion | Leave with a 30-day implementation plan for one production-candidate agent. |
+| 6:30-7:15 | Lab 5: Safety, red-team follow-through, and governance | Guided working session | Define safety evidence, governance ownership, auditability, and risk controls. |
+| 7:15-7:50 | Lab 6: Incident response and continuous improvement | Guided working session | Define diagnostics, incident workflow, trace triage, and eval-set updates. |
+| 7:50-8:00 | Wrap-up and next steps | Discussion | Leave with a 30-day implementation backlog for one production-candidate agent. |
 
 ## Facilitator checkpoints
 

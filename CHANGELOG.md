@@ -7,6 +7,7 @@
 - Turn the `long/` track from an under-construction planning skeleton into a facilitator-ready VBD design-lab workshop plan.
 - Update the site home, README, VBD agenda, lab roadmap, and observability strategy so the full-day workshop is visible as a usable Value Delivery Workshop track.
 - Expand each VBD lab page with outcomes, exercise flow, facilitator prompts, completion criteria, and capstone decision guidance while keeping the track planning-only and free of lab solution code.
+- Remove visible `planning`, `planned`, and `placeholder` language from the VBD navigation and lab pages so the full-day track reads like a workshop guide.
 
 ## v0.3.0 - 2026-06-29
 

@@ -1,7 +1,7 @@
 ---
 title: "Lab 6: Incident Response and Continuous Improvement"
 layout: default
-parent: Lab Planning Pages
+parent: Labs
 grand_parent: AgentOps VBD Workshop
 nav_order: 6
 ---
@@ -16,7 +16,7 @@ This lab closes the AgentOps loop by turning production signals into stronger fu
 
 ## Outcome
 
-Attendees plan how operational incidents, failed traces, and user feedback become fixes and future release gates.
+Attendees define how operational incidents, failed traces, and user feedback become fixes and future release gates.
 
 ## Concepts
 
@@ -30,7 +30,7 @@ Attendees plan how operational incidents, failed traces, and user feedback becom
 
 ## Artifact
 
-A continuous improvement plan:
+A continuous improvement backlog:
 
 - Incident intake path
 - Trace triage checklist

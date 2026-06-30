@@ -15,10 +15,10 @@ This roadmap defines the full-day VBD lab sequence. The labs are facilitator-rea
 |---|---:|---|---|
 | [Lab 1: Foundations and control plane](labs/lab-01-foundations/) | 60 min | no-code / low-code | Identify the agent target, Foundry project, repo contract, and production-readiness question. |
 | [Lab 2: Evaluation design](labs/lab-02-evaluation/) | 75 min | low-code | Define dataset, metrics, thresholds, baseline comparison, and regression candidates. |
-| [Lab 3: Release gates and evidence](labs/lab-03-release-gates/) | 60 min | low-code / full-code | Plan PR gates, deploy gates, eval reports, readiness evidence, and review workflow. |
-| [Lab 4: Observability and trace-driven operations](labs/lab-04-observability/) | 90 min | low-code | Plan trace collection, telemetry correlation, dashboards, alerts, and trace-to-eval feedback. |
-| [Lab 5: Safety, red-team follow-through, and governance](labs/lab-05-safety-governance/) | 45 min | no-code / low-code | Plan safety findings, policy evidence, governance ownership, and auditability. |
-| [Lab 6: Incident response and continuous improvement](labs/lab-06-continuous-improvement/) | 35 min | no-code / low-code | Plan incident triage, diagnosis, fixes, and future eval coverage. |
+| [Lab 3: Release gates and evidence](labs/lab-03-release-gates/) | 60 min | low-code / full-code | Define PR gates, deploy gates, eval reports, readiness evidence, and review workflow. |
+| [Lab 4: Observability and trace-driven operations](labs/lab-04-observability/) | 90 min | low-code | Define trace collection, telemetry correlation, dashboards, alerts, and trace-to-eval feedback. |
+| [Lab 5: Safety, red-team follow-through, and governance](labs/lab-05-safety-governance/) | 45 min | no-code / low-code | Define safety findings, policy evidence, governance ownership, and auditability. |
+| [Lab 6: Incident response and continuous improvement](labs/lab-06-continuous-improvement/) | 35 min | no-code / low-code | Define incident triage, diagnosis, fixes, and future eval coverage. |
 | [Capstone: Production-readiness review](labs/capstone/) | 30 min | discussion | Assemble the readiness narrative for one production-candidate agent. |
 
 ## Cross-lab artifacts
@@ -27,14 +27,14 @@ The workshop produces these artifacts:
 
 - Agent target inventory
 - Release-readiness contract
-- Evaluation dataset plan
-- Baseline and threshold plan
-- CI/CD gate plan
+- Evaluation dataset
+- Baseline and threshold contract
+- CI/CD gate contract
 - Readiness evidence package
 - Observability correlation model
-- Dashboard and alert plan
-- Safety and red-team follow-through plan
-- Incident response and continuous improvement plan
+- Dashboard and alert model
+- Safety and red-team follow-through workflow
+- Incident response and continuous improvement backlog
 
 ## Lab-to-pillar mapping
 
@@ -42,8 +42,8 @@ The workshop produces these artifacts:
 |---|---|---|
 | Evaluate | Lab 2, Lab 5, Lab 6 | Dataset, metrics, thresholds, red-team findings, incident-derived eval rows. |
 | Ship | Lab 1, Lab 3, Capstone | Readiness contract, CI/CD gates, approvals, release evidence package. |
-| Observe | Lab 1, Lab 4, Lab 6 | Trace schema, correlation model, dashboard plan, alerts, trace review workflow. |
-| Operate | Lab 4, Lab 5, Lab 6, Capstone | Incident path, safety governance, owner model, continuous improvement plan. |
+| Observe | Lab 1, Lab 4, Lab 6 | Trace schema, correlation model, dashboard views, alerts, trace review workflow. |
+| Operate | Lab 4, Lab 5, Lab 6, Capstone | Incident path, safety governance, owner model, continuous improvement backlog. |
 
 ## Observability thread
 

@@ -1,7 +1,7 @@
 ---
 title: "Capstone: Production-Readiness Review"
 layout: default
-parent: Lab Planning Pages
+parent: Labs
 grand_parent: AgentOps VBD Workshop
 nav_order: 7
 ---
@@ -47,7 +47,7 @@ A one-page readiness review:
 |---|---|
 | Agent and release | Agent readiness profile from Lab 1. |
 | Evaluation | Dataset, metrics, thresholds, baseline, and known gaps from Lab 2. |
-| Shipping | Gate plan, evidence package, reviewers, and promotion criteria from Lab 3. |
+| Shipping | Gate contract, evidence package, reviewers, and promotion criteria from Lab 3. |
 | Observability | Trace schema, dashboard, alert, and trace-review workflow from Lab 4. |
 | Safety and governance | Findings, controls, approvals, and risk acceptance from Lab 5. |
 | Operate and improve | Incident path, root-cause model, and eval-backlog process from Lab 6. |
@@ -66,7 +66,7 @@ The team should leave with one of three outcomes:
 
 The capstone should make observability visible in the final decision. The release should not be considered ready unless the team can find and explain production behavior through traces and telemetry.
 
-## 30-day action plan
+## 30-day action backlog
 
 Close with three owner-backed actions:
 

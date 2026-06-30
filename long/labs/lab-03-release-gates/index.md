@@ -1,7 +1,7 @@
 ---
 title: "Lab 3: Release Gates and Evidence"
 layout: default
-parent: Lab Planning Pages
+parent: Labs
 grand_parent: AgentOps VBD Workshop
 nav_order: 3
 ---
@@ -16,7 +16,7 @@ This lab turns evaluation into an enforceable shipping process.
 
 ## Outcome
 
-Attendees plan how evaluation results become enforceable release gates and reviewable evidence.
+Attendees define how evaluation results become enforceable release gates and reviewable evidence.
 
 ## Concepts
 
@@ -30,7 +30,7 @@ Attendees plan how evaluation results become enforceable release gates and revie
 
 ## Artifact
 
-A release-gate plan:
+A release-gate contract:
 
 - Gate location
 - Required evals
@@ -46,7 +46,7 @@ A release-gate plan:
 2. **Choose gate locations.** Decide what runs on PR, pre-merge, pre-deploy, post-deploy smoke, and scheduled readiness review.
 3. **Attach evidence.** Define the report or artifact reviewers need: eval run, threshold summary, failed cases, risk notes, telemetry expectations, and approval record.
 4. **Define failure behavior.** Decide what blocks automatically, what requires human review, and what can be accepted with documented risk.
-5. **Plan promotion.** Define how a version moves across dev, qa, pilot, and production.
+5. **Define promotion.** Decide how a version moves across dev, qa, pilot, and production.
 
 ## Facilitator prompts
 
