@@ -116,7 +116,7 @@ This update brings the short workshop deck up to date with the latest speaker-fl
 
 ### Follow-up
 
-- Mirror the updated deck to the upstream program repo at `presentations/04-agentops/`. (PR opened: private-program-owner/prod-readiness-workshop#2.)
+- Mirror the updated deck to the upstream program repo at `presentations/04-agentops/`. (Mirror PR opened in the private program repo.)
 - Author the full-day VBD workshop content (`long/slides.md`, `long/labs/lab-01..06`, `long/labs/capstone`, `long/images/`); currently only the planning skeleton exists.
 
 ## v0.2.1 - 2026-06-03

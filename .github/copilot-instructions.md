@@ -33,9 +33,9 @@ When new authoring artefacts are created (notes, planning docs, build scripts, i
 
 This workshop is one component of a broader engagement program called the **AI Path to Production - Delivery Accelerator**.
 
-- Upstream program repository (private): https://github.com/private-program-owner/prod-readiness-workshop
+- Upstream program repository: private; access is shared internally on request.
 - The program has six webinar topics. AgentOps is **Topic 4**.
-- Upstream location for the AgentOps presentation assets: https://github.com/private-program-owner/prod-readiness-workshop/tree/master/presentations/04-agentops
+- Upstream location for the AgentOps presentation assets: the `presentations/04-agentops/` folder of that private program repository.
 
 Working agreement with the upstream program:
 
@@ -110,7 +110,7 @@ External source references:
 
 - Private GenAIOps Training deck notes summarized in `prep\references\source-materials.md`.
 - Private AgentOps end-to-end tutorial notes summarized in `prep\references\source-materials.md`.
-- Upstream AgentOps deck in the parent program: `presentations\04-agentops\slides.md` in the `private-program-owner\prod-readiness-workshop` repository. Use it as the structural reference for section taxonomy, Marp format, and slide ordering.
+- Upstream AgentOps deck in the parent program: `presentations\04-agentops\slides.md` in the private program repository. Use it as the structural reference for section taxonomy, Marp format, and slide ordering.
 - Prior planning content consolidated into the short and long track pages.
 
 ## Content conventions
