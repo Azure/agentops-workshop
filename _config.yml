@@ -12,6 +12,12 @@ search_enabled: true
 heading_anchors: true
 footer_content: ""
 
+# Link to the source repository, shown at the top right of every page.
+aux_links:
+  "View on GitHub":
+    - "https://github.com/Azure/agentops-workshop"
+aux_links_new_tab: true
+
 # Exclude preparation/authoring materials from the published site.
 # `prep/` holds references, build tools, and intermediate artefacts that
 # the workshop attendee or instructor never needs to see.
