@@ -636,7 +636,7 @@ If you have the eval dataset and release contract from earlier slides, model lif
 
 ## Slide 26 - Demo - Operate
 
-**SP1:** For this last demo, I'll show incident triage from a production trace, a model canary comparison side by side, and how production learnings feed back into the eval dataset to close the loop.
+**SP1:** For this last demo, I'll show a regression caught at PR time, a one-line revert that hardens the gate, and a release blocked by production signals.
 
 ---
 

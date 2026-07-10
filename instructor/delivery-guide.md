@@ -27,7 +27,7 @@ The workshop should feel like a production-readiness engagement, not a product t
 - Use one production-candidate agent as the thread through the session.
 - Treat observability as an engineering discipline, not as screenshots of dashboards.
 - Use failures intentionally. A failed eval or release gate is the clearest way to show value.
-- Keep AgentOps Toolkit references subtle and practical.
+- Keep AgentOps Accelerator references subtle and practical.
 
 ## For AgentOps Briefing
 

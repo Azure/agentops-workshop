@@ -46,13 +46,13 @@ Working agreement with the upstream program:
 
 ## Core positioning
 
-The theme is **AgentOps**, not AgentOps Toolkit.
+The theme is **AgentOps**, not AgentOps Accelerator.
 
 Use this framing:
 
 > AgentOps is the operating model for moving AI agents from prototype to production with evaluation, release gates, observability, diagnostics, safety, governance, and continuous improvement.
 
-AgentOps Toolkit may be mentioned, but only as one practical component or reference accelerator that can help implement parts of the AgentOps operating model. Do not make the workshop a product walkthrough or a toolkit launch deck.
+AgentOps Accelerator may be mentioned, but only as one practical component or reference accelerator that can help implement parts of the AgentOps operating model. Do not make the workshop a product walkthrough or an accelerator launch deck.
 
 ## Audience
 
@@ -81,8 +81,8 @@ Do:
 
 Avoid:
 
-- Making AgentOps Toolkit the central narrative.
-- Calling the session an AgentOps Toolkit walkthrough.
+- Making AgentOps Accelerator the central narrative.
+- Calling the session an AgentOps Accelerator walkthrough.
 - Starting with installation or command syntax.
 - Spending too much time on tool internals.
 - Describing AgentOps as a replacement for Foundry.
@@ -171,20 +171,20 @@ For the short deck, the operating loop **Evaluate, Gate, Observe, Diagnose, Ship
 - Keep section names and slide ordering aligned with the upstream deck unless a divergence is explicitly recorded in `prep\references\content-decisions.md`.
 - Do not move private or sanitized references from `prep\references\` into the slides themselves; the deck must stand on its own without linking to private materials.
 
-## AgentOps Toolkit treatment
+## AgentOps Accelerator treatment
 
 Approved subtle mentions:
 
-- "AgentOps Toolkit can be used as a reference accelerator for the demo flow."
-- "In the demo, AgentOps Toolkit components such as CLI, Doctor, and Cockpit can make the operating model tangible."
-- "The toolkit is one implementation path for repo-side release contracts, eval evidence, and readiness checks."
+- "AgentOps Accelerator can be used as a reference accelerator for the demo flow."
+- "In the demo, AgentOps Accelerator components such as CLI, Doctor, and Cockpit can make the operating model tangible."
+- "The accelerator is one implementation path for repo-side release contracts, eval evidence, and readiness checks."
 
 Avoid these phrasings:
 
-- "This session is about AgentOps Toolkit."
-- "AgentOps equals AgentOps Toolkit."
-- "AgentOps Toolkit replaces Foundry."
-- "The customer problem is installing the toolkit."
+- "This session is about AgentOps Accelerator."
+- "AgentOps equals AgentOps Accelerator."
+- "AgentOps Accelerator replaces Foundry."
+- "The customer problem is installing the accelerator."
 
 ## GitHub Pages conventions
 

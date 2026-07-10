@@ -62,7 +62,7 @@ Emphasize:
 
 Avoid:
 
-- Making the session about AgentOps Toolkit.
+- Making the session about AgentOps Accelerator.
 - Starting with installation details.
 - Spending too much time on command syntax.
 - Describing AgentOps as a replacement for Foundry.

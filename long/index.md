@@ -61,4 +61,4 @@ Observability is both a dedicated lab and a thread across the workshop. Every la
 
 ## What this is not
 
-This VBD track is not an AgentOps Toolkit walkthrough and not an app-build tutorial. It is a production-readiness working session around Microsoft Foundry, repo-side release evidence, CI/CD gates, Azure Monitor and Application Insights telemetry, safety review, and Day-2 operations.
+This VBD track is not an AgentOps Accelerator walkthrough and not an app-build tutorial. It is a production-readiness working session around Microsoft Foundry, repo-side release evidence, CI/CD gates, Azure Monitor and Application Insights telemetry, safety review, and Day-2 operations.

@@ -432,7 +432,7 @@ Triage flow:
 <video src="videos/part4-operate.mp4" controls width="80%"></video>
 
 <!-- Speaker notes:
-- Live demo showing Day-2 operations: incident triage from trace, model canary comparison, and production learnings feeding back into the eval dataset
+- Live demo showing Day-2 operations: a regression caught at PR time, a one-line revert that hardens the gate, and a release blocked by production signals
 -->
 
 ---
